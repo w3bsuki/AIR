@@ -4,6 +4,7 @@ import { ArrowRight, BarChart, Zap, Shield } from "lucide-react"
 import { ButtonColorful } from "@/components/ui/button-colorful"
 import { Hero } from "@/components/ui/animated-hero"
 import { FeaturedServices } from "@/components/ui/featured-services"
+import { LogoCarousel } from "@/components/logo-carousel"
 
 export default function Home() {
   return (
@@ -12,6 +13,9 @@ export default function Home() {
       <section className="min-h-[calc(100vh-64px)] relative overflow-hidden">
         <Hero />
       </section>
+
+      {/* Logo Carousel */}
+      <LogoCarousel />
 
       {/* Featured Services */}
       <FeaturedServices />

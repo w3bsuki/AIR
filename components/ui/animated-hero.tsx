@@ -29,39 +29,39 @@ function Hero() {
       <div className="container relative mx-auto px-4">
         <div className="flex gap-12 py-32 items-center justify-center flex-col">
           <div>
-            <div className="flex items-center rounded-full border border-border bg-background/80 p-1.5 shadow shadow-black/5 backdrop-blur-sm">
+            <div className="flex items-center rounded-full border border-white/10 bg-black/40 p-1.5 shadow-lg shadow-black/10 backdrop-blur-sm">
               <div className="flex -space-x-1.5">
                 <img
-                  className="rounded-full ring-1 ring-background"
+                  className="rounded-full ring-1 ring-white/10"
                   src="https://originui.com/avatar-80-03.jpg"
                   width={24}
                   height={24}
                   alt="Avatar 01"
                 />
                 <img
-                  className="rounded-full ring-1 ring-background"
+                  className="rounded-full ring-1 ring-white/10"
                   src="https://originui.com/avatar-80-04.jpg"
                   width={24}
                   height={24}
                   alt="Avatar 02"
                 />
                 <img
-                  className="rounded-full ring-1 ring-background"
+                  className="rounded-full ring-1 ring-white/10"
                   src="https://originui.com/avatar-80-05.jpg"
                   width={24}
                   height={24}
                   alt="Avatar 03"
                 />
                 <img
-                  className="rounded-full ring-1 ring-background"
+                  className="rounded-full ring-1 ring-white/10"
                   src="https://originui.com/avatar-80-06.jpg"
                   width={24}
                   height={24}
                   alt="Avatar 04"
                 />
               </div>
-              <p className="px-3 text-sm text-muted-foreground">
-                Trusted by <strong className="font-medium text-foreground">60K+</strong> developers.
+              <p className="px-3 text-sm text-white/70">
+                Trusted by <strong className="font-medium text-white">60K+</strong> developers.
               </p>
             </div>
           </div>
