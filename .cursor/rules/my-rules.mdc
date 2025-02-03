@@ -1,0 +1,199 @@
+---
+description: 
+globs: 
+---
+# AIDr.ai Development Rules
+
+## Core Principles
+1. **Dark UI First**: All components default to dark theme (#0A101E) with electric blue accents
+2. **AI-Centric Architecture**:
+   - Agent cards use `<AgentCard />` component pattern
+   - API endpoints versioned as `/api/v1/...`
+3. **Government Compliance**:
+   - WCAG 2.1 AA accessibility standards
+   - GDPR-ready data handling
+
+## Technical Requirements
+- **Next.js / React **: App Router with 90% Server Components
+- **TypeScript**: Strict mode enforced
+- **Performance**:
+  - LCP < 1.2s
+  - CLS < 0.1
+  - FID < 100ms
+- **Security**:
+  - Zod validation on all forms
+  - CSP headers with nonce-based scripts
+
+## Component Structure
+src/
+├── components/
+│ ├── ui/ # Shadcn components
+│ ├── agents/ # AI agent cards
+│ └── sections/ # Page sections (Hero, Features)
+├── lib/
+│ ├── api/ # API client with error handling
+│ └── utils/ # Shared utilities
+
+## Code Quality Standards
+1. **Type Safety**:
+   - No `any` types
+   - Full TSDoc comments
+2. **Performance**:
+   - Images: WebP + AVIF formats
+   - Dynamic imports for >50KB components
+3. **Testing**:
+   - 80% unit test coverage
+   - Cypress for auth flows
+
+## Scalability Path
+1. **Phase 2 Ready**:
+   - Reserved `/dashboard` route
+   - API rate limiting foundations
+   - Zustand state slices pattern
+
+
+
+{
+  "$schema": "https://cursor.sh/schemas/cursor-rules.v1.json",
+  "projectContext": {
+    "techStack": ["Next.js", "TypeScript", "Tailwind CSS", "Shadcn UI", "Zustand", "Zod", "React"]
+  },
+  "codeStructure": {
+    "enforcedPatterns": {
+      "app": {
+        "layout": "Root layout with metadata and analytics",
+        "page": "Server components by default",
+        "api": "Route handlers with Zod validation"
+      },
+      "components": {
+        "ui": "Shadcn UI components with extended functionality",
+        "sections": "Atomic design pattern (atoms/molecules/organisms)",
+        "agent-cards": "Reusable agent presentation components"
+      },
+      "lib": {
+        "constants": "Project-wide constants and configs",
+        "utils": "Generic utility functions",
+        "api": "API client with error handling"
+      }
+    }
+  },
+  "qualityRules": {
+    "typescript": {
+      "strict": true,
+      "noExplicitAny": true,
+      "noUnusedVars": "error"
+    },
+    "react": {
+      "functionalComponents": true,
+      "hooks": {
+        "useState": "allow",
+        "useEffect": "warn",
+        "useServer": "enforce"
+      },
+      "noClassComponents": true
+    },
+    "performance": {
+      "imageOptimization": {
+        "formats": ["webp", "avif"],
+        "sizes": "(max-width: 768px) 100vw, 50vw",
+        "quality": 80
+      },
+      "dynamicImports": {
+        "threshold": 50
+      }
+    }
+  },
+  "security": {
+    "sanitization": {
+      "contactForm": {
+        "inputTypes": ["email", "text"],
+        "validation": "Zod schema enforcement"
+      }
+    },
+    "environment": {
+      "encryption": "env.local only",
+      "apiKeys": "runtime validation"
+    }
+  },
+  "styleRules": {
+    "tailwind": {
+      "darkMode": "class",
+      "colorPalette": {
+        "primary": "#2A8CFF",
+        "secondary": "#0A101E",
+        "accent": "#4F46E5"
+      },
+      "spacingScale": "rem-based"
+    },
+    "responsive": {
+      "breakpoints": ["640px", "768px", "1024px", "1280px"],
+      "mobileFirst": true
+    }
+  },
+  "documentation": {
+    "componentLevel": {
+      "props": "TSDoc comments",
+      "examples": "Storybook-ready"
+    },
+    "architecture": {
+      "dataFlow": "Visualized in docs/ARCHITECTURE.md",
+      "apiSpec": "OpenAPI 3.0 format"
+    }
+  },
+  "testing": {
+    "unit": {
+      "coverageThreshold": 80,
+      "requiredFiles": ["components/**/*.test.tsx"]
+    },
+    "e2e": {
+      "cypress": {
+        "authFlows": true,
+        "agentInteractions": true
+      }
+    }
+  },
+  "optimizationFlags": {
+    "serverComponents": {
+      "dataFetching": "Direct in components",
+      "staticGeneration": {
+        "default": "force-static",
+        "exceptions": ["/agents/[slug]"]
+      }
+    },
+    "clientHydration": {
+      "deferNonCritical": ["analytics", "chat-widget"]
+    }
+  },
+  "scalability": {
+    "apiDesign": {
+      "versioning": "/api/v1/*",
+      "rateLimiting": "Upstash Redis"
+    },
+    "stateManagement": {
+      "globalStore": "Zustand slices",
+      "serverState": "TanStack Query v5"
+    }
+  }
+}
+
+
+{
+  "extends": [
+    "next/core-web-vitals",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:security/recommended",
+    "plugin:jsx-a11y/recommended"
+  ],
+  "rules": {
+    "security/detect-object-injection": "off",
+    "@typescript-eslint/no-unused-vars": "error",
+    "react-hooks/exhaustive-deps": "error"
+  }
+}
+
+
+
+
+
+
+
