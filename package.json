@@ -39,6 +39,7 @@
     "@radix-ui/react-toggle-group": "^1.1.1",
     "@radix-ui/react-tooltip": "latest",
     "@react-three/fiber": "latest",
+    "@tabler/icons-react": "^3.29.0",
     "@types/react": "latest",
     "@types/react-dom": "latest",
     "autoprefixer": "^10.4.20",

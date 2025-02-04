@@ -1,19 +1,12 @@
 export function AgentPlaceholder() {
   return (
     <svg
-      className="w-24 h-24 text-white/10"
+      className="w-full h-full text-white/10"
+      fill="currentColor"
       viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
+      xmlns="http://www.w3.org/2000/svg"
     >
-      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c5.51 0 10-4.48 10-10S17.51 2 12 2z" />
-      <path d="M12 6c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z" />
-      <path d="M12 20c-2.83 0-5.2-1.64-6.38-4 1.18-2.36 3.55-4 6.38-4s5.2 1.64 6.38 4c-1.18 2.36-3.55 4-6.38 4z" />
-      <path d="M15.5 9a3.5 3.5 0 0 0-7 0" />
-      <path d="M17.72 13.4c-.5-.3-1.1-.5-1.72-.5h-8c-.62 0-1.22.2-1.72.5" />
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z" />
     </svg>
   )
 } 

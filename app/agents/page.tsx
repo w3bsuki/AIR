@@ -1,6 +1,8 @@
 import { Metadata } from 'next'
 import { AgentCard } from "@/components/ui/agent-card"
 import { AgentFilters } from "@/components/ui/agent-filters"
+import { SectionHeader } from '@/components/ui/section-header'
+import { GradientCard } from '@/components/ui/gradient-card'
 import { Zap, Brain, Shield } from "lucide-react"
 
 export const metadata: Metadata = {
@@ -135,32 +137,27 @@ export default function AgentsPage() {
   return (
     <div className="min-h-screen bg-black/40 backdrop-blur-sm pt-24">
       <div className="container mx-auto px-4">
-        {/* Header */}
-        <div className="mb-12 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold tracking-tighter text-white mb-4">
-            AI Agent Marketplace
-          </h1>
-          <p className="text-lg text-white/70 max-w-2xl mx-auto">
-            Discover and deploy powerful AI agents tailored for your specific needs. Each agent is thoroughly tested and optimized for maximum efficiency.
-          </p>
-        </div>
+        <SectionHeader 
+          title="AI Agent Marketplace"
+          description="Discover and deploy powerful AI agents tailored for your specific needs. Each agent is thoroughly tested and optimized for maximum efficiency."
+          className="mb-12"
+        />
 
         {/* Features Section */}
         <div className="mb-20">
-          <h2 className="text-3xl font-bold tracking-tighter text-white text-center mb-12">
-            Why Choose Our AI Agents?
-          </h2>
+          <SectionHeader 
+            title="Why Choose Our AI Agents?"
+            description=""
+            className="mb-12"
+          />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {features.map((feature, index) => (
-              <div
+              <GradientCard
                 key={index}
-                className="relative overflow-hidden rounded-2xl border border-white/10 bg-black/40 p-8 hover:border-white/20 transition-all duration-300 group"
-              >
-                <div className="absolute inset-0 bg-gradient-to-b from-white/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                <feature.icon className="w-8 h-8 text-white/70 mb-4" />
-                <h3 className="text-xl font-semibold text-white mb-2">{feature.title}</h3>
-                <p className="text-sm text-white/70">{feature.description}</p>
-              </div>
+                icon={feature.icon}
+                title={feature.title}
+                description={feature.description}
+              />
             ))}
           </div>
         </div>
