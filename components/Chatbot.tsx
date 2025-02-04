@@ -1,7 +1,7 @@
 "use client"
 
 import React from "react"
-import { CanvasRevealEffect } from "@/components/ui/canvas-effect"
+import { CanvasRevealEffect } from "@/components/ui/canvas-reveal-effect"
 import { DIcons } from "dicons"
 import { AnimatePresence, motion } from "framer-motion"
 
