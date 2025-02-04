@@ -29,7 +29,7 @@ const agents: Agent[] = [
   {
     title: "Writing Assistant",
     description: "Professional AI writing aid for content creation and editing.",
-    icon: "File",
+    icon: "Files",
     link: "/agents/writing-assistant"
   }
 ]
