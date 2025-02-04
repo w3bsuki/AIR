@@ -2,25 +2,26 @@
 
 import { Brain, Shield, BarChart, ArrowRight } from "lucide-react"
 import Link from "next/link"
+import { routes } from "@/lib/routes"
 
-const researchPosts = [
+const posts = [
   {
-    category: "Research",
     title: "LLMs Easily Jailbroken as Browser Agents",
-    icon: Brain,
-    href: "/research/llm-browser-agents"
-  },
-  {
+    description: "Research on LLM vulnerabilities when deployed as browser agents",
     category: "Research",
-    title: "Multi-Turn Human Jailbreaks on LLM Defenses",
-    icon: Shield,
-    href: "/research/llm-defenses"
+    href: routes.research
   },
   {
-    category: "Leaderboards",
+    title: "Multi-Turn Human Jailbreaks on LLM Defenses",
+    description: "Analysis of human-driven jailbreak attempts on LLM safety measures",
+    category: "Research",
+    href: routes.research
+  },
+  {
     title: "SEAL Leaderboards: Expert-Driven Private Evaluations",
-    icon: BarChart,
-    href: "/research/seal-leaderboards"
+    description: "Private evaluation framework for assessing LLM capabilities",
+    category: "Leaderboards",
+    href: routes.research
   }
 ]
 
@@ -28,7 +29,7 @@ export function ResearchSection() {
   return (
     <>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {researchPosts.map((post, index) => (
+        {posts.map((post, index) => (
           <Link
             key={index}
             href={post.href}
