@@ -4,7 +4,7 @@ import { motion } from "framer-motion"
 import { Star, Check } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
-import { routes } from "@/lib/routes"
+import { getAgentRoute } from "@/lib/routes"
 
 interface Agent {
   id: number
@@ -46,7 +46,7 @@ export function AgentCard({ agent }: AgentCardProps) {
         </div>
         <div className="mt-4">
           <Link
-            href={routes.agent(agent.id)}
+            href={getAgentRoute(agent.id)}
             className="inline-flex items-center justify-center rounded-full bg-white px-4 py-2 text-sm font-medium text-black transition-colors hover:bg-white/90"
           >
             View Details

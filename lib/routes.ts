@@ -1,11 +1,15 @@
+import { Route } from 'next'
+
 export const routes = {
-  home: '/',
-  signup: '/signup',
-  demo: '/demo',
-  agents: '/agents',
-  agent: (id: number) => `/agents/${id}` as const,
-  services: '/services',
-  research: '/research',
+  home: '/' as Route,
+  signup: '/signup' as Route,
+  demo: '/demo' as Route,
+  agents: '/agents' as Route,
+  services: '/services' as Route,
+  research: '/research' as Route,
 } as const
 
-export type Route = typeof routes[keyof typeof routes] 
+// For dynamic routes, we need a separate function
+export function getAgentRoute(id: number): Route {
+  return `/agents/${id}` as Route
+} 
