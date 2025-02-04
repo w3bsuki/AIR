@@ -3,27 +3,36 @@
 import { Lock, Brain, Bot } from "lucide-react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { Route } from 'next'
+import { DIcons } from "dicons"
 
-const services = [
+interface Service {
+  title: string
+  description: string
+  icon: keyof typeof DIcons
+  link: Route
+}
+
+const services: Service[] = [
   {
-    icon: Brain,
-    title: "LLMs Easily Jailbroken as Browser Agents",
-    category: "Research",
-    link: "/research/llm-jailbreak"
+    title: "AI Agents",
+    description: "Discover our marketplace of specialized AI agents ready to assist with your tasks.",
+    icon: "Robot",
+    link: "/agents" as Route
   },
   {
-    icon: Lock,
-    title: "Multi-Turn Human Jailbreaks on LLM Defenses",
-    category: "Research",
-    link: "/research/human-jailbreaks"
+    title: "Services",
+    description: "Explore our range of AI-powered services designed for businesses.",
+    icon: "Sparkles",
+    link: "/services" as Route
   },
   {
-    icon: Bot,
-    title: "SEAL Leaderboards: Expert-Driven Private Evaluations",
-    category: "Leaderboards",
-    link: "/leaderboards/seal"
+    title: "Research",
+    description: "Learn about the latest developments in AI technology and research.",
+    icon: "Search",
+    link: "/research" as Route
   }
-];
+]
 
 export function FeaturedServices() {
   return (
