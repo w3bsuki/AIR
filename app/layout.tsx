@@ -5,6 +5,7 @@ import { Navbar } from "@/components/Navbar"
 import { Footerdemo } from "@/components/ui/footer-section"
 import { SpotlightProvider } from "@/components/SpotlightProvider"
 import type React from "react" // Added import for React
+import { Nav } from "@/components/nav"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -22,7 +23,7 @@ export default function RootLayout({
     <html lang="en" className="dark">
       <body className={`${inter.className} bg-black min-h-screen flex flex-col`}>
         <SpotlightProvider>
-          <Navbar />
+          <Nav />
           <main className="flex-grow">{children}</main>
           <Footerdemo />
         </SpotlightProvider>

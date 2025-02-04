@@ -4,6 +4,7 @@ import { motion } from "framer-motion"
 import { Star, Check } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import { AgentPlaceholder } from "./agent-placeholder"
 
 interface AgentCardProps {
   agent: {
@@ -31,14 +32,20 @@ export function AgentCard({ agent }: AgentCardProps) {
       <div className="absolute inset-0 bg-gradient-to-b from-white/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
       
       {/* Agent Image */}
-      <div className="relative h-48 w-full mb-6 rounded-xl overflow-hidden">
-        <Image
-          src={agent.image}
-          alt={agent.name}
-          fill
-          className="object-cover"
-          unoptimized
-        />
+      <div className="relative h-48 w-full mb-6 rounded-xl overflow-hidden bg-black/40">
+        {agent.image ? (
+          <Image
+            src={agent.image}
+            alt={agent.name}
+            fill
+            className="object-cover"
+            unoptimized
+          />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center">
+            <AgentPlaceholder />
+          </div>
+        )}
       </div>
 
       {/* Content */}
@@ -90,7 +97,7 @@ export function AgentCard({ agent }: AgentCardProps) {
             href={`/agents/${agent.id}`}
             className="inline-flex items-center justify-center rounded-full bg-white px-4 py-2 text-sm font-medium text-black transition-colors hover:bg-white/90"
           >
-            View Details
+            Hire
           </Link>
         </div>
       </div>

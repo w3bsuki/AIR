@@ -1,11 +1,55 @@
 import { Button } from "@/components/ui/button"
 import { AgentGrid } from "@/components/AgentGrid"
-import { ArrowRight, BarChart, Zap, Shield, MoveRight } from "lucide-react"
+import { ArrowRight, BarChart, Zap, Shield, MoveRight, Brain } from "lucide-react"
 import { ButtonColorful } from "@/components/ui/button-colorful"
 import { Hero } from "@/components/ui/animated-hero"
 import { FeaturedServices } from "@/components/ui/featured-services"
 import { LogoCarousel } from "@/components/logo-carousel"
 import Link from "next/link"
+
+// Featured agents data (showing only 3)
+const featuredAgents = [
+  {
+    id: 1,
+    name: "DataAnalyst Pro",
+    description: "Advanced data analysis and visualization agent with real-time insights.",
+    category: "Data Analysis",
+    image: "/agents/data-analyst.png",
+  },
+  {
+    id: 2,
+    name: "ContentWriter AI",
+    description: "Professional content creation agent with SEO optimization.",
+    category: "Content Creation",
+    image: "/agents/content-writer.png",
+  },
+  {
+    id: 3,
+    name: "CustomerService Bot",
+    description: "24/7 customer support agent with multilingual capabilities.",
+    category: "Customer Service",
+    image: "/agents/customer-service.png",
+  },
+]
+
+// Featured services data
+const services = [
+  {
+    icon: Brain,
+    title: "AI Development",
+    description: "Custom AI solutions tailored to your business needs."
+  },
+  {
+    icon: BarChart,
+    title: "Data Analytics",
+    description: "Transform your raw data into actionable insights."
+  },
+  {
+    icon: Shield,
+    title: "Security & Compliance",
+    description: "Enterprise-grade security for your AI operations."
+  },
+]
 
 export default function Home() {
   return (
@@ -99,6 +143,74 @@ export default function Home() {
               className="inline-flex items-center justify-center rounded-full bg-black px-8 py-3 text-sm font-medium text-white ring-1 ring-white/20 transition-all hover:ring-white/40"
             >
               View Demo <MoveRight className="w-4 h-4 ml-2" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Services Section */}
+      <section className="py-20 border-t border-white/10">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold tracking-tighter text-white mb-4">
+              Our Services
+            </h2>
+            <p className="text-lg text-white/70 max-w-2xl mx-auto">
+              Comprehensive AI solutions to transform your business operations
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {services.map((service, index) => (
+              <div
+                key={index}
+                className="relative overflow-hidden rounded-2xl border border-white/10 bg-black/40 p-8 hover:border-white/20 transition-all duration-300 group"
+              >
+                <div className="absolute inset-0 bg-gradient-to-b from-white/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                <service.icon className="w-8 h-8 text-white/70 mb-4" />
+                <h3 className="text-xl font-semibold text-white mb-2">{service.title}</h3>
+                <p className="text-sm text-white/70">{service.description}</p>
+              </div>
+            ))}
+          </div>
+          
+          <div className="text-center mt-12">
+            <Link href="/solution" className="text-sm text-white/70 hover:text-white flex items-center justify-center gap-2">
+              View all services <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Agents Section */}
+      <section className="py-20 border-t border-white/10">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold tracking-tighter text-white mb-4">
+              Featured Agents
+            </h2>
+            <p className="text-lg text-white/70 max-w-2xl mx-auto">
+              Meet some of our top-performing AI agents
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {featuredAgents.map((agent) => (
+              <div
+                key={agent.id}
+                className="relative overflow-hidden rounded-2xl border border-white/10 bg-black/40 p-8 hover:border-white/20 transition-all duration-300 group"
+              >
+                <div className="absolute inset-0 bg-gradient-to-b from-white/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                <h3 className="text-xl font-semibold text-white mb-2">{agent.name}</h3>
+                <p className="text-sm text-white/70 mb-4">{agent.description}</p>
+                <span className="text-xs text-white/40">{agent.category}</span>
+              </div>
+            ))}
+          </div>
+
+          <div className="text-center mt-12">
+            <Link href="/agents" className="text-sm text-white/70 hover:text-white flex items-center justify-center gap-2">
+              View all agents <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
         </div>
