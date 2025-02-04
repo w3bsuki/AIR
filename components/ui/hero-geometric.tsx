@@ -7,6 +7,21 @@ import { cn } from "../../lib/utils";
 import { ButtonColorful } from "./button-colorful";
 import { TextScramble } from "./text-scramble";
 
+const fadeUpVariants = {
+    hidden: { 
+        opacity: 0, 
+        y: 20 
+    },
+    visible: (custom: number) => ({
+        opacity: 1,
+        y: 0,
+        transition: {
+            delay: custom * 0.2,
+            duration: 0.5
+        }
+    })
+}
+
 function ElegantShape({
     className,
     delay = 0,
@@ -73,7 +88,7 @@ function ElegantShape({
     );
 }
 
-function HeroGeometric({
+export function HeroGeometric({
     badge = "Design Collective",
     title1 = "Elevate Your Digital Vision",
     title2 = "Crafting Exceptional Websites",
@@ -82,19 +97,6 @@ function HeroGeometric({
     title1?: string;
     title2?: string;
 }) {
-    const fadeUpVariants = {
-        hidden: { opacity: 0, y: 30 },
-        visible: (i: number) => ({
-            opacity: 1,
-            y: 0,
-            transition: {
-                duration: 1,
-                delay: 0.5 + i * 0.2,
-                ease: [0.25, 0.4, 0.25, 1],
-            },
-        }),
-    };
-
     return (
         <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-[#030303]">
             <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/[0.05] via-transparent to-rose-500/[0.05] blur-3xl" />
@@ -175,7 +177,14 @@ function HeroGeometric({
                         ]} />
                     </motion.div>
 
-                    
+                    <motion.div
+                        custom={2}
+                        variants={fadeUpVariants}
+                        initial="hidden"
+                        animate="visible"
+                    >
+                        <ButtonColorful label="Learn More" />
+                    </motion.div>
                 </div>
             </div>
 
@@ -225,23 +234,3 @@ function HeroTextScramble({ titles }: { titles: string[] }) {
         </h1>
     );
 }
-
-
-
-                    <motion.div
-                        custom={2}
-                        variants={fadeUpVariants}
-                        initial="hidden"
-                        animate="visible"
-                    >
-                        <ButtonColorful label="Learn More" />
-                    </motion.div>
-                </div>
-            </div>
-
-            <div className="absolute inset-0 bg-gradient-to-t from-[#030303] via-transparent to-[#030303]/80 pointer-events-none" />
-        </div>
-    );
-}
-
-export { HeroGeometric }
