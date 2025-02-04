@@ -110,23 +110,23 @@ const NAV_ITEMS = [
 export function Navbar1() {
   return (
     <nav className="fixed top-0 w-full z-50 bg-black/95 backdrop-blur-sm border-b border-white/10">
-      <div className="container mx-auto px-4 h-16 flex items-center justify-between">
+      <div className="container mx-auto px-4 h-20 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2">
-          <span className="text-xl font-bold text-white">AIDR.ai</span>
+          <span className="text-2xl font-bold text-white">AIDR.ai</span>
         </Link>
 
         <DropdownNavigation navItems={NAV_ITEMS} />
 
-        <div className="flex gap-2">
+        <div className="flex items-center gap-4">
           <Link
             href="/login"
-            className="text-sm text-white/70 hover:text-white transition-colors"
+            className="text-base text-white/70 hover:text-white transition-colors px-4 py-2"
           >
             Sign In
           </Link>
           <Link
             href="/signup"
-            className="text-sm text-black bg-white px-4 py-2 rounded-full hover:bg-white/90 transition-colors"
+            className="text-base text-black bg-white px-5 py-2 rounded-full hover:bg-white/90 transition-colors"
           >
             Get Started
           </Link>
