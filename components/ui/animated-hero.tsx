@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { MoveRight, PhoneCall } from "lucide-react";
 import Link from "next/link";
 
-function Hero() {
+export function Hero() {
   const [titleNumber, setTitleNumber] = useState(0);
   const titles = useMemo(
     () => ["Business", "Enterprise", "Industry", "Government"],
@@ -119,6 +119,4 @@ function Hero() {
       </div>
     </div>
   );
-}
-
-export { Hero }; 
+} 

@@ -1,7 +1,8 @@
 "use client"
-import { AgentCard } from "./AgentCard"
-import { useRef, useEffect } from "react"
+
 import { motion } from "framer-motion"
+import { AgentCard } from "./ui/agent-card"
+import { useRef, useEffect } from "react"
 
 const agents = [
   {

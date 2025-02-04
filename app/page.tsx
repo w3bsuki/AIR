@@ -8,6 +8,7 @@ import { LogoCarousel } from "@/components/logo-carousel"
 import { SectionHeader } from "@/components/ui/section-header"
 import Link from "next/link"
 import { FeaturesSectionWithHoverEffects } from "@/components/ui/feature-section-with-hover-effects"
+import { FeatureSectionWrapper } from "@/components/ui/feature-section-wrapper"
 
 // Featured agents data (showing only 3)
 const featuredAgents = [
@@ -259,7 +260,7 @@ export default function Home() {
             description="Everything you need to deploy your AI agents at scale"
             className="mb-16"
           />
-          <FeaturesSectionWithHoverEffects />
+          <FeatureSectionWrapper />
         </div>
       </section>
 
