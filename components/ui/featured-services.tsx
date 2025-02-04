@@ -16,19 +16,19 @@ const services: Service[] = [
   {
     title: "AI Agents",
     description: "Discover our marketplace of specialized AI agents ready to assist with your tasks.",
-    icon: "Robot",
+    icon: "Robot01",
     link: routes.agents
   },
   {
     title: "Services",
     description: "Explore our range of AI-powered services designed for businesses.",
-    icon: "Settings",
+    icon: "Settings01",
     link: routes.services
   },
   {
     title: "Research",
     description: "Learn about the latest developments in AI technology and research.",
-    icon: "Search",
+    icon: "Search01",
     link: routes.research
   }
 ]
