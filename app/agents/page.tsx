@@ -2,6 +2,9 @@
 
 import { AgentGrid } from "@/components/AgentGrid"
 
+// Mark the page as dynamically rendered
+export const dynamic = 'force-dynamic'
+
 export default function AgentsPage() {
   return (
     <div className="container mx-auto px-4 py-24">

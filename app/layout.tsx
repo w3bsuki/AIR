@@ -20,13 +20,9 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className="dark">
-      <body className={`${inter.className} bg-black min-h-screen flex flex-col`}>
-        <SpotlightProvider>
-          <Nav />
-          <main className="flex-grow">{children}</main>
-          <Footerdemo />
-        </SpotlightProvider>
+    <html lang="en" suppressHydrationWarning>
+      <body className="min-h-screen bg-black text-white">
+        {children}
       </body>
     </html>
   )
