@@ -176,40 +176,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Featured Agents Section - Moved here */}
-      <section className="px-4 py-20 bg-black/50 backdrop-blur-sm">
-        <div className="container mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold tracking-tighter text-white mb-4">
-              Featured Agents
-            </h2>
-            <p className="text-lg text-white/70 max-w-2xl mx-auto">
-              Meet some of our top-performing AI agents
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {featuredAgents.map((agent) => (
-              <div
-                key={agent.id}
-                className="relative overflow-hidden rounded-2xl border border-white/10 bg-black/40 p-8 hover:border-white/20 transition-all duration-300 group"
-              >
-                <div className="absolute inset-0 bg-gradient-to-b from-white/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                <h3 className="text-xl font-semibold text-white mb-2">{agent.name}</h3>
-                <p className="text-sm text-white/70 mb-4">{agent.description}</p>
-                <span className="text-xs text-white/40">{agent.category}</span>
-              </div>
-            ))}
-          </div>
-
-          <div className="text-center mt-12">
-            <Link href="/agents" className="text-sm text-white/70 hover:text-white flex items-center justify-center gap-2">
-              View all agents <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-        </div>
-      </section>
-
       {/* Agents Grid Section - Updated title */}
       <section className="px-4 py-20">
         <div className="container mx-auto">
