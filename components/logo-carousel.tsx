@@ -3,122 +3,50 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 
-const logos = [
-  { 
-    src: "https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg", 
-    alt: "Google" 
-  },
-  { 
-    src: "https://www.cursor.so/cursor.svg", 
-    alt: "Cursor" 
-  },
-  { 
-    src: "https://upload.wikimedia.org/wikipedia/commons/4/4d/OpenAI_Logo.svg", 
-    alt: "OpenAI" 
-  },
-  { 
-    src: "https://upload.wikimedia.org/wikipedia/commons/b/b8/Microsoft_Azure_Logo.svg", 
-    alt: "Microsoft Azure" 
-  },
-  { 
-    src: "https://upload.wikimedia.org/wikipedia/commons/9/95/Anthropic_logo.svg", 
-    alt: "Anthropic" 
-  },
-  { 
-    src: "https://upload.wikimedia.org/wikipedia/commons/e/e9/Notion-logo.svg", 
-    alt: "Notion" 
-  },
-  {
-    src: "https://upload.wikimedia.org/wikipedia/commons/8/82/Salesforce_logo.svg",
-    alt: "Salesforce"
-  },
-  {
-    src: "https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg",
-    alt: "GitHub"
-  },
-  {
-    src: "https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg",
-    alt: "Amazon"
-  },
-  {
-    src: "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg",
-    alt: "IBM"
-  },
-  {
-    src: "https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg",
-    alt: "Netflix"
-  },
-  {
-    src: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg",
-    alt: "Google Full"
-  },
-  {
-    src: "https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg",
-    alt: "Apple"
-  },
-  {
-    src: "https://upload.wikimedia.org/wikipedia/commons/5/58/Uber_logo_2018.svg",
-    alt: "Uber"
-  },
-  {
-    src: "https://upload.wikimedia.org/wikipedia/commons/b/b9/Slack_Technologies_Logo.svg",
-    alt: "Slack"
-  },
-  {
-    src: "https://upload.wikimedia.org/wikipedia/commons/0/04/Visa.svg",
-    alt: "Visa"
-  },
-  {
-    src: "https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg",
-    alt: "Mastercard"
-  },
-  {
-    src: "https://upload.wikimedia.org/wikipedia/commons/9/96/Microsoft_logo_%282012%29.svg",
-    alt: "Microsoft"
-  },
-  {
-    src: "https://upload.wikimedia.org/wikipedia/commons/5/53/Intel_logo_%282020%2C_light_blue%29.svg",
-    alt: "Intel"
-  },
-  {
-    src: "https://upload.wikimedia.org/wikipedia/commons/3/35/Adobe_logo.svg",
-    alt: "Adobe"
-  }
+const LOGOS = [
+  { id: 1, alt: "Company 1" },
+  { id: 2, alt: "Company 2" },
+  { id: 3, alt: "Company 3" },
+  { id: 4, alt: "Company 4" },
+  { id: 5, alt: "Company 5" },
+  { id: 6, alt: "Company 6" },
+  { id: 7, alt: "Company 7" },
+  { id: 8, alt: "Company 8" },
+  { id: 9, alt: "Company 9" },
+  { id: 10, alt: "Company 10" },
 ];
 
 export function LogoCarousel() {
   return (
-    <div className="w-full bg-black/40 backdrop-blur-sm py-8 -mt-16">
-      <div className="container mx-auto">
-        <p className="text-center text-sm text-white/50 mb-8">Trusted by leading companies worldwide</p>
+    <div className="w-full bg-black py-20 overflow-hidden border-t border-white/10">
+      <div className="container mx-auto px-4">
+        <h3 className="text-center text-white/50 text-sm font-medium mb-12">
+          Trusted by innovative companies worldwide
+        </h3>
       </div>
-      <div className="relative overflow-hidden">
-        <div className="pointer-events-none absolute left-0 top-0 w-32 h-full bg-gradient-to-r from-black via-black/80 to-transparent z-10" />
-        <div className="pointer-events-none absolute right-0 top-0 w-32 h-full bg-gradient-to-l from-black via-black/80 to-transparent z-10" />
+      <div className="relative">
+        <div className="absolute inset-y-0 left-0 w-40 bg-gradient-to-r from-black to-transparent z-10" />
+        <div className="absolute inset-y-0 right-0 w-40 bg-gradient-to-l from-black to-transparent z-10" />
+        
         <motion.div
-          className="flex gap-12 py-4"
           animate={{
-            x: ["0%", "-50%"],
+            x: [0, -1035],
           }}
           transition={{
-            duration: 40,
-            ease: "linear",
+            duration: 30,
             repeat: Infinity,
+            ease: "linear",
           }}
+          className="flex gap-16 items-center"
         >
-          {/* Double the logos for seamless loop */}
-          {[...logos, ...logos].map((logo, index) => (
+          {[...LOGOS, ...LOGOS].map((logo, idx) => (
             <div
-              key={index}
-              className="relative w-24 h-10 flex-shrink-0 grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+              key={`${logo.id}-${idx}`}
+              className="relative w-32 h-12 flex-shrink-0 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10 flex items-center justify-center"
             >
-              <Image
-                src={logo.src}
-                alt={logo.alt}
-                fill
-                className="object-contain brightness-200 contrast-200 invert"
-                unoptimized
-              />
+              <span className="text-white/30 text-sm font-medium">
+                {logo.alt}
+              </span>
             </div>
           ))}
         </motion.div>

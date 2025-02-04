@@ -5,10 +5,16 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Switch } from "@/components/ui/switch"
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
+import { Textarea } from "@/components/ui/textarea"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 import { Facebook, Instagram, Linkedin, Moon, Send, Sun, Twitter } from "lucide-react"
 
-function Footerdemo() {
+export function Footerdemo() {
   const [isDarkMode, setIsDarkMode] = React.useState(true)
   const [isChatOpen, setIsChatOpen] = React.useState(false)
 
@@ -21,28 +27,8 @@ function Footerdemo() {
   }, [isDarkMode])
 
   return (
-    <footer className="relative border-t bg-background text-foreground transition-colors duration-300">
-      <div className="container mx-auto px-4 py-12 md:px-6 lg:px-8">
-        <div className="flex justify-center mb-8">
-          <div className="flex select-none items-center text-3xl font-bold">
-            <span
-              data-content="AIDR"
-              className="before:animate-gradient-background-1 relative before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:w-full before:px-2 before:content-[attr(data-content)] sm:before:top-0"
-            >
-              <span className="from-gradient-1-start to-gradient-1-end animate-gradient-foreground-1 bg-gradient-to-r bg-clip-text px-2 text-transparent">
-                AIDR
-              </span>
-            </span>
-            <span
-              data-content=".ai"
-              className="before:animate-gradient-background-2 relative before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:w-full before:content-[attr(data-content)] sm:before:top-0"
-            >
-              <span className="from-gradient-2-start to-gradient-2-end animate-gradient-foreground-2 bg-gradient-to-r bg-clip-text text-transparent">
-                .ai
-              </span>
-            </span>
-          </div>
-        </div>
+    <footer className="w-full bg-black border-t border-white/10">
+      <div className="container mx-auto px-4 py-20">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div className="relative">
             <h2 className="mb-4 text-3xl font-bold tracking-tight">Stay Connected</h2>
@@ -50,7 +36,11 @@ function Footerdemo() {
               Join our newsletter for the latest updates and exclusive offers.
             </p>
             <form className="relative">
-              <Input type="email" placeholder="Enter your email" className="pr-12 backdrop-blur-sm" />
+              <Input
+                type="email"
+                placeholder="Enter your email"
+                className="pr-12 backdrop-blur-sm"
+              />
               <Button
                 type="submit"
                 size="icon"
@@ -149,7 +139,11 @@ function Footerdemo() {
             </div>
             <div className="flex items-center space-x-2">
               <Sun className="h-4 w-4" />
-              <Switch id="dark-mode" checked={isDarkMode} onCheckedChange={setIsDarkMode} />
+              <Switch
+                id="dark-mode"
+                checked={isDarkMode}
+                onCheckedChange={setIsDarkMode}
+              />
               <Moon className="h-4 w-4" />
               <Label htmlFor="dark-mode" className="sr-only">
                 Toggle dark mode
@@ -158,7 +152,9 @@ function Footerdemo() {
           </div>
         </div>
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t pt-8 text-center md:flex-row">
-          <p className="text-sm text-muted-foreground">© 2024 Your Company. All rights reserved.</p>
+          <p className="text-sm text-muted-foreground">
+            © 2024 Your Company. All rights reserved.
+          </p>
           <nav className="flex gap-4 text-sm">
             <a href="#" className="transition-colors hover:text-primary">
               Privacy Policy
@@ -175,6 +171,4 @@ function Footerdemo() {
     </footer>
   )
 }
-
-export { Footerdemo }
 
