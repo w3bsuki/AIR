@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { MoveRight, PhoneCall } from "lucide-react";
 import Link from "next/link";
+import { routes } from "@/lib/routes";
 
 export function Hero() {
   const [titleNumber, setTitleNumber] = useState(0);
@@ -101,12 +102,12 @@ export function Hero() {
               ever.
             </p>
           </div>
-          <div className="flex flex-row gap-4">
+          <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Link
-              href="/contact"
+              href={routes.contact}
               className="inline-flex items-center justify-center rounded-full bg-white px-8 py-3 text-sm font-medium text-black transition-colors hover:bg-white/90"
             >
-              Jump on a call <PhoneCall className="w-4 h-4 ml-2" />
+              Jump on a call <PhoneCall className="ml-2 h-4 w-4" />
             </Link>
             <Link
               href="/signup"

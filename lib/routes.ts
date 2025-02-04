@@ -9,6 +9,7 @@ export const routes = {
   services: '/services' as Route,
   research: '/research' as Route,
   solution: '/solution' as Route,
+  contact: '/contact' as Route,
 } as const
 
 // For dynamic routes, we need a separate function
