@@ -275,27 +275,27 @@ interface ParticlesProps {
 }
 
 function Particles({ count }: ParticlesProps) {
-  const mesh = useRef<THREE.InstancedMesh>(null)
+  const mesh = useRef<THREE.InstancedMesh>(null!)  // Non-null assertion since it's guaranteed by React
   const dummy = useMemo(() => new THREE.Object3D(), [])
   
   const particles = useMemo(() => {
     const temp = []
     for (let i = 0; i < count; i++) {
-      const t = Math.random() * 100
-      const factor = 20 + Math.random() * 100
-      const speed = 0.01 + Math.random() / 200
-      const xFactor = -50 + Math.random() * 100
-      const yFactor = -50 + Math.random() * 100
-      const zFactor = -50 + Math.random() * 100
-      temp.push({ t, factor, speed, xFactor, yFactor, zFactor, mx: 0, my: 0 })
+      temp.push({
+        t: Math.random() * 100,
+        factor: 20 + Math.random() * 100,
+        speed: 0.01 + Math.random() / 200,
+        xFactor: -50 + Math.random() * 100,
+        yFactor: -50 + Math.random() * 100,
+        zFactor: -50 + Math.random() * 100,
+        mx: 0,
+        my: 0
+      })
     }
     return temp
   }, [count])
 
-  useFrame(() => {
-    const meshCurrent = mesh.current
-    if (!meshCurrent) return
-
+  useFrame((state) => {
     particles.forEach((particle, i) => {
       let { t, factor, speed, xFactor, yFactor, zFactor } = particle
       t = particle.t += speed / 2
@@ -312,16 +312,16 @@ function Particles({ count }: ParticlesProps) {
       )
       
       dummy.updateMatrix()
-      meshCurrent.setMatrixAt(i, dummy.matrix)
+      mesh.setMatrixAt(i, dummy.matrix)
     })
     
-    meshCurrent.instanceMatrix.needsUpdate = true
+    mesh.instanceMatrix.needsUpdate = true
   })
 
   return (
-    <instancedMesh ref={mesh} args={[undefined, undefined, count]}>
-      <sphereGeometry args={[0.5, 32, 32]} />
-      <meshBasicMaterial color="#fff" transparent opacity={0.75} />
+    <instancedMesh ref={mesh} args={[null!, null!, count]}>
+      <sphereGeometry args={[0.2, 16, 16]} />
+      <meshBasicMaterial color="#fff" transparent opacity={0.6} />
     </instancedMesh>
   )
 }
@@ -329,8 +329,11 @@ function Particles({ count }: ParticlesProps) {
 export function CanvasEffect({ className }: { className?: string }) {
   return (
     <div className={cn("fixed inset-0 -z-10", className)}>
-      <Canvas camera={{ position: [0, 0, 1] }}>
-        <Particles count={500} />
+      <Canvas
+        camera={{ position: [0, 0, 1], fov: 75 }}
+        dpr={Math.min(2, window?.devicePixelRatio || 1)}
+      >
+        <Particles count={300} />
       </Canvas>
     </div>
   )
