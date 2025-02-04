@@ -22,6 +22,39 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet"
 
+interface MenuItem {
+  title: string
+  url: string
+  description?: string
+  icon?: JSX.Element
+  items?: {
+    title: string
+    description?: string
+    icon?: JSX.Element
+    url: string
+  }[]
+}
+
+interface Navbar1Props {
+  logo?: {
+    url: string
+    src: string
+    alt: string
+    title: string
+  }
+  menu?: MenuItem[]
+  auth?: {
+    login: {
+      text: string
+      url: string
+    }
+    signup: {
+      text: string
+      url: string
+    }
+  }
+}
+
 const demoData = {
   logo: {
     url: "/",
