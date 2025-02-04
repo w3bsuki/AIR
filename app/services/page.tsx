@@ -1,6 +1,8 @@
+'use client'
+
 import { Metadata } from 'next'
-import { Brain, Shield, Zap } from 'lucide-react'
-import { GradientCard } from '@/components/ui/gradient-card'
+import { ServiceCard } from "@/components/ui/service-card"
+import { Brain, BarChart, Shield } from "lucide-react"
 import { SectionHeader } from '@/components/ui/section-header'
 
 export const metadata: Metadata = {
@@ -10,22 +12,25 @@ export const metadata: Metadata = {
 
 const services = [
   {
-    icon: Brain,
     title: "AI Development",
-    description: "Custom AI solutions tailored to your business needs.",
-    features: ["Custom Model Training", "API Integration", "Scalable Solutions"]
+    description: "Custom AI solutions tailored to your business needs. From chatbots to predictive analytics.",
+    icon: Brain,
+    gradient: "from-cyan-400/20 via-cyan-400/0 to-cyan-400/0",
+    features: ["Custom Model Training", "API Integration", "Scalable Solutions"] as const
   },
   {
-    icon: Zap,
     title: "Performance Optimization",
-    description: "Optimize your AI models and infrastructure for maximum efficiency.",
-    features: ["Load Balancing", "Cache Optimization", "Response Time Improvement"]
+    description: "Optimize your applications for maximum performance and efficiency.",
+    icon: BarChart,
+    gradient: "from-purple-400/20 via-purple-400/0 to-purple-400/0",
+    features: ["Load Balancing", "Cache Optimization", "Response Time Improvement"] as const
   },
   {
+    title: "Security Solutions",
+    description: "Enterprise-grade security solutions to protect your infrastructure.",
     icon: Shield,
-    title: "Security Services",
-    description: "Enterprise-grade security solutions to protect your AI infrastructure.",
-    features: ["Encryption", "Access Control", "Security Audits"]
+    gradient: "from-emerald-400/20 via-emerald-400/0 to-emerald-400/0",
+    features: ["Encryption", "Access Control", "Security Audits"] as const
   }
 ] as const
 
@@ -41,12 +46,13 @@ export default function ServicesPage() {
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {services.map((service, index) => (
-            <GradientCard
+            <ServiceCard
               key={index}
               icon={service.icon}
+              gradient={service.gradient}
               title={service.title}
               description={service.description}
-              features={service.features}
+              features={[...service.features]}
             />
           ))}
         </div>

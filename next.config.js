@@ -3,10 +3,9 @@ const nextConfig = {
   reactStrictMode: true,
   staticPageGenerationTimeout: 120,
   experimental: {
-    // Disable static optimization for better build times
-    isrMemoryCacheSize: 0,
-    serverActions: true,
-  },
+    // Remove deprecated options
+    typedRoutes: true
+  }
 }
 
 module.exports = nextConfig 
