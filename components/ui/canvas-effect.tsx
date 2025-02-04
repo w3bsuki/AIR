@@ -293,7 +293,8 @@ function Particles({ count }: ParticlesProps) {
   }, [count])
 
   useFrame(() => {
-    if (!mesh.current) return
+    const meshCurrent = mesh.current
+    if (!meshCurrent) return
 
     particles.forEach((particle, i) => {
       let { t, factor, speed, xFactor, yFactor, zFactor } = particle
@@ -311,10 +312,10 @@ function Particles({ count }: ParticlesProps) {
       )
       
       dummy.updateMatrix()
-      mesh.current.setMatrixAt(i, dummy.matrix)
+      meshCurrent.setMatrixAt(i, dummy.matrix)
     })
     
-    mesh.current.instanceMatrix.needsUpdate = true
+    meshCurrent.instanceMatrix.needsUpdate = true
   })
 
   return (
