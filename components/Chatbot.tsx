@@ -31,14 +31,8 @@ export function Chatbot() {
                 className="absolute inset-0 h-full w-full object-cover"
               >
                 <CanvasRevealEffect
-                  animationSpeed={5}
                   containerClassName="bg-transparent opacity-30 dark:opacity-50"
-                  colors={[
-                    [245, 5, 55],
-                    [245, 5, 55],
-                  ]}
-                  opacities={[1, 0.8, 1, 0.8, 0.5, 0.8, 1, 0.5, 1, 3]}
-                  dotSize={2}
+                  colors={[[245, 5, 55]]}
                 />
               </motion.div>
             )}
