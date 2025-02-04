@@ -190,18 +190,16 @@ export function Navbar1({ logo = demoData.logo, menu = demoData.menu, auth = dem
   return (
     <section className="py-4 bg-black/95 backdrop-blur-sm border-b border-white/10">
       <div className="container">
-        <nav className="hidden justify-between lg:flex">
-          <div className="flex items-center gap-6">
-            <a href={logo.url} className="flex items-center gap-2">
-              <span className="text-xl font-bold text-white">{logo.title}</span>
-            </a>
-            <div className="flex items-center">
-              <NavigationMenu>
-                <NavigationMenuList>
-                  {menu.map((item) => renderMenuItem(item))}
-                </NavigationMenuList>
-              </NavigationMenu>
-            </div>
+        <nav className="hidden justify-between lg:flex items-center">
+          <a href={logo.url} className="flex items-center gap-2">
+            <span className="text-xl font-bold text-white">{logo.title}</span>
+          </a>
+          <div className="flex-1 flex justify-center">
+            <NavigationMenu>
+              <NavigationMenuList>
+                {menu.map((item) => renderMenuItem(item))}
+              </NavigationMenuList>
+            </NavigationMenu>
           </div>
           <div className="flex gap-2">
             <Button asChild variant="ghost" size="sm" className="text-white hover:text-white/90">
