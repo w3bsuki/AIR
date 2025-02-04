@@ -3,6 +3,7 @@ export const routes = {
   signup: '/signup',
   demo: '/demo',
   agents: '/agents',
+  agent: (id: number) => `/agents/${id}` as const,
   services: '/services',
   research: '/research',
 } as const
