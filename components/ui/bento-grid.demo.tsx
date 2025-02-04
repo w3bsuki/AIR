@@ -2,17 +2,17 @@
 
 import Image from "next/image"
 import {
-  BellIcon,
-  CalendarIcon,
-  FileTextIcon,
-  GlobeIcon,
-  InputIcon,
-} from "@radix-ui/react-icons"
+  Bell,
+  Calendar,
+  FileText,
+  Globe,
+  Keyboard
+} from "lucide-react"
 import { BentoCard, BentoGrid } from "@/components/ui/bento-grid"
 
 const features = [
   {
-    Icon: FileTextIcon,
+    Icon: FileText,
     name: "Advanced AI Models",
     description: "Access state-of-the-art AI models trained on diverse datasets.",
     href: "/",
@@ -29,7 +29,7 @@ const features = [
     className: "lg:row-start-1 lg:row-end-4 lg:col-start-2 lg:col-end-3",
   },
   {
-    Icon: InputIcon,
+    Icon: Keyboard,
     name: "Research Platform",
     description: "Collaborate with researchers worldwide on cutting-edge AI projects.",
     href: "/",
@@ -46,7 +46,7 @@ const features = [
     className: "lg:col-start-1 lg:col-end-2 lg:row-start-1 lg:row-end-3",
   },
   {
-    Icon: GlobeIcon,
+    Icon: Globe,
     name: "Global Network",
     description: "Connect with AI experts and developers across the globe.",
     href: "/",
@@ -63,7 +63,7 @@ const features = [
     className: "lg:col-start-1 lg:col-end-2 lg:row-start-3 lg:row-end-4",
   },
   {
-    Icon: CalendarIcon,
+    Icon: Calendar,
     name: "Real-time Updates",
     description: "Stay updated with the latest developments in AI research.",
     href: "/",
@@ -80,7 +80,7 @@ const features = [
     className: "lg:col-start-3 lg:col-end-3 lg:row-start-1 lg:row-end-2",
   },
   {
-    Icon: BellIcon,
+    Icon: Bell,
     name: "Smart Notifications",
     description: "Get intelligent alerts about research opportunities and collaborations.",
     href: "/",

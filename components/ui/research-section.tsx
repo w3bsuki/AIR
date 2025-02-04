@@ -1,72 +1,91 @@
 'use client'
 
-import { Brain, Shield, BarChart, ArrowRight, LucideIcon } from "lucide-react"
+import { motion } from "framer-motion"
+import { ArrowUpRight } from "lucide-react
 import Link from "next/link"
-import { routes } from "@/lib/routes"
 
-interface ResearchPost {
-  title: string
-  description: string
-  category: string
-  href: typeof routes[keyof typeof routes]
-  icon: LucideIcon
-}
-
-const posts: ResearchPost[] = [
+const RESEARCH_ITEMS = [
   {
-    title: "LLMs Easily Jailbroken as Browser Agents",
-    description: "Research on LLM vulnerabilities when deployed as browser agents",
-    category: "Research",
-    href: routes.researchLLMBrowser,
-    icon: Brain
+    id: 1,
+    title: "Advancing AI Safety",
+    description: "Exploring new methodologies for safer and more reliable AI systems",
+    category: "AI Safety",
+    readTime: "8 min read",
+    date: "Mar 2024",
   },
   {
-    title: "Multi-Turn Human Jailbreaks on LLM Defenses",
-    description: "Analysis of human-driven jailbreak attempts on LLM safety measures",
-    category: "Research",
-    href: routes.researchLLMDefenses,
-    icon: Shield
+    id: 2,
+    title: "Large Language Model Breakthroughs",
+    description: "Recent developments in LLM architectures and their implications",
+    category: "LLMs",
+    readTime: "12 min read",
+    date: "Mar 2024",
   },
   {
-    title: "SEAL Leaderboards: Expert-Driven Private Evaluations",
-    description: "Private evaluation framework for assessing LLM capabilities",
-    category: "Leaderboards",
-    href: routes.researchSEAL,
-    icon: BarChart
-  }
+    id: 3,
+    title: "Neural Networks Evolution",
+    description: "The future of neural network architectures and training methods",
+    category: "Deep Learning",
+    readTime: "10 min read",
+    date: "Mar 2024",
+  },
 ]
 
 export function ResearchSection() {
   return (
-    <>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {posts.map((post, index) => (
-          <Link
-            key={index}
-            href={post.href}
-            className="group relative overflow-hidden rounded-2xl border border-white/10 bg-black/40 p-8 hover:border-white/20 transition-all duration-300"
-          >
-            <div className="absolute inset-0 bg-gradient-to-b from-white/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-            <div className="relative">
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-sm font-medium text-white/60">{post.category}</span>
-                <post.icon className="w-6 h-6 text-white/60" strokeWidth={1.5} />
-              </div>
-              <h3 className="text-xl font-semibold text-white group-hover:text-white/90 transition-colors">
-                {post.title}
-              </h3>
-            </div>
-          </Link>
-        ))}
+    <section className="w-full bg-black/50 backdrop-blur-sm py-24 border-t border-white/10">
+      <div className="container mx-auto px-4">
+        <div className="max-w-2xl mx-auto text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
+            Featured Research
+          </h2>
+          <p className="text-white/70 text-lg">
+            Exploring the frontiers of artificial intelligence and machine learning
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {RESEARCH_ITEMS.map((item) => (
+            <motion.div
+              key={item.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: item.id * 0.1 }}
+            >
+              <Link 
+                href="#" 
+                className="block group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm hover:bg-white/10 transition-colors"
+              >
+                <div className="absolute top-3 right-3">
+                  <ArrowUpRight className="w-5 h-5 text-white/30 group-hover:text-white/70 transition-colors" />
+                </div>
+
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="text-xs font-medium text-white/50 px-3 py-1 rounded-full bg-white/5">
+                    {item.category}
+                  </span>
+                  <span className="text-xs text-white/30">
+                    {item.date}
+                  </span>
+                </div>
+
+                <h3 className="text-xl font-semibold mb-2 group-hover:text-white transition-colors">
+                  {item.title}
+                </h3>
+                
+                <p className="text-sm text-white/70 mb-4">
+                  {item.description}
+                </p>
+
+                <div className="flex items-center text-xs text-white/50">
+                  <span>{item.readTime}</span>
+                </div>
+              </Link>
+            </motion.div>
+          ))}
+        </div>
       </div>
-      <div className="text-center mt-12">
-        <Link 
-          href={routes.research}
-          className="inline-flex items-center justify-center text-sm text-white/70 hover:text-white gap-2"
-        >
-          View all research <ArrowRight className="w-4 h-4" />
-        </Link>
-      </div>
-    </>
+    </section>
   )
 } 

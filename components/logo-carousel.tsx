@@ -4,16 +4,56 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 
 const LOGOS = [
-  { id: 1, alt: "Company 1" },
-  { id: 2, alt: "Company 2" },
-  { id: 3, alt: "Company 3" },
-  { id: 4, alt: "Company 4" },
-  { id: 5, alt: "Company 5" },
-  { id: 6, alt: "Company 6" },
-  { id: 7, alt: "Company 7" },
-  { id: 8, alt: "Company 8" },
-  { id: 9, alt: "Company 9" },
-  { id: 10, alt: "Company 10" },
+  { 
+    id: 1, 
+    alt: "NVIDIA", 
+    src: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/nvidia.svg" 
+  },
+  { 
+    id: 2, 
+    alt: "OpenAI", 
+    src: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/openai.svg" 
+  },
+  { 
+    id: 3, 
+    alt: "Google", 
+    src: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/google.svg" 
+  },
+  { 
+    id: 4, 
+    alt: "Meta", 
+    src: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/meta.svg" 
+  },
+  { 
+    id: 5, 
+    alt: "Microsoft", 
+    src: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/microsoft.svg" 
+  },
+  { 
+    id: 6, 
+    alt: "Anthropic", 
+    src: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/a.svg" 
+  },
+  { 
+    id: 7, 
+    alt: "Amazon", 
+    src: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/amazon.svg" 
+  },
+  { 
+    id: 8, 
+    alt: "Apple", 
+    src: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/apple.svg" 
+  },
+  { 
+    id: 9, 
+    alt: "Intel", 
+    src: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/intel.svg" 
+  },
+  { 
+    id: 10, 
+    alt: "AMD", 
+    src: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/amd.svg" 
+  }
 ];
 
 export function LogoCarousel() {
@@ -42,11 +82,16 @@ export function LogoCarousel() {
           {[...LOGOS, ...LOGOS].map((logo, idx) => (
             <div
               key={`${logo.id}-${idx}`}
-              className="relative w-32 h-12 flex-shrink-0 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10 flex items-center justify-center"
+              className="relative w-32 h-12 flex-shrink-0 rounded-lg bg-black border border-white/10 flex items-center justify-center hover:border-white/20 transition-colors"
             >
-              <span className="text-white/30 text-sm font-medium">
-                {logo.alt}
-              </span>
+              <Image
+                src={logo.src}
+                alt={logo.alt}
+                width={100}
+                height={30}
+                className="w-auto h-6 brightness-0 invert opacity-70 hover:opacity-100 transition-opacity"
+                unoptimized
+              />
             </div>
           ))}
         </motion.div>
