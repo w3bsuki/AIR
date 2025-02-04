@@ -2,20 +2,41 @@
 
 import { motion } from "framer-motion"
 import { AgentCard } from "./ui/agent-card"
-import { useRef, useEffect } from "react"
 
 const agents = [
   {
     id: 1,
     name: "NeuroSales Agent v2.1",
     description: "Closes deals using LLM-powered negotiation",
-    skills: ["Multilingual", "CRM Integration"],
+    category: "Sales",
+    price: 49,
+    rating: 4.8,
+    reviews: 128,
+    image: "/agents/data-analyst.png",
+    tags: ["Multilingual", "CRM Integration"],
+    capabilities: [
+      "Natural language negotiation",
+      "Deal tracking",
+      "Pipeline management",
+      "Performance analytics"
+    ]
   },
   {
     id: 2,
     name: "DataMiner Pro",
     description: "Extracts insights from complex datasets",
-    skills: ["Big Data", "Machine Learning"],
+    category: "Data Analysis",
+    price: 59,
+    rating: 4.7,
+    reviews: 156,
+    image: "/agents/data-analyst.png",
+    tags: ["Big Data", "Machine Learning"],
+    capabilities: [
+      "Data processing",
+      "Pattern recognition",
+      "Predictive analytics",
+      "Visualization"
+    ]
   },
   {
     id: 3,
@@ -44,32 +65,9 @@ const agents = [
 ]
 
 export function AgentGrid() {
-  const containerRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const container = containerRef.current
-    if (!container) return
-
-    const handleMouseMove = (e: MouseEvent) => {
-      const { left, top } = container.getBoundingClientRect()
-      const x = e.clientX - left
-      const y = e.clientY - top
-
-      container.style.setProperty("--mouse-x", `${x}px`)
-      container.style.setProperty("--mouse-y", `${y}px`)
-    }
-
-    container.addEventListener("mousemove", handleMouseMove)
-
-    return () => {
-      container.removeEventListener("mousemove", handleMouseMove)
-    }
-  }, [])
-
   return (
     <motion.div
-      ref={containerRef}
-      className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 relative spotlight"
+      className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 relative"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, staggerChildren: 0.1 }}
