@@ -13,6 +13,8 @@ export const routes = {
   researchSEAL: '/research/seal-leaderboards' as Route,
   solution: '/solution' as Route,
   contact: '/contact' as Route,
+  chat: '/chat' as Route,
+  aiChat: '/ai-chat' as Route,
 } as const
 
 // For dynamic routes, we need a separate function

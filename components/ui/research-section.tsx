@@ -52,7 +52,7 @@ export function ResearchSection() {
       </div>
       <div className="text-center mt-12">
         <Link 
-          href="/research" 
+          href={routes.research}
           className="inline-flex items-center justify-center text-sm text-white/70 hover:text-white gap-2"
         >
           View all research <ArrowRight className="w-4 h-4" />
