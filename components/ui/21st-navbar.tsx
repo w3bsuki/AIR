@@ -86,7 +86,7 @@ const Navigation: React.FC<{ isDarkTheme?: boolean; items: NavItem[] }> = ({ isD
         const Tag = to ? 'a' : 'button'
         return (
           <li
-            className={clsx('relative [perspective:2000px]', items?.length > 0 && 'group')}
+            className={clsx('relative [perspective:2000px]', items && items.length > 0 && 'group')}
             key={index}
           >
             <Tag
@@ -97,9 +97,9 @@ const Navigation: React.FC<{ isDarkTheme?: boolean; items: NavItem[] }> = ({ isD
               href={to}
             >
               {text}
-              {items?.length > 0 && <ChevronIcon />}
+              {items && items.length > 0 && <ChevronIcon />}
             </Tag>
-            {items?.length > 0 && (
+            {items && items.length > 0 && (
               <div
                 className={clsx(
                   'absolute -left-5 top-full w-[300px] pt-5',
