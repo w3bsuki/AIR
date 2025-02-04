@@ -1,7 +1,7 @@
 import "./globals.css"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
-import { Navbar1, demoData } from "@/components/ui/navbar"
+import { Navbar1 } from "@/components/ui/navbar"
 import { Footerdemo } from "@/components/ui/footer-section"
 import { SpotlightProvider } from "@/components/SpotlightProvider"
 import type React from "react"
@@ -9,8 +9,8 @@ import type React from "react"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "AI Agent Marketplace 2025",
-  description: "Hire AI Agents That Never Sleep",
+  title: "AIDR.ai",
+  description: "AI Development & Research",
 }
 
 export default function RootLayout({
@@ -19,13 +19,13 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className="min-h-screen bg-black text-white">
-        <Navbar1 {...demoData} />
-        <main>
+    <html lang="en" className="dark">
+      <body className={inter.className}>
+        <SpotlightProvider>
+          <Navbar1 />
           {children}
-        </main>
-        <Footerdemo />
+          <Footerdemo />
+        </SpotlightProvider>
       </body>
     </html>
   )
