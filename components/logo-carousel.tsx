@@ -63,6 +63,26 @@ const logos = [
   {
     src: "https://upload.wikimedia.org/wikipedia/commons/b/b9/Slack_Technologies_Logo.svg",
     alt: "Slack"
+  },
+  {
+    src: "https://upload.wikimedia.org/wikipedia/commons/0/04/Visa.svg",
+    alt: "Visa"
+  },
+  {
+    src: "https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg",
+    alt: "Mastercard"
+  },
+  {
+    src: "https://upload.wikimedia.org/wikipedia/commons/9/96/Microsoft_logo_%282012%29.svg",
+    alt: "Microsoft"
+  },
+  {
+    src: "https://upload.wikimedia.org/wikipedia/commons/5/53/Intel_logo_%282020%2C_light_blue%29.svg",
+    alt: "Intel"
+  },
+  {
+    src: "https://upload.wikimedia.org/wikipedia/commons/3/35/Adobe_logo.svg",
+    alt: "Adobe"
   }
 ];
 
@@ -76,7 +96,7 @@ export function LogoCarousel() {
         <div className="pointer-events-none absolute left-0 top-0 w-32 h-full bg-gradient-to-r from-black via-black/80 to-transparent z-10" />
         <div className="pointer-events-none absolute right-0 top-0 w-32 h-full bg-gradient-to-l from-black via-black/80 to-transparent z-10" />
         <motion.div
-          className="flex gap-16 py-4"
+          className="flex gap-12 py-4"
           animate={{
             x: ["0%", "-50%"],
           }}
@@ -90,7 +110,7 @@ export function LogoCarousel() {
           {[...logos, ...logos].map((logo, index) => (
             <div
               key={index}
-              className="relative w-28 h-12 flex-shrink-0 grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+              className="relative w-24 h-10 flex-shrink-0 grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
             >
               <Image
                 src={logo.src}

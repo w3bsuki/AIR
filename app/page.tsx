@@ -1,10 +1,11 @@
 import { Button } from "@/components/ui/button"
 import { AgentGrid } from "@/components/AgentGrid"
-import { ArrowRight, BarChart, Zap, Shield } from "lucide-react"
+import { ArrowRight, BarChart, Zap, Shield, MoveRight } from "lucide-react"
 import { ButtonColorful } from "@/components/ui/button-colorful"
 import { Hero } from "@/components/ui/animated-hero"
 import { FeaturedServices } from "@/components/ui/featured-services"
 import { LogoCarousel } from "@/components/logo-carousel"
+import Link from "next/link"
 
 export default function Home() {
   return (
@@ -78,20 +79,28 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="px-4 py-20 bg-gradient-to-r from-blue-600 to-purple-600">
-        <div className="container mx-auto text-center">
-          <h2 className="mb-4 text-3xl font-bold text-white">Ready to Revolutionize Your Business?</h2>
-          <p className="max-w-2xl mx-auto mb-8 text-xl text-gray-200">
-            Join the AI revolution today and stay ahead of the competition. Our AI agents are ready to transform your
-            operations.
+      <section className="w-full bg-black/40 backdrop-blur-sm py-24">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="mb-4 text-4xl md:text-5xl font-bold tracking-tighter text-white">
+            Ready to Revolutionize Your Business?
+          </h2>
+          <p className="max-w-2xl mx-auto mb-12 text-xl text-white/70">
+            Join the AI revolution today and stay ahead of the competition. Our AI agents are ready to transform your operations.
           </p>
-          <Button
-            size="lg"
-            className="text-blue-600 transition-all duration-300 transform bg-white hover:bg-gray-100 hover:scale-105"
-          >
-            Get Started Now <ArrowRight className="ml-2" />
-          </Button>
-          <ButtonColorful label="New Button" />
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              href="/signup"
+              className="inline-flex items-center justify-center rounded-full bg-white px-8 py-3 text-sm font-medium text-black transition-colors hover:bg-white/90"
+            >
+              Get Started Now <ArrowRight className="w-4 h-4 ml-2" />
+            </Link>
+            <Link
+              href="/demo"
+              className="inline-flex items-center justify-center rounded-full bg-black px-8 py-3 text-sm font-medium text-white ring-1 ring-white/20 transition-all hover:ring-white/40"
+            >
+              View Demo <MoveRight className="w-4 h-4 ml-2" />
+            </Link>
+          </div>
         </div>
       </section>
     </>

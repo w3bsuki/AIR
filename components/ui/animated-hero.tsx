@@ -8,7 +8,7 @@ import Link from "next/link";
 function Hero() {
   const [titleNumber, setTitleNumber] = useState(0);
   const titles = useMemo(
-    () => ["amazing", "new", "wonderful", "beautiful", "smart"],
+    () => ["Business", "Enterprise", "Industry", "Government"],
     []
   );
 
@@ -67,7 +67,7 @@ function Hero() {
           </div>
           <div className="flex gap-6 flex-col max-w-4xl">
             <h1 className="text-6xl md:text-8xl tracking-tighter text-center font-regular">
-              <span className="text-spektr-cyan-50">This is something</span>
+              <span className="text-spektr-cyan-50">AI Powered</span>
               <span className="relative flex w-full justify-center overflow-hidden text-center md:pb-4 md:pt-1">
                 &nbsp;
                 {titles.map((title, index) => (

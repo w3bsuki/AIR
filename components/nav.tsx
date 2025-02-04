@@ -14,6 +14,12 @@ export function Nav() {
               Products
             </Link>
             <Link
+              href="/agents"
+              className="transition-colors hover:text-white"
+            >
+              Agents
+            </Link>
+            <Link
               href="/about"
               className="transition-colors hover:text-white"
             >
@@ -54,7 +60,7 @@ export function Nav() {
             </Link>
             <Link
               href="/signup"
-              className="rounded-full bg-white px-4 py-1.5 text-sm font-medium text-black transition-colors hover:bg-white/90"
+              className="inline-flex items-center justify-center rounded-full bg-white/10 px-4 py-1.5 text-sm font-medium text-white transition-all hover:bg-white/20 ring-1 ring-white/20 hover:ring-white/40"
             >
               Get started
             </Link>
