@@ -1,12 +1,10 @@
 import "./globals.css"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
-import { Navbar } from "@/components/Navbar"
+import { Navbar1, demoData } from "@/components/ui/navbar"
 import { Footerdemo } from "@/components/ui/footer-section"
 import { SpotlightProvider } from "@/components/SpotlightProvider"
-import type React from "react" // Added import for React
-import { Nav } from "@/components/nav"
-import { NavbarDemo } from "@/components/ui/navbar-demo"
+import type React from "react"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -23,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className="min-h-screen bg-black text-white">
-        <NavbarDemo />
+        <Navbar1 {...demoData} />
         <main>
           {children}
         </main>
