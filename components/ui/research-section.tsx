@@ -1,10 +1,18 @@
 'use client'
 
-import { Brain, Shield, BarChart, ArrowRight } from "lucide-react"
+import { Brain, Shield, BarChart, ArrowRight, LucideIcon } from "lucide-react"
 import Link from "next/link"
 import { routes } from "@/lib/routes"
 
-const posts = [
+interface ResearchPost {
+  title: string
+  description: string
+  category: string
+  href: typeof routes[keyof typeof routes]
+  icon: LucideIcon
+}
+
+const posts: ResearchPost[] = [
   {
     title: "LLMs Easily Jailbroken as Browser Agents",
     description: "Research on LLM vulnerabilities when deployed as browser agents",
@@ -42,6 +50,7 @@ export function ResearchSection() {
             <div className="relative">
               <div className="flex items-center justify-between mb-4">
                 <span className="text-sm font-medium text-white/60">{post.category}</span>
+                <post.icon className="w-6 h-6 text-white/60" strokeWidth={1.5} />
               </div>
               <h3 className="text-xl font-semibold text-white group-hover:text-white/90 transition-colors">
                 {post.title}

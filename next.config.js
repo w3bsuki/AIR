@@ -3,8 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   staticPageGenerationTimeout: 120,
   experimental: {
-    // Remove deprecated options
-    typedRoutes: true
+    typedRoutes: false // Disable for now
   }
 }
 
