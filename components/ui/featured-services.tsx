@@ -12,23 +12,26 @@ interface Service {
   link: typeof routes[keyof typeof routes]
 }
 
+// At the top, let's see what icons are actually available
+console.log('Available DIcons:', Object.keys(DIcons))
+
 const services: Service[] = [
   {
     title: "AI Agents",
     description: "Discover our marketplace of specialized AI agents ready to assist with your tasks.",
-    icon: "Robot01",
+    icon: "Bot",
     link: routes.agents
   },
   {
     title: "Services",
     description: "Explore our range of AI-powered services designed for businesses.",
-    icon: "Settings01",
+    icon: "Settings",
     link: routes.services
   },
   {
     title: "Research",
     description: "Learn about the latest developments in AI technology and research.",
-    icon: "Search01",
+    icon: "Search",
     link: routes.research
   }
 ]
