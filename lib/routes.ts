@@ -3,10 +3,12 @@ import { Route } from 'next'
 export const routes = {
   home: '/' as Route,
   signup: '/signup' as Route,
+  login: '/login' as Route,
   demo: '/demo' as Route,
   agents: '/agents' as Route,
   services: '/services' as Route,
   research: '/research' as Route,
+  solution: '/solution' as Route,
 } as const
 
 // For dynamic routes, we need a separate function

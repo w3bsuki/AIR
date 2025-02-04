@@ -1,61 +1,54 @@
 'use client'
 
 import Link from "next/link"
-import { usePathname } from "next/navigation"
+import { routes } from "@/lib/routes"
 
 export function Nav() {
-  const pathname = usePathname()
-
   return (
-    <header className="fixed top-0 z-50 w-full border-b border-white/10 bg-black/50 backdrop-blur-xl">
-      <div className="mx-auto flex h-16 max-w-screen-xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        {/* Left logo */}
-        <div className="flex items-center">
-          <Link href="/" className="text-lg font-bold text-white">
-            AIR1
+    <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-black/50 backdrop-blur-lg">
+      <nav className="container mx-auto px-4 h-16 flex items-center justify-between">
+        <Link href={routes.home} className="text-xl font-bold text-white">
+          AIR
+        </Link>
+
+        {/* Navigation Links */}
+        <div className="hidden md:flex items-center gap-8">
+          <Link
+            href={routes.agents}
+            className="text-sm text-white/70 transition-colors hover:text-white"
+          >
+            Agents
+          </Link>
+          <Link
+            href={routes.services}
+            className="text-sm text-white/70 transition-colors hover:text-white"
+          >
+            Services
+          </Link>
+          <Link
+            href={routes.research}
+            className="text-sm text-white/70 transition-colors hover:text-white"
+          >
+            Research
           </Link>
         </div>
 
-        {/* Center navigation */}
-        <div className="flex items-center">
-          <nav className="hidden space-x-8 text-sm font-medium text-white/70 md:flex">
-            <Link
-              href="/agents"
-              className={`transition-colors hover:text-white ${pathname === "/agents" ? "text-white" : ""}`}
-            >
-              Agents
-            </Link>
-            <Link
-              href="/solution"
-              className={`transition-colors hover:text-white ${pathname === "/solution" ? "text-white" : ""}`}
-            >
-              Solution
-            </Link>
-            <Link
-              href="/about"
-              className={`transition-colors hover:text-white ${pathname === "/about" ? "text-white" : ""}`}
-            >
-              About
-            </Link>
-          </nav>
-        </div>
-
-        {/* Right section */}
+        {/* Auth Buttons */}
         <div className="flex items-center gap-4">
           <Link
-            href="/login"
+            href={routes.login}
             className="hidden text-sm font-medium text-white/70 transition-colors hover:text-white sm:block"
           >
             Sign in
           </Link>
           <Link
-            href="/signup"
-            className="inline-flex items-center justify-center rounded-full bg-white/10 px-4 py-1.5 text-sm font-medium text-white transition-all hover:bg-white/20 ring-1 ring-white/20 hover:ring-white/40"
+            href={routes.signup}
+            className="inline-flex items-center justify-center rounded-full bg-white px-4 py-1.5 text-sm font-medium text-black transition-colors hover:bg-white/90"
           >
-            Hire
+            Sign up
           </Link>
         </div>
-      </div>
+      </nav>
     </header>
   )
 } 
