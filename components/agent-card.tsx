@@ -5,7 +5,6 @@ import { Star, Check } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { routes } from "@/lib/routes"
-import { AgentPlaceholder } from "./agent-placeholder"
 
 interface Agent {
   id: number
