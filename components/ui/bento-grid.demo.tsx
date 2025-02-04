@@ -1,3 +1,6 @@
+'use client'
+
+import Image from "next/image"
 import {
   BellIcon,
   CalendarIcon,
@@ -15,9 +18,11 @@ const features = [
     href: "/",
     cta: "Learn more",
     background: (
-      <img 
-        src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485" 
-        className="absolute -right-20 -top-20 opacity-60 w-64 h-64 object-cover"
+      <Image 
+        src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485"
+        width={256}
+        height={256}
+        className="absolute -right-20 -top-20 opacity-60 object-cover"
         alt="AI visualization"
       />
     ),
@@ -30,9 +35,11 @@ const features = [
     href: "/",
     cta: "Learn more",
     background: (
-      <img 
-        src="https://images.unsplash.com/photo-1522071820081-009f0129c71c" 
-        className="absolute -right-20 -top-20 opacity-60 w-64 h-64 object-cover"
+      <Image 
+        src="https://images.unsplash.com/photo-1522071820081-009f0129c71c"
+        width={256}
+        height={256}
+        className="absolute -right-20 -top-20 opacity-60 object-cover"
         alt="Research collaboration"
       />
     ),
@@ -45,9 +52,11 @@ const features = [
     href: "/",
     cta: "Learn more",
     background: (
-      <img 
-        src="https://images.unsplash.com/photo-1451187580459-43490279c0fa" 
-        className="absolute -right-20 -top-20 opacity-60 w-64 h-64 object-cover"
+      <Image 
+        src="https://images.unsplash.com/photo-1451187580459-43490279c0fa"
+        width={256}
+        height={256}
+        className="absolute -right-20 -top-20 opacity-60 object-cover"
         alt="Global network"
       />
     ),
@@ -60,9 +69,11 @@ const features = [
     href: "/",
     cta: "Learn more",
     background: (
-      <img 
-        src="https://images.unsplash.com/photo-1551288049-bebda4e38f71" 
-        className="absolute -right-20 -top-20 opacity-60 w-64 h-64 object-cover"
+      <Image 
+        src="https://images.unsplash.com/photo-1551288049-bebda4e38f71"
+        width={256}
+        height={256}
+        className="absolute -right-20 -top-20 opacity-60 object-cover"
         alt="Real-time updates"
       />
     ),
@@ -75,9 +86,11 @@ const features = [
     href: "/",
     cta: "Learn more",
     background: (
-      <img 
-        src="https://images.unsplash.com/photo-1551434678-e076c223a692" 
-        className="absolute -right-20 -top-20 opacity-60 w-64 h-64 object-cover"
+      <Image 
+        src="https://images.unsplash.com/photo-1551434678-e076c223a692"
+        width={256}
+        height={256}
+        className="absolute -right-20 -top-20 opacity-60 object-cover"
         alt="Smart notifications"
       />
     ),
