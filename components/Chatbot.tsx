@@ -32,7 +32,7 @@ export function Chatbot() {
               >
                 <CanvasRevealEffect
                   containerClassName="bg-transparent opacity-30 dark:opacity-50"
-                  colors={[[245, 5, 55]]}
+                  variant="red"
                 />
               </motion.div>
             )}

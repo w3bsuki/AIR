@@ -3,21 +3,25 @@
 import { cn } from "@/lib/utils"
 
 interface CanvasRevealEffectProps {
-  animationSpeed?: number
-  colors?: [number, number, number][]
   containerClassName?: string
-  dotSize?: number
-  opacities?: number[]
+  variant?: 'red' | 'blue' | 'cyan'
 }
 
 export function CanvasRevealEffect({
   containerClassName,
-  colors = [[0, 255, 255]],
+  variant = 'cyan'
 }: CanvasRevealEffectProps) {
+  const gradientClass = {
+    red: "bg-gradient-to-r from-red-500/20 to-rose-500/20",
+    blue: "bg-gradient-to-r from-blue-500/20 to-indigo-500/20",
+    cyan: "bg-gradient-to-r from-cyan-500/20 to-blue-500/20"
+  }[variant]
+
   return (
     <div 
       className={cn(
-        "relative h-full w-full bg-gradient-to-r from-cyan-500/20 to-blue-500/20",
+        "relative h-full w-full animate-gradient-xy",
+        gradientClass,
         containerClassName
       )}
     />
