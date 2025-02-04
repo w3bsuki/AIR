@@ -270,3 +270,83 @@ interface ShaderProps {
   maxFps?: number
 }
 
+interface ParticlesProps {
+  count: number
+}
+
+function Particles({ count }: ParticlesProps) {
+  const { size, viewport } = useThree()
+  const mesh = useRef<THREE.Points>(null)
+
+  const dummy = useMemo(() => new THREE.Object3D(), [])
+  const particles = useMemo(() => {
+    const temp = []
+    for (let i = 0; i < count; i++) {
+      const t = Math.random() * 100
+      const factor = 20 + Math.random() * 100
+      const speed = 0.01 + Math.random() / 200
+      const xFactor = -50 + Math.random() * 100
+      const yFactor = -50 + Math.random() * 100
+      const zFactor = -50 + Math.random() * 100
+      temp.push({ t, factor, speed, xFactor, yFactor, zFactor, mx: 0, my: 0 })
+    }
+    return temp
+  }, [count])
+
+  const particlesPosition = useMemo(() => {
+    const positions = new Float32Array(count * 3)
+    particles.forEach((particle, i) => {
+      positions[i * 3] = particle.xFactor
+      positions[i * 3 + 1] = particle.yFactor
+      positions[i * 3 + 2] = particle.zFactor
+    })
+    return positions
+  }, [count, particles])
+
+  useFrame(() => {
+    particles.forEach((particle, i) => {
+      let { t, factor, speed, xFactor, yFactor, zFactor } = particle
+      t = particle.t += speed / 2
+      const a = Math.cos(t) + Math.sin(t * 1) / 10
+      const b = Math.sin(t) + Math.cos(t * 2) / 10
+      const s = Math.cos(t)
+      particle.mx += (0 - particle.mx) * 0.01
+      particle.my += (0 - particle.my) * 0.01
+      dummy.position.set(
+        (particle.mx / 10) * a + xFactor + Math.cos((t / 10) * factor) + (Math.sin(t * 1) * factor) / 10,
+        (particle.my / 10) * b + yFactor + Math.sin((t / 10) * factor) + (Math.cos(t * 2) * factor) / 10,
+        (particle.my / 10) * b + zFactor + Math.cos((t / 10) * factor) + (Math.sin(t * 3) * factor) / 10
+      )
+      dummy.updateMatrix()
+      mesh.current?.setMatrixAt(i, dummy.matrix)
+    })
+    if (mesh.current) {
+      mesh.current.instanceMatrix.needsUpdate = true
+    }
+  })
+
+  return (
+    <points ref={mesh}>
+      <bufferGeometry>
+        <bufferAttribute
+          attach="attributes-position"
+          count={particlesPosition.length / 3}
+          array={particlesPosition}
+          itemSize={3}
+        />
+      </bufferGeometry>
+      <pointsMaterial size={0.5} sizeAttenuation color="#fff" transparent opacity={0.75} />
+    </points>
+  )
+}
+
+export function CanvasEffect({ className }: { className?: string }) {
+  return (
+    <div className={cn("fixed inset-0 -z-10", className)}>
+      <Canvas camera={{ position: [0, 0, 1] }}>
+        <Particles count={500} />
+      </Canvas>
+    </div>
+  )
+}
+
