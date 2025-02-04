@@ -111,16 +111,17 @@ const renderMenuItem = (item: MenuItem) => {
   if (item.items) {
     return (
       <NavigationMenuItem key={item.title} className="text-white">
-        <NavigationMenuTrigger className="bg-transparent hover:bg-white/10">
+        <NavigationMenuTrigger className="bg-transparent data-[state=open]:bg-white/10 hover:bg-white/10">
           {item.title}
         </NavigationMenuTrigger>
-        <NavigationMenuContent>
+        <NavigationMenuContent className="animate-none">
           <ul className="w-80 p-3 bg-black/95 backdrop-blur-sm border border-white/10">
-            <NavigationMenuLink>
-              {item.items.map((subItem) => (
-                <li key={subItem.title}>
+            <NavigationMenuLink asChild>
+              <div className="grid gap-1">
+                {item.items.map((subItem) => (
                   <a
-                    className="flex select-none gap-4 rounded-md p-3 text-white hover:bg-white/10"
+                    key={subItem.title}
+                    className="flex select-none gap-4 rounded-md p-3 text-white hover:bg-white/10 outline-none"
                     href={subItem.url}
                   >
                     {subItem.icon}
@@ -131,8 +132,8 @@ const renderMenuItem = (item: MenuItem) => {
                       )}
                     </div>
                   </a>
-                </li>
-              ))}
+                ))}
+              </div>
             </NavigationMenuLink>
           </ul>
         </NavigationMenuContent>
@@ -141,13 +142,14 @@ const renderMenuItem = (item: MenuItem) => {
   }
 
   return (
-    <a
-      key={item.title}
-      className="text-white hover:text-white/90 px-4 py-2 text-sm"
-      href={item.url}
-    >
-      {item.title}
-    </a>
+    <NavigationMenuItem key={item.title}>
+      <a
+        className="text-white hover:text-white/90 px-4 py-2 text-sm"
+        href={item.url}
+      >
+        {item.title}
+      </a>
+    </NavigationMenuItem>
   )
 }
 
