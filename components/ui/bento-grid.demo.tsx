@@ -53,7 +53,7 @@ const features = [
     cta: "Learn more",
     background: (
       <Image 
-        src="https://images.unsplash.com/photo-1451187580459-43490279c0fa"
+        src="https://images.unsplash.com/photo-1522071901873-411886a10004"
         width={256}
         height={256}
         className="absolute -right-20 -top-20 opacity-60 object-cover"
