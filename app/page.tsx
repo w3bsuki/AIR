@@ -1,3 +1,5 @@
+'use client'
+
 import { Button } from "@/components/ui/button"
 import { AgentGrid } from "@/components/AgentGrid"
 import { ArrowRight, BarChart, Zap, Shield, MoveRight, Brain } from "lucide-react"
@@ -10,6 +12,7 @@ import Link from "next/link"
 import { FeaturesSectionWithHoverEffects } from "@/components/ui/feature-section-with-hover-effects"
 import { FeatureSectionWrapper } from "@/components/ui/feature-section-wrapper"
 import { ResearchSection } from "@/components/ui/research-section"
+import { routes } from '@/lib/routes'
 
 // Featured agents data (showing only 3)
 const featuredAgents = [
@@ -249,13 +252,13 @@ export default function Home() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/signup"
+              href={routes.signup}
               className="inline-flex items-center justify-center rounded-full bg-white px-8 py-3 text-sm font-medium text-black transition-colors hover:bg-white/90"
             >
               Get Started Now <ArrowRight className="w-4 h-4 ml-2" />
             </Link>
             <Link
-              href="/demo"
+              href={routes.demo}
               className="inline-flex items-center justify-center rounded-full bg-black px-8 py-3 text-sm font-medium text-white ring-1 ring-white/20 transition-all hover:ring-white/40"
             >
               View Demo <MoveRight className="w-4 h-4 ml-2" />
