@@ -275,10 +275,9 @@ interface ParticlesProps {
 }
 
 function Particles({ count }: ParticlesProps) {
-  const { size, viewport } = useThree()
-  const mesh = useRef<THREE.Points>(null)
-
+  const mesh = useRef<THREE.InstancedMesh>(null)
   const dummy = useMemo(() => new THREE.Object3D(), [])
+  
   const particles = useMemo(() => {
     const temp = []
     for (let i = 0; i < count; i++) {
@@ -293,50 +292,36 @@ function Particles({ count }: ParticlesProps) {
     return temp
   }, [count])
 
-  const particlesPosition = useMemo(() => {
-    const positions = new Float32Array(count * 3)
-    particles.forEach((particle, i) => {
-      positions[i * 3] = particle.xFactor
-      positions[i * 3 + 1] = particle.yFactor
-      positions[i * 3 + 2] = particle.zFactor
-    })
-    return positions
-  }, [count, particles])
-
   useFrame(() => {
+    if (!mesh.current) return
+
     particles.forEach((particle, i) => {
       let { t, factor, speed, xFactor, yFactor, zFactor } = particle
       t = particle.t += speed / 2
       const a = Math.cos(t) + Math.sin(t * 1) / 10
       const b = Math.sin(t) + Math.cos(t * 2) / 10
-      const s = Math.cos(t)
+      
       particle.mx += (0 - particle.mx) * 0.01
       particle.my += (0 - particle.my) * 0.01
+      
       dummy.position.set(
         (particle.mx / 10) * a + xFactor + Math.cos((t / 10) * factor) + (Math.sin(t * 1) * factor) / 10,
         (particle.my / 10) * b + yFactor + Math.sin((t / 10) * factor) + (Math.cos(t * 2) * factor) / 10,
         (particle.my / 10) * b + zFactor + Math.cos((t / 10) * factor) + (Math.sin(t * 3) * factor) / 10
       )
+      
       dummy.updateMatrix()
-      mesh.current?.setMatrixAt(i, dummy.matrix)
+      mesh.current.setMatrixAt(i, dummy.matrix)
     })
-    if (mesh.current) {
-      mesh.current.instanceMatrix.needsUpdate = true
-    }
+    
+    mesh.current.instanceMatrix.needsUpdate = true
   })
 
   return (
-    <points ref={mesh}>
-      <bufferGeometry>
-        <bufferAttribute
-          attach="attributes-position"
-          count={particlesPosition.length / 3}
-          array={particlesPosition}
-          itemSize={3}
-        />
-      </bufferGeometry>
-      <pointsMaterial size={0.5} sizeAttenuation color="#fff" transparent opacity={0.75} />
-    </points>
+    <instancedMesh ref={mesh} args={[undefined, undefined, count]}>
+      <sphereGeometry args={[0.5, 32, 32]} />
+      <meshBasicMaterial color="#fff" transparent opacity={0.75} />
+    </instancedMesh>
   )
 }
 
