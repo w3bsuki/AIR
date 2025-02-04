@@ -1,14 +1,8 @@
 'use client'
 
-import { Metadata } from 'next'
 import { ServiceCard } from "@/components/ui/service-card"
 import { Brain, BarChart, Shield } from "lucide-react"
 import { SectionHeader } from '@/components/ui/section-header'
-
-export const metadata: Metadata = {
-  title: 'Our Services',
-  description: 'Explore our AI-powered services',
-}
 
 const services = [
   {
@@ -36,7 +30,7 @@ const services = [
 
 export default function ServicesPage() {
   return (
-    <div className="min-h-screen bg-black/40 backdrop-blur-sm pt-24">
+    <div className="pt-24">
       <div className="container mx-auto px-4">
         <SectionHeader 
           title="Our Services"
