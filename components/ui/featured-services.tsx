@@ -47,28 +47,31 @@ export function FeaturedServices() {
         </p>
       </div>
       <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-        {services.map((service, index) => (
-          <Link href="/solutions" key={service.title}>
-            <motion.div
-              whileHover={{ scale: 1.02 }}
-              className="relative overflow-hidden rounded-lg border bg-background p-2 cursor-pointer"
-            >
-              <div className="flex h-[400px] flex-col rounded-lg p-6">
-                <div className="flex items-center justify-center rounded-lg bg-secondary p-2">
-                  <DIcons[service.icon] className="w-12 h-12 text-white" />
+        {services.map((service) => {
+          const Icon = DIcons[service.icon]
+          return (
+            <Link href={service.link} key={service.title}>
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                className="relative overflow-hidden rounded-lg border bg-background p-2 cursor-pointer"
+              >
+                <div className="flex h-[400px] flex-col rounded-lg p-6">
+                  <div className="flex items-center justify-center rounded-lg bg-secondary p-2">
+                    <Icon className="w-12 h-12 text-white" />
+                  </div>
+                  <div className="mt-4 flex-1">
+                    <h3 className="text-xl font-semibold">{service.title}</h3>
+                    <p className="mt-2 text-muted-foreground">{service.description}</p>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span>Learn more</span>
+                    <ArrowRight size={16} />
+                  </div>
                 </div>
-                <div className="mt-4 flex-1">
-                  <h3 className="text-xl font-semibold">{service.title}</h3>
-                  <p className="mt-2 text-muted-foreground">{service.description}</p>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span>Learn more</span>
-                  <ArrowRight size={16} />
-                </div>
-              </div>
-            </motion.div>
-          </Link>
-        ))}
+              </motion.div>
+            </Link>
+          )
+        })}
       </div>
     </section>
   )
