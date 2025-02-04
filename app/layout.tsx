@@ -6,6 +6,7 @@ import { Footerdemo } from "@/components/ui/footer-section"
 import { SpotlightProvider } from "@/components/SpotlightProvider"
 import type React from "react" // Added import for React
 import { Nav } from "@/components/nav"
+import { NavbarDemo } from "@/components/ui/navbar-demo"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -22,7 +23,11 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className="min-h-screen bg-black text-white">
-        {children}
+        <NavbarDemo />
+        <main>
+          {children}
+        </main>
+        <Footerdemo />
       </body>
     </html>
   )
