@@ -1,10 +1,10 @@
 'use client'
 
 import { cn } from "@/lib/utils"
-import { motion } from "framer-motion"
+import { motion, HTMLMotionProps } from "framer-motion"
 import { ButtonHTMLAttributes } from "react"
 
-interface ButtonColorfulProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonColorfulProps extends Omit<HTMLMotionProps<"button">, "children"> {
   size?: 'default' | 'sm' | 'lg'
   className?: string
   children: React.ReactNode
