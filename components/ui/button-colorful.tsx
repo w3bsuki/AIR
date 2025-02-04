@@ -2,18 +2,23 @@
 
 import { cn } from "@/lib/utils"
 import { motion, HTMLMotionProps } from "framer-motion"
-import { ButtonHTMLAttributes } from "react"
+import { ArrowRight } from "lucide-react"
+import React from "react"
 
 interface ButtonColorfulProps extends Omit<HTMLMotionProps<"button">, "children"> {
   size?: 'default' | 'sm' | 'lg'
   className?: string
-  children: React.ReactNode
+  children?: React.ReactNode
+  label?: string
+  arrow?: boolean
 }
 
 export function ButtonColorful({ 
   size = 'default', 
   className,
   children,
+  label,
+  arrow = false,
   ...props 
 }: ButtonColorfulProps) {
   const sizeClasses = {
@@ -34,7 +39,8 @@ export function ButtonColorful({
       )}
       {...props}
     >
-      {children}
+      {label || children}
+      {arrow && <ArrowRight className="ml-2 h-4 w-4" />}
     </motion.button>
   )
 }
