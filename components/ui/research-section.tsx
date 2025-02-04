@@ -9,19 +9,22 @@ const posts = [
     title: "LLMs Easily Jailbroken as Browser Agents",
     description: "Research on LLM vulnerabilities when deployed as browser agents",
     category: "Research",
-    href: routes.research
+    href: routes.researchLLMBrowser,
+    icon: Brain
   },
   {
     title: "Multi-Turn Human Jailbreaks on LLM Defenses",
     description: "Analysis of human-driven jailbreak attempts on LLM safety measures",
     category: "Research",
-    href: routes.research
+    href: routes.researchLLMDefenses,
+    icon: Shield
   },
   {
     title: "SEAL Leaderboards: Expert-Driven Private Evaluations",
     description: "Private evaluation framework for assessing LLM capabilities",
     category: "Leaderboards",
-    href: routes.research
+    href: routes.researchSEAL,
+    icon: BarChart
   }
 ]
 
@@ -39,7 +42,6 @@ export function ResearchSection() {
             <div className="relative">
               <div className="flex items-center justify-between mb-4">
                 <span className="text-sm font-medium text-white/60">{post.category}</span>
-                <post.icon className="w-6 h-6 text-white/60" />
               </div>
               <h3 className="text-xl font-semibold text-white group-hover:text-white/90 transition-colors">
                 {post.title}
