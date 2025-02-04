@@ -90,9 +90,8 @@ export function Chatbot() {
                 </div>
               </form>
 
-              <Button variant="default" size="icon" className=" absolute left-1.5 top-1.5 h-7  rounded-sm">
-                <DIcons.Plus01 className="h-5 w-5" />
-
+              <Button variant="default" size="icon" className="absolute left-1.5 top-1.5 h-7 rounded-sm">
+                <DIcons.Plus className="h-5 w-5" />
                 <span className="sr-only">New Chat</span>
               </Button>
 
@@ -100,9 +99,9 @@ export function Chatbot() {
                 type="submit"
                 variant="default"
                 size="icon"
-                className=" absolute right-1.5 top-1.5 h-7 rounded-sm"
+                className="absolute right-1.5 top-1.5 h-7 rounded-sm"
               >
-                <DIcons.Send01 className="mx-1 h-4 w-4" />
+                <DIcons.Send className="mx-1 h-4 w-4" />
               </Button>
             </div>
           </div>
