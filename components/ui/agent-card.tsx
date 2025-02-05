@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils"
 import Link from "next/link"
 import { routes } from "@/lib/routes"
 import { Card } from "@/components/ui/card"
-import { Avatar } from "@/components/ui/avatar"
+import { Avatar, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
 
@@ -48,7 +48,9 @@ export function AgentCard({ name, description, image, id }: AgentCardProps) {
     )}>
       <div className="p-6">
         <div className="flex items-center gap-4">
-          <Avatar className="h-12 w-12 border-2 border-border/10" src={image} alt={name} />
+          <Avatar className="h-12 w-12 border-2 border-border/10">
+            <AvatarImage src={image} alt={name} />
+          </Avatar>
           <div>
             <h3 className="font-semibold tracking-tight">{name}</h3>
             <p className="text-sm text-muted-foreground">{description}</p>
