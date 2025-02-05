@@ -4,9 +4,9 @@ import { motion } from "framer-motion"
 import { useEffect, useState } from "react"
 import { ButtonColorful } from "./button-colorful"
 import { ArrowRight } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { routes } from "@/lib/routes"
-import { Button } from "@/components/ui/button"
 
 const words = [
   "Intelligent",
@@ -22,7 +22,7 @@ export function Hero() {
   useEffect(() => {
     const interval = setInterval(() => {
       setIndex((prev) => (prev + 1) % words.length)
-    }, 3000) // Increased duration for smoother transitions
+    }, 3000)
 
     return () => clearInterval(interval)
   }, [])
@@ -55,7 +55,7 @@ export function Hero() {
       variants={containerVariants}
       initial="initial"
       animate="animate"
-      className="relative flex flex-col items-center justify-center min-h-[calc(100vh-64px)] text-center px-4"
+      className="relative flex flex-col items-center justify-center min-h-[calc(100vh-80px)] text-center px-4"
     >
       <div className="absolute inset-0 bg-gradient-to-b from-black via-black/95 to-black/90" />
       
@@ -69,7 +69,7 @@ export function Hero() {
               animate="center"
               exit="exit"
               variants={textVariants}
-              className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-violet-500"
+              className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-indigo-500"
             >
               {words[index]}
             </motion.span>
@@ -77,13 +77,14 @@ export function Hero() {
           AI Agents at Scale
         </h1>
 
-        <p className="text-lg md:text-xl text-white/70 mb-8 max-w-2xl mx-auto">
+        <p className="text-lg md:text-xl text-white/70 mb-12 max-w-2xl mx-auto">
           Experience the future of AI with our marketplace of specialized agents ready to transform your business operations.
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <ButtonColorful href={routes.signup} size="lg">
-            Get Started <ArrowRight className="ml-2 h-5 w-5" />
+            Get Started
+            <ArrowRight className="ml-2 h-5 w-5" />
           </ButtonColorful>
           <Button variant="outline" size="lg" asChild>
             <Link href={routes.about}>Learn More</Link>
