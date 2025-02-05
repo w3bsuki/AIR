@@ -16,20 +16,6 @@ const inter = Inter({
   display: 'swap',
 })
 
-// Add spotlight effect handler
-const spotlightScript = `
-  document.addEventListener('mousemove', (e) => {
-    const spotlightElements = document.querySelectorAll('.spotlight-hero, .spotlight-section, .spotlight-card, .spotlight-text');
-    spotlightElements.forEach(element => {
-      const rect = element.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      element.style.setProperty('--mouse-x', \`\${x}px\`);
-      element.style.setProperty('--mouse-y', \`\${y}px\`);
-    });
-  });
-`
-
 export const metadata: Metadata = {
   title: {
     default: siteConfig.name,
@@ -77,7 +63,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "white" },
-    { media: "(prefers-color-scheme: dark)", color: "#0F172A" },
+    { media: "(prefers-color-scheme: dark)", color: "#030303" },
   ],
   width: 'device-width',
   initialScale: 1,
@@ -99,19 +85,16 @@ export default function RootLayout({ children }: RootLayoutProps) {
           enableSystem={false}
           disableTransitionOnChange
         >
-          <SpotlightProvider>
-            <div className="relative flex min-h-screen flex-col">
-              <Navbar />
-              <main className="flex-1 pt-16">
-                {children}
-              </main>
-              <Footerdemo />
-            </div>
-          </SpotlightProvider>
+          <div className="relative flex min-h-screen flex-col">
+            <Navbar />
+            <main className="flex-1 pt-16">
+              {children}
+            </main>
+            <Footerdemo />
+          </div>
           <TailwindIndicator />
           <Analytics />
         </ThemeProvider>
-        <script dangerouslySetInnerHTML={{ __html: spotlightScript }} />
       </body>
     </html>
   )

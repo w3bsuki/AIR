@@ -4,16 +4,17 @@ import { Button } from "@/components/ui/button"
 import { AgentGrid } from "@/components/AgentGrid"
 import { ArrowRight, BarChart, Zap, Shield, MoveRight, Brain } from "lucide-react"
 import { ButtonColorful } from "@/components/ui/button-colorful"
-import { Hero } from "@/components/ui/animated-hero"
+import { Hero } from "@/components/ui/hero"
 import { FeaturedServices } from "@/components/ui/featured-services"
 import { LogoCarousel } from "@/components/logo-carousel"
 import { SectionHeader } from "@/components/ui/section-header"
 import Link from "next/link"
-import { FeaturesSectionWithHoverEffects } from "@/components/ui/feature-section-with-hover-effects"
+import { FeaturesSectionWithHoverEffects } from "@/components/ui/features-section"
 import { FeatureSectionWrapper } from "@/components/ui/feature-section-wrapper"
 import { ResearchSection } from "@/components/ui/research-section"
 import { routes } from '@/lib/routes'
 import { TestimonialsSection } from "@/components/ui/testimonials-with-marquee"
+import { AgentCard } from "@/components/ui/agent-card"
 
 // Featured agents data (showing only 3)
 const featuredAgents = [
@@ -107,40 +108,50 @@ const researchPosts = [
   }
 ]
 
+const agents = [
+  {
+    name: "Data Analysis Agent",
+    description: "Analyze complex datasets and generate insights with advanced AI algorithms.",
+    image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=400&h=400&fit=crop&crop=faces&q=80",
+    id: "data-analysis"
+  },
+  {
+    name: "Content Creation Agent",
+    description: "Create engaging content across multiple formats and platforms.",
+    image: "https://images.unsplash.com/photo-1664575602276-acd073f104c1?w=400&h=400&fit=crop&crop=faces&q=80",
+    id: "content-creation"
+  },
+  {
+    name: "Customer Service Agent",
+    description: "Provide 24/7 customer support with natural language understanding.",
+    image: "https://images.unsplash.com/photo-1675475422160-4ca6552b2b39?w=400&h=400&fit=crop&crop=faces&q=80",
+    id: "customer-service"
+  }
+]
+
 const testimonials = [
   {
-    author: {
-      name: "Emma Thompson",
-      handle: "@emmaai",
-      avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=face"
-    },
-    text: "Using this AI platform has transformed how we handle data analysis. The speed and accuracy are unprecedented.",
-    href: "https://twitter.com/emmaai"
+    text: "This AI platform has revolutionized how we handle data analysis. The speed and accuracy are unmatched.",
+    author: "Sarah Chen",
+    title: "Data Scientist at TechCorp"
   },
   {
-    author: {
-      name: "David Park",
-      handle: "@davidtech",
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face"
-    },
-    text: "The API integration is flawless. We've reduced our development time by 60% since implementing this solution.",
-    href: "https://twitter.com/davidtech"
+    text: "The content creation capabilities are mind-blowing. It's like having a full creative team at your fingertips.",
+    author: "Michael Rodriguez",
+    title: "Marketing Director"
   },
   {
-    author: {
-      name: "Sofia Rodriguez",
-      handle: "@sofiaml",
-      avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face"
-    },
-    text: "Finally, an AI tool that actually understands context! The accuracy in natural language processing is impressive."
+    text: "Customer service has never been more efficient. Our response times have improved by 300%.",
+    author: "Emily Watson",
+    title: "Customer Success Manager"
   }
 ]
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen">
+    <main className="flex min-h-screen flex-col">
       {/* Hero Section */}
-      <div className="spotlight-hero">
+      <div className="relative">
         <Hero />
       </div>
 
@@ -148,77 +159,67 @@ export default function Home() {
       <LogoCarousel />
 
       {/* Featured Services Section */}
-      <div className="spotlight-section">
-        <FeaturedServices services={featuredServices} />
+      <div className="relative py-24">
+        <FeaturedServices />
       </div>
 
       {/* Agents Grid Section */}
-      <section className="container mx-auto px-4 py-24 md:py-32 spotlight-section">
-        <div className="max-w-2xl mx-auto text-center mb-16">
-          <SectionHeader
-            title="Featured Agents"
-            description="Discover our collection of specialized AI agents designed to enhance your workflow"
-          />
-        </div>
-        <div className="mb-16">
-          <AgentGrid agents={featuredAgents} />
-        </div>
-        <div className="text-center">
-          <Link href={routes.agents}>
-            <Button variant="outline" className="group">
-              View All Agents
-              <MoveRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </Button>
-          </Link>
+      <section className="relative py-24 bg-background/50">
+        <div className="container px-4 md:px-6">
+          <div className="flex flex-col items-center justify-center space-y-4 text-center">
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
+              Featured Agents
+            </h2>
+            <p className="max-w-[900px] text-muted-foreground">
+              Discover our specialized AI agents designed to handle specific tasks with exceptional accuracy and efficiency.
+            </p>
+          </div>
+          <div className="mx-auto grid max-w-5xl grid-cols-1 gap-8 md:grid-cols-3 md:gap-12 lg:gap-16 mt-12">
+            {agents.map((agent) => (
+              <AgentCard key={agent.id} {...agent} />
+            ))}
+          </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <div className="spotlight-section">
-        <FeatureSectionWrapper>
-          <FeaturesSectionWithHoverEffects />
-        </FeatureSectionWrapper>
+      <div className="relative py-24">
+        <FeaturesSectionWithHoverEffects />
       </div>
 
       {/* Research Section */}
-      <div className="spotlight-section">
+      <div className="relative py-24 bg-background/50">
         <ResearchSection />
       </div>
 
       {/* Testimonials Section */}
-      <div className="spotlight-section">
+      <div className="relative py-24">
         <TestimonialsSection
-          title="Trusted by innovative teams worldwide"
-          description="Join thousands of developers and enterprises who are already building the future with our AI platform"
           testimonials={testimonials}
+          title="What Our Users Say"
+          description="Discover how our AI agents are transforming businesses and workflows across industries."
         />
       </div>
 
       {/* CTA Section */}
-      <section className="container mx-auto px-4 py-20 spotlight-section">
-        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-b from-primary/10 via-primary/5 to-background/5 dark:from-primary/20 dark:via-primary/10 dark:to-background/5 px-6 py-20 sm:px-12 sm:py-32 dark-gradient-border">
-          <div className="relative mx-auto max-w-2xl text-center">
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl spotlight-text">
-              Ready to transform your business with AI?
+      <section className="relative py-24 bg-background/50">
+        <div className="container px-4 md:px-6">
+          <div className="flex flex-col items-center justify-center space-y-4 text-center">
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
+              Start Your AI Journey Today
             </h2>
-            <p className="mt-6 text-lg leading-8 text-muted-foreground">
-              Get started with our AI solutions today and stay ahead of the competition.
+            <p className="max-w-[600px] text-muted-foreground">
+              Join thousands of users who are already leveraging our AI agents to transform their work.
             </p>
-            <div className="mt-10 flex items-center justify-center gap-6">
-              <ButtonColorful href="/contact">
-                Get Started
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </ButtonColorful>
-              <Button variant="outline" asChild>
-                <Link href="/about">Learn More</Link>
-              </Button>
-            </div>
-          </div>
-          <div className="absolute left-1/2 top-0 -z-10 h-[800px] w-[800px] -translate-x-1/2 -translate-y-1/2 opacity-20 [mask-image:radial-gradient(closest-side,white,transparent)]">
-            <div className="absolute inset-0 bg-gradient-radial from-primary/40" />
+            <a
+              className="inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-primary-foreground ring-offset-background transition-colors hover:bg-primary/90"
+              href="/signup"
+            >
+              Get Started
+            </a>
           </div>
         </div>
       </section>
-    </div>
+    </main>
   )
 }

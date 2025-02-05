@@ -6,6 +6,10 @@ import { ArrowUpRight, Cpu, Zap, Users } from "lucide-react"
 import { cn } from "@/lib/utils"
 import Link from "next/link"
 import { routes } from "@/lib/routes"
+import { Card } from "@/components/ui/card"
+import { Avatar } from "@/components/ui/avatar"
+import { Button } from "@/components/ui/button"
+import { ArrowRight } from "lucide-react"
 
 interface Agent {
   id: number
@@ -42,82 +46,37 @@ export function AgentCard({ agent }: AgentCardProps) {
   ]
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.3, ease: "easeOut" }}
-      className={cn(
-        "group relative overflow-hidden rounded-3xl bg-gradient-to-b from-background/80 to-background border transition-all hover:border-primary/50",
-        "backdrop-blur-sm spotlight-card dark-gradient-border",
-      )}
-    >
-      <div className="h-full p-8">
-        {/* Agent Header */}
-        <div className="flex items-start gap-4">
-          <div className="relative h-16 w-16 overflow-hidden rounded-2xl border bg-background">
-            <Image
-              src={agent.image}
-              alt={agent.name}
-              fill
-              className="object-cover transition-transform duration-300 group-hover:scale-110"
-            />
-          </div>
+    <Card className={cn(
+      "relative overflow-hidden group hover-card",
+      "border border-border/50 bg-background/80",
+      "dark:bg-background/90 dark:border-border/10"
+    )}>
+      <div className="p-6">
+        <div className="flex items-center gap-4">
+          <Avatar className="h-12 w-12 border-2 border-border/10" src={agent.image} alt={agent.name} />
           <div>
-            <div className="text-sm font-medium text-primary/80">
-              {agent.category}
-            </div>
-            <h3 className="text-xl font-semibold leading-7 tracking-tight spotlight-text">
-              {agent.name}
-            </h3>
+            <h3 className="font-semibold tracking-tight">{agent.name}</h3>
+            <p className="text-sm text-muted-foreground">{agent.description}</p>
           </div>
         </div>
-
-        {/* Agent Description */}
-        <p className="mt-4 text-muted-foreground leading-7">
-          {agent.description}
-        </p>
-
-        {/* Agent Metrics */}
-        <div className="mt-8 grid grid-cols-3 gap-4">
-          {getMetrics().map((metric, index) => {
-            const Icon = metric.icon
-            return (
-              <div key={index} className="space-y-1">
-                <div className={cn(
-                  "flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br",
-                  metric.color
-                )}>
-                  <Icon className="h-4 w-4 text-foreground/80" />
-                </div>
-                <div className="text-lg font-semibold">
-                  {metric.value}
-                </div>
-                <div className="text-xs text-muted-foreground">
-                  {metric.label}
-                </div>
-              </div>
-            )
-          })}
-        </div>
-
-        {/* Agent Action */}
-        <div className="mt-8 flex items-center gap-3">
-          <Link
-            href={`${routes.agents}/${agent.id}`}
-            className={cn(
-              "group/link inline-flex items-center gap-2 text-sm font-medium text-foreground/90",
-              "transition-colors hover:text-primary"
-            )}
-          >
-            View Details
-            <ArrowUpRight className="h-4 w-4 transition-transform group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5" />
-          </Link>
-        </div>
+        {agent.id && (
+          <div className="mt-4">
+            <Button
+              variant="ghost"
+              className="group/button w-full justify-between hover:bg-accent/50"
+              asChild
+            >
+              <Link
+                href={`${routes.agents}/${agent.id}`}
+                className="group/link inline-flex items-center gap-2 text-sm font-medium text-foreground/90"
+              >
+                <span>Learn more</span>
+                <ArrowRight className="h-4 w-4 transition-transform group-hover/button:translate-x-1" />
+              </Link>
+            </Button>
+          </div>
+        )}
       </div>
-
-      {/* Gradient overlay */}
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-background/5 via-background/5 to-background/60" />
-    </motion.div>
+    </Card>
   )
 } 
