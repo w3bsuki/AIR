@@ -132,18 +132,27 @@ const agents = [
 const testimonials = [
   {
     text: "This AI platform has revolutionized how we handle data analysis. The speed and accuracy are unmatched.",
-    author: "Sarah Chen",
-    title: "Data Scientist at TechCorp"
+    author: {
+      name: "Sarah Chen",
+      handle: "@sarahchen",
+      avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=face"
+    }
   },
   {
     text: "The content creation capabilities are mind-blowing. It's like having a full creative team at your fingertips.",
-    author: "Michael Rodriguez",
-    title: "Marketing Director"
+    author: {
+      name: "Michael Rodriguez",
+      handle: "@mrodriguez",
+      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face"
+    }
   },
   {
     text: "Customer service has never been more efficient. Our response times have improved by 300%.",
-    author: "Emily Watson",
-    title: "Customer Success Manager"
+    author: {
+      name: "Emily Watson",
+      handle: "@emilyw",
+      avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face"
+    }
   }
 ]
 
