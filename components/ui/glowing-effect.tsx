@@ -2,9 +2,11 @@
 
 import { useRef, type ReactNode } from "react"
 import { useMotionValue, motion, useMotionTemplate } from "framer-motion"
+import { cn } from "@/lib/utils"
 
 interface GlowingEffectProps {
   children: ReactNode
+  className?: string
   glow?: number
   spread?: number
   proximity?: number
@@ -12,6 +14,7 @@ interface GlowingEffectProps {
 
 export function GlowingEffect({
   children,
+  className,
   glow = 20,
   spread = 50,
   proximity = 0.8,
@@ -29,7 +32,7 @@ export function GlowingEffect({
   return (
     <div
       ref={containerRef}
-      className="group relative"
+      className={cn("group relative", className)}
       onMouseMove={onMouseMove}
     >
       <motion.div
