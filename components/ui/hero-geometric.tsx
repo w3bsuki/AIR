@@ -226,7 +226,7 @@ function HeroTextScramble({ titles }: { titles: string[] }) {
             <br />
             <span
                 className={cn(
-                    "bg-clip-text text-transparent bg-gradient-to-r from-indigo-300 via-white/90 to-rose-300 "
+                    "bg-clip-text text-transparent bg-gradient-to-r from-indigo-300 via-white/90 to-rose-300"
                 )}
             >
                 {nextTitle}
