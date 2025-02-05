@@ -6,6 +6,7 @@ import { ButtonColorful } from "./button-colorful"
 import { ArrowRight } from "lucide-react"
 import Link from "next/link"
 import { routes } from "@/lib/routes"
+import { Button } from "@/components/ui/button"
 
 const words = [
   "Intelligent",
@@ -81,17 +82,12 @@ export function Hero() {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Link href={routes.signup}>
-            <ButtonColorful size="lg">
-              Get Started <ArrowRight className="ml-2 h-5 w-5" />
-            </ButtonColorful>
-          </Link>
-          <Link
-            href={routes.demo}
-            className="inline-flex items-center justify-center rounded-full bg-white/5 px-8 py-3 text-sm font-medium text-white ring-1 ring-white/20 hover:ring-white/40 transition-all"
-          >
-            View Demo
-          </Link>
+          <ButtonColorful href={routes.signup} size="lg">
+            Get Started <ArrowRight className="ml-2 h-5 w-5" />
+          </ButtonColorful>
+          <Button variant="outline" size="lg" asChild>
+            <Link href={routes.about}>Learn More</Link>
+          </Button>
         </div>
       </div>
     </motion.div>
