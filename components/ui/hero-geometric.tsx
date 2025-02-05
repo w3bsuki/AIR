@@ -183,7 +183,7 @@ export function HeroGeometric({
                         initial="hidden"
                         animate="visible"
                     >
-                        <ButtonColorful label="Learn More" />
+                        <ButtonColorful href="/about">Learn More</ButtonColorful>
                     </motion.div>
                 </div>
             </div>
