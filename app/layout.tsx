@@ -63,7 +63,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "white" },
-    { media: "(prefers-color-scheme: dark)", color: "black" },
+    { media: "(prefers-color-scheme: dark)", color: "#0F172A" },
   ],
   width: 'device-width',
   initialScale: 1,
@@ -76,13 +76,13 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="en" className="dark" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <head />
-      <body className={`${inter.variable} font-sans antialiased min-h-screen bg-background`}>
+      <body className={`${inter.variable} font-sans antialiased min-h-screen bg-background dark:bg-[#0F172A]`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
-          enableSystem
+          enableSystem={false}
           disableTransitionOnChange
         >
           <SpotlightProvider>
