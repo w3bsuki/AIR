@@ -1,88 +1,87 @@
 'use client'
 
-import { motion } from "framer-motion"
-import { ArrowUpRight } from "lucide-react"
-import Link from "next/link"
+import { ArrowUpRight } from 'lucide-react'
+import Link from 'next/link'
 
-const RESEARCH_ITEMS = [
+interface ResearchCard {
+  category: string
+  date: string
+  title: string
+  description: string
+  readTime: string
+  href: string
+}
+
+const researchItems: ResearchCard[] = [
   {
-    id: 1,
-    title: "Advancing AI Safety",
-    description: "Exploring new methodologies for safer and more reliable AI systems",
-    category: "AI Safety",
-    readTime: "8 min read",
-    date: "Mar 2024",
+    category: 'AI Safety',
+    date: 'Mar 2024',
+    title: 'Advancing AI Safety',
+    description: 'Exploring new methodologies for safer and more reliable AI systems',
+    readTime: '8 min read',
+    href: '/research/ai-safety',
   },
   {
-    id: 2,
-    title: "Large Language Model Breakthroughs",
-    description: "Recent developments in LLM architectures and their implications",
-    category: "LLMs",
-    readTime: "12 min read",
-    date: "Mar 2024",
+    category: 'LLMs',
+    date: 'Mar 2024',
+    title: 'Large Language Model Breakthroughs',
+    description: 'Recent developments in LLM architectures and their implications',
+    readTime: '12 min read',
+    href: '/research/llm-breakthroughs',
   },
   {
-    id: 3,
-    title: "Neural Networks Evolution",
-    description: "The future of neural network architectures and training methods",
-    category: "Deep Learning",
-    readTime: "10 min read",
-    date: "Mar 2024",
+    category: 'Deep Learning',
+    date: 'Mar 2024',
+    title: 'Neural Networks Evolution',
+    description: 'The future of neural network architectures and training methods',
+    readTime: '10 min read',
+    href: '/research/neural-networks',
   },
 ]
 
+function ResearchCard({ item }: { item: ResearchCard }) {
+  return (
+    <Link 
+      href={item.href}
+      className="group relative flex flex-col gap-4 rounded-xl bg-card/50 p-6 transition-all hover:bg-card dark:hover:bg-card/80 dark-hover dark-shadow"
+    >
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <span className="text-sm font-medium text-primary">{item.category}</span>
+          <span className="text-sm text-muted-foreground">{item.date}</span>
+        </div>
+        <ArrowUpRight className="h-5 w-5 text-muted-foreground transition-transform group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-primary" />
+      </div>
+      <div className="space-y-2">
+        <h3 className="text-xl font-semibold tracking-tight">{item.title}</h3>
+        <p className="text-muted-foreground">{item.description}</p>
+      </div>
+      <div className="mt-auto">
+        <span className="text-sm text-muted-foreground">{item.readTime}</span>
+      </div>
+    </Link>
+  )
+}
+
 export function ResearchSection() {
   return (
-    <section className="w-full bg-black/50 backdrop-blur-sm py-24 border-t border-white/10">
-      <div className="container mx-auto px-4">
-        <div className="max-w-2xl mx-auto text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
+    <section className="relative overflow-hidden py-20">
+      {/* Background gradient */}
+      <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-gradient-to-b from-background to-background/50 dark:from-background dark:to-[#0F172A]" />
+      
+      <div className="container relative z-10 mx-auto px-4">
+        <div className="mx-auto max-w-2xl text-center">
+          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
             Featured Research
           </h2>
-          <p className="text-white/70 text-lg">
-            Exploring the frontiers of artificial intelligence and machine learning
+          <p className="mt-4 text-muted-foreground">
+            Explore our latest research on AI safety, security, and performance optimization
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {RESEARCH_ITEMS.map((item) => (
-            <motion.div
-              key={item.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: item.id * 0.1 }}
-            >
-              <Link 
-                href="#" 
-                className="block group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm hover:bg-white/10 transition-colors"
-              >
-                <div className="absolute top-3 right-3">
-                  <ArrowUpRight className="w-5 h-5 text-white/30 group-hover:text-white/70 transition-colors" />
-                </div>
-
-                <div className="flex items-center gap-3 mb-4">
-                  <span className="text-xs font-medium text-white/50 px-3 py-1 rounded-full bg-white/5">
-                    {item.category}
-                  </span>
-                  <span className="text-xs text-white/30">
-                    {item.date}
-                  </span>
-                </div>
-
-                <h3 className="text-xl font-semibold mb-2 group-hover:text-white transition-colors">
-                  {item.title}
-                </h3>
-                
-                <p className="text-sm text-white/70 mb-4">
-                  {item.description}
-                </p>
-
-                <div className="flex items-center text-xs text-white/50">
-                  <span>{item.readTime}</span>
-                </div>
-              </Link>
-            </motion.div>
+        <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          {researchItems.map((item) => (
+            <ResearchCard key={item.title} item={item} />
           ))}
         </div>
       </div>
