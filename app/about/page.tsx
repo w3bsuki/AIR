@@ -1,3 +1,5 @@
+'use client'
+
 import { BentoDemo } from "@/components/ui/bento-grid.demo"
 
 export default function AboutPage() {
