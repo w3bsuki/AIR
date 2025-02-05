@@ -112,7 +112,11 @@ module.exports = {
             opacity: "1",
             transform: "rotateX(0) scale(1)" 
           }
-        }
+        },
+        carousel: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-50%)' },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -121,6 +125,7 @@ module.exports = {
         'gradient-xy': 'gradient-xy 15s ease infinite',
         "navbar-slide-down": "navbar-slide-down 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
         "navbar-dropdown": "navbar-dropdown 0.2s cubic-bezier(0.4, 0, 0.2, 1)",
+        carousel: 'carousel 40s linear infinite',
       },
       backdropBlur: {
         navbar: "10px"
