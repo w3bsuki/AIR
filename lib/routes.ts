@@ -8,6 +8,7 @@ export const routes = {
   agents: '/agents' as Route,
   services: '/services' as Route,
   research: '/research' as Route,
+  about: '/about' as Route,
   researchLLMBrowser: '/research/llm-browser-agents' as Route,
   researchLLMDefenses: '/research/llm-defenses' as Route,
   researchSEAL: '/research/seal-leaderboards' as Route,

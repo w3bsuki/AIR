@@ -21,6 +21,7 @@ const NAV_ITEMS = [
   {
     id: 1,
     label: "Agents",
+    link: "/agents",
     subMenus: [
       {
         title: "Browse Agents",
@@ -101,7 +102,7 @@ const NAV_ITEMS = [
     ],
   },
   {
-    id: 3,
+    id: 4,
     label: "About",
     link: "/about",
   },
