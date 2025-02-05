@@ -79,14 +79,14 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head />
-      <body className={`${inter.variable} font-sans antialiased min-h-screen bg-background dark:bg-[#030303]`}>
+      <body className={`${inter.variable} font-sans antialiased min-h-screen bg-black/[0.96] antialiased bg-grid-white/[0.02]`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
           enableSystem={false}
           disableTransitionOnChange
         >
-          <div className="relative flex min-h-screen flex-col group bg-grid-white/[0.02]">
+          <div className="relative flex min-h-screen flex-col group">
             <Spotlight />
             <div className="relative flex min-h-screen flex-col">
               <Navbar />

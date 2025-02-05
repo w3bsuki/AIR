@@ -27,9 +27,9 @@ export function Spotlight() {
   return (
     <div
       ref={spotlightRef}
-      className="absolute inset-0 opacity-0 mix-blend-soft-light group-hover:opacity-100 transition-opacity"
+      className="absolute inset-0 opacity-0 mix-blend-soft-light group-hover:opacity-100 transition-opacity duration-500"
       style={{
-        background: "radial-gradient(600px circle at var(--x) var(--y), rgba(255,255,255,0.1), transparent 40%)",
+        background: "radial-gradient(800px circle at var(--x) var(--y), rgba(255,255,255,0.15), transparent 40%)",
       }}
     />
   )
