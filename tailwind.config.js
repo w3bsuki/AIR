@@ -149,52 +149,87 @@ module.exports = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: 0 },
         },
-        rainbow: {
-          "0%": { "background-position": "0%" },
-          "100%": { "background-position": "200%" },
+        "fade-in": {
+          "0%": { opacity: 0 },
+          "100%": { opacity: 1 },
         },
-        'gradient-xy': {
-          '0%, 100%': {
-            'background-size': '400% 400%',
-            'background-position': 'left center'
+        "fade-in-up": {
+          "0%": {
+            opacity: 0,
+            transform: "translateY(10px)",
           },
-          '50%': {
-            'background-size': '200% 200%',
-            'background-position': 'right center'
-          }
-        },
-        "navbar-slide-down": {
-          "0%": { transform: "translateY(-100%)" },
-          "100%": { transform: "translateY(0)" }
-        },
-        "navbar-dropdown": {
-          "0%": { 
-            opacity: "0",
-            transform: "rotateX(-12deg) scale(0.9)" 
+          "100%": {
+            opacity: 1,
+            transform: "translateY(0)",
           },
-          "100%": { 
-            opacity: "1",
-            transform: "rotateX(0) scale(1)" 
-          }
         },
-        carousel: {
-          '0%': { transform: 'translateX(0)' },
-          '100%': { transform: 'translateX(-50%)' },
+        "fade-in-down": {
+          "0%": {
+            opacity: 0,
+            transform: "translateY(-10px)",
+          },
+          "100%": {
+            opacity: 1,
+            transform: "translateY(0)",
+          },
+        },
+        "slide-in-right": {
+          "0%": {
+            transform: "translateX(100%)",
+            opacity: 0,
+          },
+          "100%": {
+            transform: "translateX(0)",
+            opacity: 1,
+          },
+        },
+        "slide-in-left": {
+          "0%": {
+            transform: "translateX(-100%)",
+            opacity: 0,
+          },
+          "100%": {
+            transform: "translateX(0)",
+            opacity: 1,
+          },
+        },
+        "scale-in": {
+          "0%": {
+            transform: "scale(0.95)",
+            opacity: 0,
+          },
+          "100%": {
+            transform: "scale(1)",
+            opacity: 1,
+          },
         },
         shimmer: {
-          '0%': { backgroundPosition: '-1000px 0' },
-          '100%': { backgroundPosition: '1000px 0' },
+          "0%": {
+            backgroundPosition: "-1000px 0",
+          },
+          "100%": {
+            backgroundPosition: "1000px 0",
+          },
+        },
+        carousel: {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" },
         },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        rainbow: "rainbow var(--speed, 2s) infinite linear",
-        'gradient-xy': 'gradient-xy 15s ease infinite',
-        "navbar-slide-down": "navbar-slide-down 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
-        "navbar-dropdown": "navbar-dropdown 0.2s cubic-bezier(0.4, 0, 0.2, 1)",
-        carousel: 'carousel 40s linear infinite',
-        shimmer: 'shimmer 2s infinite linear',
+        "fade-in": "fade-in 0.5s ease-out",
+        "fade-in-up": "fade-in-up 0.5s ease-out",
+        "fade-in-down": "fade-in-down 0.5s ease-out",
+        "slide-in-right": "slide-in-right 0.5s ease-out",
+        "slide-in-left": "slide-in-left 0.5s ease-out",
+        "scale-in": "scale-in 0.5s ease-out",
+        carousel: "carousel 40s linear infinite",
+        shimmer: "shimmer 2s infinite linear",
+      },
+      transitionTimingFunction: {
+        "out-flex": "cubic-bezier(0.05, 0.6, 0.4, 0.9)",
       },
       backdropBlur: {
         navbar: "10px"
