@@ -106,7 +106,65 @@ const researchPosts = [
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
+      {/* Hero Section */}
+      <Hero />
+
+      {/* Logo Carousel */}
+      <LogoCarousel />
+
+      {/* Featured Services Section */}
+      <FeaturedServices services={featuredServices} />
+
+      {/* Agents Grid Section */}
+      <section className="container mx-auto px-4 py-20">
+        <SectionHeader
+          title="Featured Agents"
+          description="Discover our collection of specialized AI agents designed to enhance your workflow"
+        />
+        <AgentGrid agents={featuredAgents} />
+        <div className="mt-12 text-center">
+          <Link href={routes.agents}>
+            <Button variant="outline" className="group">
+              View All Agents
+              <MoveRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </Button>
+          </Link>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <FeatureSectionWrapper>
+        <FeaturesSectionWithHoverEffects />
+      </FeatureSectionWrapper>
+
+      {/* Research Section */}
       <ResearchSection />
+
+      {/* CTA Section */}
+      <section className="container mx-auto px-4 py-20">
+        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-b from-primary/10 via-primary/5 to-background px-6 py-20 sm:px-12 sm:py-32">
+          <div className="relative mx-auto max-w-2xl text-center">
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
+              Ready to transform your business with AI?
+            </h2>
+            <p className="mt-6 text-lg leading-8 text-muted-foreground">
+              Get started with our AI solutions today and stay ahead of the competition.
+            </p>
+            <div className="mt-10 flex items-center justify-center gap-6">
+              <ButtonColorful href="/contact">
+                Get Started
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </ButtonColorful>
+              <Button variant="outline" asChild>
+                <Link href="/about">Learn More</Link>
+              </Button>
+            </div>
+          </div>
+          <div className="absolute left-1/2 top-0 -z-10 h-[800px] w-[800px] -translate-x-1/2 -translate-y-1/2 opacity-20 [mask-image:radial-gradient(closest-side,white,transparent)]">
+            <div className="absolute inset-0 bg-gradient-radial from-primary/40" />
+          </div>
+        </div>
+      </section>
     </div>
   )
 }
