@@ -4,7 +4,7 @@ import { useState } from "react"
 import React from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { ChevronDown } from "lucide-react"
-import { ButtonColorful } from "./button-colorful"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { routes } from "@/lib/routes"
 
@@ -140,9 +140,9 @@ export function DropdownNavigation({ navItems }: { navItems: Props[] }) {
 
             {/* CTA Button */}
             <div className="flex items-center ml-4">
-              <ButtonColorful href={routes.signup} size="sm">
-                Get Started
-              </ButtonColorful>
+              <Button asChild className="bg-gradient hover:opacity-90">
+                <a href={routes.signup}>Get Started</a>
+              </Button>
             </div>
           </div>
         </div>
