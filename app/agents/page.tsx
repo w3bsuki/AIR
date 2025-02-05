@@ -8,39 +8,69 @@ export const dynamic = 'force-dynamic'
 const agents = [
   {
     name: "NeuroSales Agent v2.1",
-    description: "Advanced AI sales agent powered by state-of-the-art LLMs, capable of understanding complex customer needs and negotiating deals with human-like precision.",
+    description: "Enterprise-grade AI sales agent with advanced negotiation capabilities and deep customer understanding.",
     image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=400&h=400&fit=crop&crop=faces&q=80",
-    id: "neurosales"
+    id: "neurosales",
+    features: [
+      "Natural language negotiation",
+      "Customer sentiment analysis",
+      "Real-time market adaptation"
+    ]
   },
   {
     name: "DataMiner Pro",
-    description: "Enterprise-grade data analysis agent that processes and extracts actionable insights from complex datasets using advanced machine learning algorithms.",
+    description: "Advanced analytics agent that processes complex datasets using state-of-the-art machine learning algorithms.",
     image: "https://images.unsplash.com/photo-1664575602276-acd073f104c1?w=400&h=400&fit=crop&crop=faces&q=80",
-    id: "dataminer"
+    id: "dataminer",
+    features: [
+      "Multi-source data integration",
+      "Predictive analytics",
+      "Automated reporting"
+    ]
   },
   {
     name: "AIssistant",
-    description: "24/7 customer support agent with multilingual capabilities, emotional intelligence, and deep learning-based context understanding for superior service.",
+    description: "24/7 customer support agent with multilingual capabilities and emotional intelligence.",
     image: "https://images.unsplash.com/photo-1675475422160-4ca6552b2b39?w=400&h=400&fit=crop&crop=faces&q=80",
-    id: "aissistant"
+    id: "aissistant",
+    features: [
+      "Natural conversation flow",
+      "Multi-language support",
+      "Context awareness"
+    ]
   },
   {
     name: "CodeGenius",
-    description: "AI-powered development assistant that generates production-ready code, performs code reviews, and suggests optimizations using latest coding standards.",
+    description: "AI-powered development assistant that generates production-ready code and performs intelligent code reviews.",
     image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=400&h=400&fit=crop&crop=faces&q=80",
-    id: "codegenius"
+    id: "codegenius",
+    features: [
+      "Code generation",
+      "Automated testing",
+      "Performance optimization"
+    ]
   },
   {
     name: "MarketingGuru",
-    description: "Intelligent marketing agent that creates data-driven campaigns, analyzes market trends, and optimizes content for maximum engagement across channels.",
+    description: "Intelligent marketing agent that creates data-driven campaigns and optimizes content across channels.",
     image: "https://images.unsplash.com/photo-1664575602276-acd073f104c1?w=400&h=400&fit=crop&crop=faces&q=80",
-    id: "marketingguru"
+    id: "marketingguru",
+    features: [
+      "Content optimization",
+      "A/B testing",
+      "Campaign analytics"
+    ]
   },
   {
     name: "FinanceWizard",
-    description: "Advanced financial analysis agent providing real-time market insights, risk assessment, and predictive modeling for informed decision-making.",
+    description: "Advanced financial analysis agent providing real-time market insights and risk assessment.",
     image: "https://images.unsplash.com/photo-1675475422160-4ca6552b2b39?w=400&h=400&fit=crop&crop=faces&q=80",
-    id: "financewizard"
+    id: "financewizard",
+    features: [
+      "Market analysis",
+      "Risk assessment",
+      "Portfolio optimization"
+    ]
   }
 ]
 
@@ -60,7 +90,7 @@ export default function AgentsPage() {
           </p>
         </div>
 
-        <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+        <div className="mx-auto mt-16">
           <AgentGrid agents={agents} />
         </div>
       </div>

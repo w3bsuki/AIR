@@ -1,7 +1,6 @@
 'use client'
 
 import { motion } from "framer-motion"
-import Image from "next/image"
 import { ArrowUpRight, Cpu, Zap, Users } from "lucide-react"
 import { cn } from "@/lib/utils"
 import Link from "next/link"
@@ -42,11 +41,12 @@ export function AgentCard({ name, description, image, id }: AgentCardProps) {
 
   return (
     <Card className={cn(
-      "relative overflow-hidden group hover-card",
+      "relative overflow-hidden group hover-card spotlight-card dark-gradient-border",
       "border border-border/50 bg-background/80",
       "dark:bg-background/90 dark:border-border/10"
     )}>
-      <div className="p-6">
+      <div className="p-6 space-y-6">
+        {/* Header with Avatar and Title */}
         <div className="flex items-center gap-4">
           <Avatar className="h-12 w-12 border-2 border-border/10">
             <AvatarImage src={image} alt={name} />
@@ -56,19 +56,62 @@ export function AgentCard({ name, description, image, id }: AgentCardProps) {
             <p className="text-sm text-muted-foreground">{description}</p>
           </div>
         </div>
+
+        {/* Metrics Grid */}
+        <div className="grid grid-cols-3 gap-4">
+          {getMetrics().map((metric, index) => {
+            const Icon = metric.icon
+            return (
+              <div 
+                key={metric.label}
+                className="flex flex-col items-center justify-center p-3 rounded-lg bg-gradient-to-b from-muted/50 to-muted/10"
+              >
+                <div className={cn(
+                  "flex h-8 w-8 items-center justify-center rounded-md bg-gradient-to-br mb-2",
+                  metric.color
+                )}>
+                  <Icon className="h-4 w-4 text-foreground/80" />
+                </div>
+                <div className="text-sm font-medium">{metric.value}</div>
+                <div className="text-xs text-muted-foreground">{metric.label}</div>
+              </div>
+            )
+          })}
+        </div>
+
+        {/* Features List */}
+        <div className="space-y-2">
+          <div className="text-sm font-medium">Key Features:</div>
+          <ul className="text-sm text-muted-foreground space-y-1">
+            <li className="flex items-center gap-2">
+              <ArrowRight className="h-3 w-3" />
+              Advanced data processing
+            </li>
+            <li className="flex items-center gap-2">
+              <ArrowRight className="h-3 w-3" />
+              Real-time analytics
+            </li>
+            <li className="flex items-center gap-2">
+              <ArrowRight className="h-3 w-3" />
+              24/7 availability
+            </li>
+          </ul>
+        </div>
+
+        {/* Action Button */}
         {id && (
-          <div className="mt-4">
+          <div className="pt-2">
             <Button
               variant="ghost"
-              className="group/button w-full justify-between hover:bg-accent/50"
+              className="w-full justify-between hover:bg-accent/50 group/button"
               asChild
             >
               <Link
                 href={`${routes.agents}/${id}`}
                 className="group/link inline-flex items-center gap-2 text-sm font-medium text-foreground/90"
               >
-                <span>Learn more</span>
-                <ArrowRight className="h-4 w-4 transition-transform group-hover/button:translate-x-1" />
+                <span>View Details</span>
+                <ArrowUpRight className="h-4 w-4 transition-transform group-hover/button:translate-x-0.5 group-hover/button:-translate-y-0.5" />
               </Link>
             </Button>
           </div>

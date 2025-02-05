@@ -1,13 +1,14 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { AgentCard } from "./ui/agent-card"
+import { AgentCard } from "@/components/ui/agent-card"
 
 interface Agent {
   name: string
   description: string
   image: string
-  id?: string
+  id: string
+  features: string[]
 }
 
 interface AgentGridProps {
@@ -16,9 +17,15 @@ interface AgentGridProps {
 
 export function AgentGrid({ agents }: AgentGridProps) {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
       {agents.map((agent) => (
-        <AgentCard key={agent.id} {...agent} />
+        <AgentCard
+          key={agent.id}
+          name={agent.name}
+          description={agent.description}
+          image={agent.image}
+          id={agent.id}
+        />
       ))}
     </div>
   )
