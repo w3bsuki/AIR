@@ -22,21 +22,21 @@ const featuredAgents = [
     name: "DataAnalyst Pro",
     description: "Advanced data analysis and visualization agent with real-time insights.",
     category: "Data Analysis",
-    image: "/agents/data-analyst.png",
+    image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=400&h=400&fit=crop&crop=faces&q=80",
   },
   {
     id: 2,
     name: "ContentWriter AI",
     description: "Professional content creation agent with SEO optimization.",
     category: "Content Creation",
-    image: "/agents/content-writer.png",
+    image: "https://images.unsplash.com/photo-1664575602276-acd073f104c1?w=400&h=400&fit=crop&crop=faces&q=80",
   },
   {
     id: 3,
     name: "CustomerService Bot",
     description: "24/7 customer support agent with multilingual capabilities.",
     category: "Customer Service",
-    image: "/agents/customer-service.png",
+    image: "https://images.unsplash.com/photo-1675475422160-4ca6552b2b39?w=400&h=400&fit=crop&crop=faces&q=80",
   },
 ]
 
@@ -149,13 +149,17 @@ export default function Home() {
       <FeaturedServices services={featuredServices} />
 
       {/* Agents Grid Section */}
-      <section className="container mx-auto px-4 py-20">
-        <SectionHeader
-          title="Featured Agents"
-          description="Discover our collection of specialized AI agents designed to enhance your workflow"
-        />
-        <AgentGrid agents={featuredAgents} />
-        <div className="mt-12 text-center">
+      <section className="container mx-auto px-4 py-24 md:py-32">
+        <div className="max-w-2xl mx-auto text-center mb-16">
+          <SectionHeader
+            title="Featured Agents"
+            description="Discover our collection of specialized AI agents designed to enhance your workflow"
+          />
+        </div>
+        <div className="mb-16">
+          <AgentGrid agents={featuredAgents} />
+        </div>
+        <div className="text-center">
           <Link href={routes.agents}>
             <Button variant="outline" className="group">
               View All Agents
