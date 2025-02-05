@@ -64,21 +64,24 @@ const featuredServices = [
     description: "Custom AI solutions tailored to your business needs. From chatbots to predictive analytics.",
     icon: Brain,
     gradient: "from-cyan-400/20 via-cyan-400/0 to-cyan-400/0",
-    features: ["Custom Model Training", "API Integration", "Scalable Solutions"]
+    features: ["Custom Model Training", "API Integration", "Scalable Solutions"],
+    href: routes.services
   },
   {
     title: "Data Analytics",
     description: "Transform your raw data into actionable insights with our advanced analytics services.",
     icon: BarChart,
     gradient: "from-purple-400/20 via-purple-400/0 to-purple-400/0",
-    features: ["Real-time Analytics", "Custom Dashboards", "Predictive Models"]
+    features: ["Real-time Analytics", "Custom Dashboards", "Predictive Models"],
+    href: routes.services
   },
   {
     title: "Security & Compliance",
     description: "Enterprise-grade security solutions to protect your AI infrastructure and data.",
     icon: Shield,
     gradient: "from-emerald-400/20 via-emerald-400/0 to-emerald-400/0",
-    features: ["Encryption", "Access Control", "Security Audits"]
+    features: ["Encryption", "Access Control", "Security Audits"],
+    href: routes.services
   }
 ]
 
