@@ -25,6 +25,7 @@ export function AgentGrid({ agents }: AgentGridProps) {
           description={agent.description}
           image={agent.image}
           id={agent.id}
+          features={agent.features}
         />
       ))}
     </div>

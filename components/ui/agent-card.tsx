@@ -15,9 +15,10 @@ interface AgentCardProps {
   description: string
   image: string
   id?: string
+  features?: string[]
 }
 
-export function AgentCard({ name, description, image, id }: AgentCardProps) {
+export function AgentCard({ name, description, image, id, features = [] }: AgentCardProps) {
   const getMetrics = () => [
     {
       label: "Processing Power",
@@ -83,18 +84,12 @@ export function AgentCard({ name, description, image, id }: AgentCardProps) {
         <div className="space-y-2">
           <div className="text-sm font-medium">Key Features:</div>
           <ul className="text-sm text-muted-foreground space-y-1">
-            <li className="flex items-center gap-2">
-              <ArrowRight className="h-3 w-3" />
-              Advanced data processing
-            </li>
-            <li className="flex items-center gap-2">
-              <ArrowRight className="h-3 w-3" />
-              Real-time analytics
-            </li>
-            <li className="flex items-center gap-2">
-              <ArrowRight className="h-3 w-3" />
-              24/7 availability
-            </li>
+            {features.map((feature, index) => (
+              <li key={index} className="flex items-center gap-2">
+                <ArrowRight className="h-3 w-3" />
+                {feature}
+              </li>
+            ))}
           </ul>
         </div>
 
