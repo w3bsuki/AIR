@@ -7,15 +7,15 @@ import { LucideIcon } from "lucide-react"
 function ButtonDemo() {
     return (
         <div className="flex flex-col sm:flex-row gap-4">
-            <ButtonColorful size="sm">
+            <ButtonColorful size="sm" href="#">
                 Small Button
             </ButtonColorful>
             
-            <ButtonColorful>
+            <ButtonColorful href="#">
                 Default Button
             </ButtonColorful>
             
-            <ButtonColorful size="lg">
+            <ButtonColorful size="lg" href="#">
                 Large Button
             </ButtonColorful>
         </div>
