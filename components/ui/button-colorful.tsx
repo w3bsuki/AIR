@@ -1,46 +1,27 @@
 'use client'
 
-import { cn } from "@/lib/utils"
-import { motion, HTMLMotionProps } from "framer-motion"
-import { ArrowRight } from "lucide-react"
-import React from "react"
+import { ReactNode } from 'react'
+import Link from 'next/link'
+import { cn } from '@/lib/utils'
 
-interface ButtonColorfulProps extends Omit<HTMLMotionProps<"button">, "children"> {
-  size?: 'default' | 'sm' | 'lg'
+interface ButtonColorfulProps {
+  children: ReactNode
+  href: string
   className?: string
-  children?: React.ReactNode
-  label?: string
-  arrow?: boolean
 }
 
-export function ButtonColorful({ 
-  size = 'default', 
-  className,
-  children,
-  label,
-  arrow = false,
-  ...props 
-}: ButtonColorfulProps) {
-  const sizeClasses = {
-    default: 'px-6 py-2 text-sm',
-    sm: 'px-4 py-1.5 text-xs',
-    lg: 'px-8 py-3 text-sm'
-  }
-
+export function ButtonColorful({ children, href, className }: ButtonColorfulProps) {
   return (
-    <motion.button
-      whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
+    <Link
+      href={href}
       className={cn(
-        "relative inline-flex items-center justify-center rounded-full font-medium text-white transition-colors",
-        "bg-gradient-to-r from-blue-500 to-violet-500 hover:from-blue-600 hover:to-violet-600",
-        sizeClasses[size],
+        "group relative inline-flex items-center justify-center overflow-hidden rounded-lg bg-gradient-to-br from-primary to-blue-500 p-0.5 font-medium text-foreground hover:text-white focus:outline-none focus:ring-4 focus:ring-blue-300 group-hover:from-primary group-hover:to-blue-500 dark:text-white dark:focus:ring-blue-800",
         className
       )}
-      {...props}
     >
-      {label || children}
-      {arrow && <ArrowRight className="ml-2 h-4 w-4" />}
-    </motion.button>
+      <span className="relative rounded-md bg-background px-5 py-2.5 transition-all duration-75 ease-in group-hover:bg-opacity-0 dark:bg-black">
+        {children}
+      </span>
+    </Link>
   )
 }
