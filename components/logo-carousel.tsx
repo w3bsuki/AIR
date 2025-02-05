@@ -58,32 +58,31 @@ const LOGOS = [
 
 export function LogoCarousel() {
   return (
-    <div className="w-full py-16 border-t border-border/40 bg-background/50">
+    <div className="w-full py-16 bg-black">
       <div className="container mx-auto px-4">
-        <h3 className="text-center text-base font-medium text-muted-foreground/80 mb-12">
+        <h3 className="text-center text-base font-medium text-white/60 mb-12">
           Trusted by innovative companies worldwide
         </h3>
       </div>
 
       <div className="relative flex overflow-hidden select-none">
         {/* Gradient Overlays */}
-        <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-background to-transparent z-20" />
-        <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-background to-transparent z-20" />
+        <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-black to-transparent z-20" />
+        <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-black to-transparent z-20" />
 
         {/* First Carousel */}
         <div className="flex animate-carousel">
           {[...LOGOS, ...LOGOS].map((logo, idx) => (
             <div
               key={`${logo.id}-${idx}`}
-              className="relative mx-8 w-[clamp(10rem,12vw,16rem)] h-16 flex-shrink-0 flex items-center justify-center group"
+              className="relative mx-8 w-[clamp(10rem,12vw,16rem)] h-16 flex-shrink-0 flex items-center justify-center"
             >
-              <div className="absolute inset-0 bg-muted/40 rounded-2xl border border-border/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <Image
                 src={logo.src}
                 alt={logo.alt}
                 width={100}
                 height={30}
-                className="w-auto h-8 opacity-50 group-hover:opacity-100 transition-all duration-300 dark:invert will-change-[opacity,transform] group-hover:scale-110"
+                className="w-auto h-8 opacity-50 invert"
                 unoptimized
               />
             </div>
@@ -95,15 +94,14 @@ export function LogoCarousel() {
           {[...LOGOS, ...LOGOS].map((logo, idx) => (
             <div
               key={`${logo.id}-${idx}-duplicate`}
-              className="relative mx-8 w-[clamp(10rem,12vw,16rem)] h-16 flex-shrink-0 flex items-center justify-center group"
+              className="relative mx-8 w-[clamp(10rem,12vw,16rem)] h-16 flex-shrink-0 flex items-center justify-center"
             >
-              <div className="absolute inset-0 bg-muted/40 rounded-2xl border border-border/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <Image
                 src={logo.src}
                 alt={logo.alt}
                 width={100}
                 height={30}
-                className="w-auto h-8 opacity-50 group-hover:opacity-100 transition-all duration-300 dark:invert will-change-[opacity,transform] group-hover:scale-110"
+                className="w-auto h-8 opacity-50 invert"
                 unoptimized
               />
             </div>
