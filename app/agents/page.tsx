@@ -1,6 +1,6 @@
 'use client'
 
-import { AgentGrid } from "@/components/AgentGrid"
+import { FeaturedAgents } from "@/components/featured-agents"
 
 // Mark the page as dynamically rendered
 export const dynamic = 'force-dynamic'
@@ -91,7 +91,7 @@ export default function AgentsPage() {
         </div>
 
         <div className="mx-auto mt-16">
-          <AgentGrid agents={agents} />
+          <FeaturedAgents />
         </div>
       </div>
     </section>
