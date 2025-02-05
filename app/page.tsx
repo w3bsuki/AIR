@@ -2,9 +2,8 @@
 
 import { Button } from "@/components/ui/button"
 import { AgentGrid } from "@/components/AgentGrid"
-import { ArrowRight, BarChart, Zap, Shield, MoveRight, Brain } from "lucide-react"
+import { ArrowRight, BarChart, Zap, Shield, MoveRight, Brain, PhoneCall } from "lucide-react"
 import { ButtonColorful } from "@/components/ui/button-colorful"
-import { HeroGeometric as Hero } from "@/components/ui/hero-geometric"
 import { FeaturedServices } from "@/components/ui/featured-services"
 import { LogoCarousel } from "@/components/logo-carousel"
 import { SectionHeader } from "@/components/ui/section-header"
@@ -160,8 +159,34 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col">
       {/* Hero Section */}
-      <div className="relative">
-        <Hero />
+      <div className="w-full">
+        <div className="container mx-auto">
+          <div className="flex gap-8 py-20 lg:py-40 items-center justify-center flex-col">
+            <div>
+              <Button variant="secondary" size="sm" className="gap-4">
+                Read our launch article <MoveRight className="w-4 h-4" />
+              </Button>
+            </div>
+            <div className="flex gap-4 flex-col">
+              <h1 className="text-5xl md:text-7xl max-w-2xl tracking-tighter text-center font-regular">
+                This is the start of something new
+              </h1>
+              <p className="text-lg md:text-xl leading-relaxed tracking-tight text-muted-foreground max-w-2xl text-center">
+                Managing a small business today is already tough. Avoid further
+                complications by ditching outdated, tedious trade methods. Our goal
+                is to streamline SMB trade, making it easier and faster than ever.
+              </p>
+            </div>
+            <div className="flex flex-row gap-3">
+              <Button size="lg" className="gap-4" variant="outline">
+                Jump on a call <PhoneCall className="w-4 h-4" />
+              </Button>
+              <Button size="lg" className="gap-4">
+                Sign up here <MoveRight className="w-4 h-4" />
+              </Button>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Logo Carousel */}
