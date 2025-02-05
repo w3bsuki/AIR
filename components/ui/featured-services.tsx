@@ -1,16 +1,14 @@
 'use client'
 
 import { motion } from "framer-motion"
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, Brain, BarChart, Shield } from "lucide-react"
 import Link from "next/link"
-import { DIcons } from "dicons"
 import { routes } from "@/lib/routes"
-import type { ElementType } from 'react'
 
 interface ServiceProps {
   title: string
   description: string
-  icon: ElementType
+  icon: React.ElementType
   gradient: string
   features: string[]
 }
@@ -19,34 +17,33 @@ interface FeaturedServicesProps {
   services: ServiceProps[]
 }
 
-// At the top, let's see what icons are actually available
-console.log('Available DIcons:', Object.keys(DIcons))
-
 const services: ServiceProps[] = [
   {
     title: "AI Development",
     description: "Custom AI solutions tailored to your business needs.",
-    icon: DIcons.Brain,
+    icon: Brain,
     gradient: "from-cyan-400/20 via-cyan-400/0 to-cyan-400/0",
     features: ["Custom Model Training", "API Integration", "Scalable Solutions"]
   },
   {
     title: "Data Analytics",
     description: "Transform your raw data into actionable insights with our advanced analytics services.",
-    icon: DIcons.ChartBar,
+    icon: BarChart,
     gradient: "from-purple-400/20 via-purple-400/0 to-purple-400/0",
     features: ["Real-time Analytics", "Custom Dashboards", "Predictive Models"]
   },
   {
     title: "Security & Compliance",
     description: "Enterprise-grade security solutions to protect your AI infrastructure and data.",
-    icon: DIcons.Shield,
+    icon: Shield,
     gradient: "from-emerald-400/20 via-emerald-400/0 to-emerald-400/0",
     features: ["Encryption", "Access Control", "Security Audits"]
   }
 ]
 
-export function FeaturedServices({ services }: FeaturedServicesProps) {
+export function FeaturedServices({ services: externalServices }: FeaturedServicesProps) {
+  const displayServices = externalServices || services;
+  
   return (
     <section className="container py-24">
       <div className="text-center">
@@ -56,7 +53,7 @@ export function FeaturedServices({ services }: FeaturedServicesProps) {
         </p>
       </div>
       <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-        {services.map((service) => {
+        {displayServices.map((service) => {
           const Icon = service.icon
           return (
             <motion.div
