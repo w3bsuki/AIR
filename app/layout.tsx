@@ -8,6 +8,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { Analytics } from "@/components/analytics"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { siteConfig } from "@/config/site"
+import { Spotlight } from "@/components/ui/spotlight-new"
 import type React from "react"
 
 const inter = Inter({
@@ -85,15 +86,18 @@ export default function RootLayout({ children }: RootLayoutProps) {
           enableSystem={false}
           disableTransitionOnChange
         >
-          <div className="relative flex min-h-screen flex-col">
-            <Navbar />
-            <main className="flex-1 pt-16">
-              {children}
-            </main>
-            <Footerdemo />
+          <div className="relative flex min-h-screen flex-col group bg-grid-white/[0.02]">
+            <Spotlight />
+            <div className="relative flex min-h-screen flex-col">
+              <Navbar />
+              <main className="flex-1 pt-16">
+                {children}
+              </main>
+              <Footerdemo />
+            </div>
+            <TailwindIndicator />
+            <Analytics />
           </div>
-          <TailwindIndicator />
-          <Analytics />
         </ThemeProvider>
       </body>
     </html>
