@@ -1,96 +1,83 @@
-'use client'
+import { useEffect, useMemo, useState } from "react";
+import { motion } from "framer-motion";
+import { MoveRight, PhoneCall } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
-import { motion } from "framer-motion"
-import { useEffect, useState } from "react"
-import { ButtonColorful } from "./button-colorful"
-import { ArrowRight } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import Link from "next/link"
-import { routes } from "@/lib/routes"
-
-const words = [
-  "Intelligent",
-  "Efficient",
-  "Reliable",
-  "Scalable",
-  "Secure"
-]
-
-export function Hero() {
-  const [index, setIndex] = useState(0)
+function Hero() {
+  const [titleNumber, setTitleNumber] = useState(0);
+  const titles = useMemo(
+    () => ["amazing", "new", "wonderful", "beautiful", "smart"],
+    []
+  );
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setIndex((prev) => (prev + 1) % words.length)
-    }, 3000)
-
-    return () => clearInterval(interval)
-  }, [])
-
-  const containerVariants = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1 },
-  }
-
-  const textVariants = {
-    enter: { 
-      y: 20, 
-      opacity: 0,
-      transition: { duration: 0.3, ease: "easeOut" }
-    },
-    center: { 
-      y: 0, 
-      opacity: 1,
-      transition: { duration: 0.4, ease: "easeOut" }
-    },
-    exit: { 
-      y: -20, 
-      opacity: 0,
-      transition: { duration: 0.3, ease: "easeIn" }
-    }
-  }
+    const timeoutId = setTimeout(() => {
+      if (titleNumber === titles.length - 1) {
+        setTitleNumber(0);
+      } else {
+        setTitleNumber(titleNumber + 1);
+      }
+    }, 2000);
+    return () => clearTimeout(timeoutId);
+  }, [titleNumber, titles]);
 
   return (
-    <motion.div
-      variants={containerVariants}
-      initial="initial"
-      animate="animate"
-      className="relative flex flex-col items-center justify-center min-h-[calc(100vh-80px)] text-center px-4"
-    >
-      <div className="absolute inset-0 bg-gradient-to-b from-black via-black/95 to-black/90" />
-      
-      <div className="relative z-10 max-w-4xl mx-auto">
-        <h1 className="text-4xl md:text-6xl font-bold tracking-tighter mb-6">
-          <span className="block mb-2">
-            Deploy{" "}
-            <motion.span
-              key={words[index]}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              variants={textVariants}
-              className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-indigo-500"
-            >
-              {words[index]}
-            </motion.span>
-          </span>
-          AI Agents at Scale
-        </h1>
+    <div className="w-full">
+      <div className="container mx-auto">
+        <div className="flex gap-8 py-20 lg:py-40 items-center justify-center flex-col">
+          <div>
+            <Button variant="secondary" size="sm" className="gap-4">
+              Read our launch article <MoveRight className="w-4 h-4" />
+            </Button>
+          </div>
+          <div className="flex gap-4 flex-col">
+            <h1 className="text-5xl md:text-7xl max-w-2xl tracking-tighter text-center font-regular">
+              <span className="text-spektr-cyan-50">This is something</span>
+              <span className="relative flex w-full justify-center overflow-hidden text-center md:pb-4 md:pt-1">
+                &nbsp;
+                {titles.map((title, index) => (
+                  <motion.span
+                    key={index}
+                    className="absolute font-semibold"
+                    initial={{ opacity: 0, y: "-100" }}
+                    transition={{ type: "spring", stiffness: 50 }}
+                    animate={
+                      titleNumber === index
+                        ? {
+                            y: 0,
+                            opacity: 1,
+                          }
+                        : {
+                            y: titleNumber > index ? -150 : 150,
+                            opacity: 0,
+                          }
+                    }
+                  >
+                    {title}
+                  </motion.span>
+                ))}
+              </span>
+            </h1>
 
-        <p className="text-lg md:text-xl text-white/70 mb-12 max-w-2xl mx-auto">
-          Experience the future of AI with our marketplace of specialized agents ready to transform your business operations.
-        </p>
-
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <ButtonColorful href={routes.signup} size="lg">
-            Get Started
-            <ArrowRight className="ml-2 h-5 w-5" />
-          </ButtonColorful>
-          <Button variant="outline" size="lg" asChild>
-            <Link href={routes.about}>Learn More</Link>
-          </Button>
+            <p className="text-lg md:text-xl leading-relaxed tracking-tight text-muted-foreground max-w-2xl text-center">
+              Managing a small business today is already tough. Avoid further
+              complications by ditching outdated, tedious trade methods. Our
+              goal is to streamline SMB trade, making it easier and faster than
+              ever.
+            </p>
+          </div>
+          <div className="flex flex-row gap-3">
+            <Button size="lg" className="gap-4" variant="outline">
+              Jump on a call <PhoneCall className="w-4 h-4" />
+            </Button>
+            <Button size="lg" className="gap-4">
+              Sign up here <MoveRight className="w-4 h-4" />
+            </Button>
+          </div>
         </div>
       </div>
-    </motion.div>
-  )
-} 
+    </div>
+  );
+}
+
+export { Hero }; 

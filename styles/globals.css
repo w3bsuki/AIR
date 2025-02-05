@@ -4,67 +4,36 @@
 
 @layer base {
   :root {
-    /* Light mode */
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
+    /* Dark theme by default */
+    --background: 0 0% 0%;
+    --foreground: 0 0% 98%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
- 
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
- 
-    --primary: 240 5.9% 10%;
-    --primary-foreground: 0 0% 98%;
- 
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
- 
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
- 
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
- 
+    --card: 0 0% 3%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 3%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 3%;
+
+    --secondary: 0 0% 8%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 8%;
+    --muted-foreground: 0 0% 63%;
+
+    --accent: 0 0% 8%;
+    --accent-foreground: 0 0% 98%;
+
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 240 5.9% 10%;
- 
-    --radius: 0.5rem;
-  }
- 
-  .dark {
-    /* Darker theme colors */
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
- 
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
- 
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
- 
-    --primary: 0 0% 98%;
-    --primary-foreground: 240 5.9% 10%;
- 
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
- 
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
- 
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
- 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 10%;
+    --input: 0 0% 10%;
+    --ring: 0 0% 63%;
 
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 240 4.9% 83.9%;
+    --radius: 0.5rem;
   }
 }
 
@@ -74,9 +43,64 @@
   }
   
   body {
-    @apply bg-background text-foreground antialiased;
+    @apply bg-black text-foreground antialiased;
     font-feature-settings: "ss01", "ss02", "cv01", "cv02", "cv03", "cv04";
     text-rendering: optimizeLegibility;
+  }
+
+  /* Section styles */
+  .section-divider {
+    @apply relative py-24 sm:py-32;
+    &::before {
+      content: '';
+      @apply absolute inset-0 bg-gradient-to-b from-black via-black/95 to-black;
+    }
+  }
+
+  /* Card styles */
+  .glow-card {
+    @apply relative overflow-hidden rounded-xl border border-white/[0.08] bg-black/30 p-6 backdrop-blur-md;
+    &::before {
+      content: '';
+      @apply absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.07] to-transparent opacity-0 transition-opacity duration-500;
+    }
+    &:hover::before {
+      @apply opacity-100;
+    }
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    @apply bg-gradient-to-b from-white to-white/70 bg-clip-text text-transparent;
+  }
+
+  /* Glow effects */
+  .glow-effect {
+    @apply relative;
+    &::before {
+      content: '';
+      @apply absolute -inset-[1px] rounded-[inherit] bg-gradient-to-r from-white/10 via-white/[0.07] to-white/10 opacity-0 transition-opacity duration-500;
+    }
+    &:hover::before {
+      @apply opacity-100;
+    }
+  }
+
+  /* Grid background */
+  .bg-grid {
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                      linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  /* Spotlight effect */
+  .spotlight {
+    @apply pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100;
+    background: radial-gradient(
+      600px circle at var(--x) var(--y),
+      rgba(255, 255, 255, 0.1),
+      transparent 40%
+    );
   }
 
   /* Modern typography system */
@@ -261,7 +285,7 @@
   .hover-glow {
     @apply transition-all duration-300;
     &:hover {
-      @apply brightness-110 shadow-[0_0_15px_rgba(var(--primary),0.5)];
+      @apply border-white/20 shadow-[0_0_30px_-10px_rgba(255,255,255,0.2)];
     }
   }
 
@@ -410,5 +434,18 @@
       mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
       mask-composite: exclude;
     }
+  }
+
+  /* New utilities for black theme */
+  .black-gradient {
+    @apply bg-gradient-to-b from-black via-black/95 to-black/90;
+  }
+
+  .border-glow {
+    @apply border border-white/[0.08] shadow-[0_0_30px_-10px_rgba(255,255,255,0.1)];
+  }
+
+  .text-glow {
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
   }
 }

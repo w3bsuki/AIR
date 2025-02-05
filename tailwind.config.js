@@ -219,8 +219,8 @@ module.exports = {
           "100%": { transform: "translateX(calc(-50%))" },
         },
         marquee: {
-          from: { transform: 'translateX(0)' },
-          to: { transform: 'translateX(calc(-100% - var(--gap)))' }
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-50%)' }
         }
       },
       animation: {
@@ -234,7 +234,7 @@ module.exports = {
         "scale-in": "scale-in 0.5s ease-out",
         carousel: "carousel 40s linear infinite",
         shimmer: "shimmer 2s infinite linear",
-        marquee: 'marquee var(--duration) linear infinite',
+        marquee: "marquee 30s linear infinite"
       },
       transitionTimingFunction: {
         "out-flex": "cubic-bezier(0.05, 0.6, 0.4, 0.9)",

@@ -1,259 +1,151 @@
 'use client'
 
 import { Button } from "@/components/ui/button"
-import { AgentGrid } from "@/components/AgentGrid"
-import { ArrowRight, BarChart, Zap, Shield, MoveRight, Brain, PhoneCall } from "lucide-react"
-import { ButtonColorful } from "@/components/ui/button-colorful"
-import { FeaturedServices } from "@/components/ui/featured-services"
-import { LogoCarousel } from "@/components/logo-carousel"
-import { SectionHeader } from "@/components/ui/section-header"
+import { ArrowRight } from "lucide-react"
+import { motion } from "framer-motion"
 import Link from "next/link"
-import { FeaturesSectionWithHoverEffects } from "@/components/ui/feature-section-with-hover-effects"
-import { FeatureSectionWrapper } from "@/components/ui/feature-section-wrapper"
-import { ResearchSection } from "@/components/ui/research-section"
-import { routes } from '@/lib/routes'
-import { TestimonialsSection } from "@/components/ui/testimonials-with-marquee"
-import { AgentCard } from "@/components/ui/agent-card"
-
-// Featured agents data (showing only 3)
-const featuredAgents = [
-  {
-    id: 1,
-    name: "DataAnalyst Pro",
-    description: "Advanced data analysis and visualization agent with real-time insights.",
-    category: "Data Analysis",
-    image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=400&h=400&fit=crop&crop=faces&q=80",
-  },
-  {
-    id: 2,
-    name: "ContentWriter AI",
-    description: "Professional content creation agent with SEO optimization.",
-    category: "Content Creation",
-    image: "https://images.unsplash.com/photo-1664575602276-acd073f104c1?w=400&h=400&fit=crop&crop=faces&q=80",
-  },
-  {
-    id: 3,
-    name: "CustomerService Bot",
-    description: "24/7 customer support agent with multilingual capabilities.",
-    category: "Customer Service",
-    image: "https://images.unsplash.com/photo-1675475422160-4ca6552b2b39?w=400&h=400&fit=crop&crop=faces&q=80",
-  },
-]
-
-// Featured services data
-const services = [
-  {
-    icon: Brain,
-    title: "AI Development",
-    description: "Custom AI solutions tailored to your business needs."
-  },
-  {
-    icon: BarChart,
-    title: "Data Analytics",
-    description: "Transform your raw data into actionable insights."
-  },
-  {
-    icon: Shield,
-    title: "Security & Compliance",
-    description: "Enterprise-grade security for your AI operations."
-  },
-]
-
-const featuredServices = [
-  {
-    title: "AI Development",
-    description: "Custom AI solutions tailored to your business needs. From chatbots to predictive analytics.",
-    icon: Brain,
-    gradient: "from-cyan-400/20 via-cyan-400/0 to-cyan-400/0",
-    features: ["Custom Model Training", "API Integration", "Scalable Solutions"],
-    href: routes.services
-  },
-  {
-    title: "Data Analytics",
-    description: "Transform your raw data into actionable insights with our advanced analytics services.",
-    icon: BarChart,
-    gradient: "from-purple-400/20 via-purple-400/0 to-purple-400/0",
-    features: ["Real-time Analytics", "Custom Dashboards", "Predictive Models"],
-    href: routes.services
-  },
-  {
-    title: "Security & Compliance",
-    description: "Enterprise-grade security solutions to protect your AI infrastructure and data.",
-    icon: Shield,
-    gradient: "from-emerald-400/20 via-emerald-400/0 to-emerald-400/0",
-    features: ["Encryption", "Access Control", "Security Audits"],
-    href: routes.services
-  }
-]
-
-const researchPosts = [
-  {
-    category: "Research",
-    title: "LLMs Easily Jailbroken as Browser Agents",
-    icon: Brain,
-    href: "/research/llm-browser-agents"
-  },
-  {
-    category: "Research",
-    title: "Multi-Turn Human Jailbreaks on LLM Defenses",
-    icon: Shield,
-    href: "/research/llm-defenses"
-  },
-  {
-    category: "Leaderboards",
-    title: "SEAL Leaderboards: Expert-Driven Private Evaluations",
-    icon: BarChart,
-    href: "/research/seal-leaderboards"
-  }
-]
-
-const agents = [
-  {
-    name: "Data Analysis Agent",
-    description: "Analyze complex datasets and generate insights with advanced AI algorithms.",
-    image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=400&h=400&fit=crop&crop=faces&q=80",
-    id: "data-analysis"
-  },
-  {
-    name: "Content Creation Agent",
-    description: "Create engaging content across multiple formats and platforms.",
-    image: "https://images.unsplash.com/photo-1664575602276-acd073f104c1?w=400&h=400&fit=crop&crop=faces&q=80",
-    id: "content-creation"
-  },
-  {
-    name: "Customer Service Agent",
-    description: "Provide 24/7 customer support with natural language understanding.",
-    image: "https://images.unsplash.com/photo-1675475422160-4ca6552b2b39?w=400&h=400&fit=crop&crop=faces&q=80",
-    id: "customer-service"
-  }
-]
-
-const testimonials = [
-  {
-    text: "This AI platform has revolutionized how we handle data analysis. The speed and accuracy are unmatched.",
-    author: {
-      name: "Sarah Chen",
-      handle: "@sarahchen",
-      avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=face"
-    }
-  },
-  {
-    text: "The content creation capabilities are mind-blowing. It's like having a full creative team at your fingertips.",
-    author: {
-      name: "Michael Rodriguez",
-      handle: "@mrodriguez",
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face"
-    }
-  },
-  {
-    text: "Customer service has never been more efficient. Our response times have improved by 300%.",
-    author: {
-      name: "Emily Watson",
-      handle: "@emilyw",
-      avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face"
-    }
-  }
-]
+import { LogoCarousel } from "@/components/logo-carousel"
+import { FeaturesGrid } from "@/components/features-grid"
+import { StatsSection } from "@/components/stats-section"
+import { FeaturedAgents } from "@/components/featured-agents"
+import { FloatingNav } from "@/components/floating-nav"
+import { ScrollProgress } from "@/components/scroll-progress"
+import { BackToTop } from "@/components/back-to-top"
+import { CookieConsent } from "@/components/cookie-consent"
+import { ThemeSwitcher } from "@/components/theme-switcher"
+import { SearchOverlay } from "@/components/search-overlay"
+import { HoverCard3D } from "@/components/ui/hover-card-3d"
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col">
+    <div className="relative">
+      <ScrollProgress />
+      <FloatingNav />
+      <BackToTop />
+      <ThemeSwitcher />
+      <SearchOverlay />
+      <CookieConsent />
+
       {/* Hero Section */}
-      <div className="w-full">
-        <div className="container mx-auto">
-          <div className="flex gap-8 py-20 lg:py-40 items-center justify-center flex-col">
-            <div>
-              <Button variant="secondary" size="sm" className="gap-4">
-                Read our launch article <MoveRight className="w-4 h-4" />
+      <section className="relative overflow-hidden pt-32 pb-16">
+        <div className="container relative z-10">
+          <div className="mx-auto max-w-3xl text-center">
+            <motion.h1 
+              className="text-gradient mb-6"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              The Platform for AI Development
+            </motion.h1>
+            <motion.p 
+              className="mb-8 text-lg text-muted-foreground"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
+              Build, train, and deploy AI models with unprecedented speed and accuracy.
+              Our end-to-end platform provides everything you need to turn your AI vision into reality.
+            </motion.p>
+            <motion.div 
+              className="flex items-center justify-center gap-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              <Button size="lg" className="bg-gradient hover:opacity-90">
+                Get started
+                <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
-            </div>
-            <div className="flex gap-4 flex-col">
-              <h1 className="text-5xl md:text-7xl max-w-2xl tracking-tighter text-center font-regular">
-                This is the start of something new
-              </h1>
-              <p className="text-lg md:text-xl leading-relaxed tracking-tight text-muted-foreground max-w-2xl text-center">
-                Managing a small business today is already tough. Avoid further
-                complications by ditching outdated, tedious trade methods. Our goal
-                is to streamline SMB trade, making it easier and faster than ever.
-              </p>
-            </div>
-            <div className="flex flex-row gap-3">
-              <Button size="lg" className="gap-4" variant="outline">
-                Jump on a call <PhoneCall className="w-4 h-4" />
+              <Button size="lg" variant="outline">
+                Schedule a demo
               </Button>
-              <Button size="lg" className="gap-4">
-                Sign up here <MoveRight className="w-4 h-4" />
-              </Button>
-            </div>
+            </motion.div>
           </div>
         </div>
-      </div>
+
+        {/* Background gradient */}
+        <div className="absolute inset-0 -z-10 overflow-hidden">
+          <div className="absolute -top-1/4 right-0 h-[1000px] w-[1000px] rounded-full bg-blue-500/20 blur-[120px]" />
+          <div className="absolute -top-1/4 left-0 h-[1000px] w-[1000px] rounded-full bg-cyan-500/20 blur-[120px]" />
+        </div>
+      </section>
 
       {/* Logo Carousel */}
       <LogoCarousel />
 
-      {/* Featured Services Section */}
-      <div className="relative py-24">
-        <FeaturedServices services={featuredServices} />
-      </div>
-
-      {/* Agents Grid Section */}
-      <section className="relative py-24 bg-background/50">
-        <div className="container px-4 md:px-6">
-          <div className="flex flex-col items-center justify-center space-y-4 text-center">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-              Featured Agents
-            </h2>
-            <p className="max-w-[900px] text-muted-foreground">
-              Discover our specialized AI agents designed to handle specific tasks with exceptional accuracy and efficiency.
-            </p>
-          </div>
-          <div className="mx-auto grid max-w-5xl grid-cols-1 gap-8 md:grid-cols-3 md:gap-12 lg:gap-16 mt-12">
-            {agents.map((agent) => (
-              <AgentCard key={agent.id} {...agent} />
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Stats Section */}
+      <StatsSection />
 
       {/* Features Section */}
-      <div className="relative py-24">
-        <FeaturesSectionWithHoverEffects />
-      </div>
-
-      {/* Research Section */}
-      <div className="relative py-24 bg-background/50">
-        <ResearchSection />
-      </div>
-
-      {/* Testimonials Section */}
-      <div className="relative py-24">
-        <TestimonialsSection
-          testimonials={testimonials}
-          title="What Our Users Say"
-          description="Discover how our AI agents are transforming businesses and workflows across industries."
-        />
-      </div>
-
-      {/* CTA Section */}
-      <section className="relative py-24 bg-background/50">
-        <div className="container px-4 md:px-6">
-          <div className="flex flex-col items-center justify-center space-y-4 text-center">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-              Start Your AI Journey Today
+      <section id="features" className="relative py-24 scroll-mt-16">
+        <div className="container">
+          <div className="mx-auto max-w-3xl text-center mb-16">
+            <h2 className="text-gradient mb-6">
+              Everything you need to build AI
             </h2>
-            <p className="max-w-[600px] text-muted-foreground">
-              Join thousands of users who are already leveraging our AI agents to transform their work.
+            <p className="text-lg text-muted-foreground">
+              Our comprehensive platform provides all the tools and features you need to develop,
+              train, and deploy AI models at scale.
             </p>
-            <a
-              className="inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-primary-foreground ring-offset-background transition-colors hover:bg-primary/90"
-              href="/signup"
-            >
-              Get Started
-            </a>
+          </div>
+          <HoverCard3D className="perspective-1000">
+            <FeaturesGrid />
+          </HoverCard3D>
+        </div>
+      </section>
+
+      {/* Featured Agents Section */}
+      <section id="agents" className="relative py-24 scroll-mt-16">
+        <div className="container">
+          <div className="mx-auto max-w-3xl text-center mb-16">
+            <h2 className="text-gradient mb-6">
+              Featured AI Agents
+            </h2>
+            <p className="text-lg text-muted-foreground">
+              Explore our collection of powerful AI agents designed to help you solve complex problems
+              and accelerate your development workflow.
+            </p>
+          </div>
+          <FeaturedAgents />
+        </div>
+        
+        {/* Background gradient */}
+        <div className="absolute inset-0 -z-10">
+          <div className="absolute inset-y-0 right-0 w-[800px] opacity-20">
+            <div className="absolute inset-0 bg-gradient-conic from-purple-500 via-cyan-500 to-blue-500 blur-[96px]" />
           </div>
         </div>
       </section>
-    </main>
+
+      {/* CTA Section */}
+      <section id="pricing" className="relative py-24 overflow-hidden scroll-mt-16">
+        <div className="container relative z-10">
+          <div className="mx-auto max-w-3xl text-center">
+            <h2 className="text-gradient text-3xl font-bold tracking-tight sm:text-4xl">
+              Ready to Get Started?
+            </h2>
+            <p className="mt-4 text-lg text-muted-foreground">
+              Join thousands of developers who are already building the future with our platform.
+            </p>
+            <div className="mt-10 flex items-center justify-center gap-4">
+              <Button size="lg" className="bg-gradient hover:opacity-90">
+                Sign Up Now
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+              <Button size="lg" variant="outline">
+                Contact Sales
+              </Button>
+            </div>
+          </div>
+        </div>
+        
+        {/* Background gradient */}
+        <div className="absolute inset-0 -z-10 overflow-hidden">
+          <div className="absolute -top-1/4 right-0 h-[1000px] w-[1000px] rounded-full bg-blue-500/20 blur-[120px] opacity-50" />
+          <div className="absolute -top-1/4 left-0 h-[1000px] w-[1000px] rounded-full bg-cyan-500/20 blur-[120px] opacity-50" />
+        </div>
+      </section>
+    </div>
   )
 }
