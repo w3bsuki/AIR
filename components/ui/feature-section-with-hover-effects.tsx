@@ -1,109 +1,81 @@
+'use client'
+
+import { motion } from "framer-motion"
+import { Brain, Code, Shield, Zap } from "lucide-react"
 import { cn } from "@/lib/utils"
-import {
-  Terminal,
-  MousePointerClick,
-  DollarSign,
-  Cloud,
-  Network,
-  HeadphonesIcon,
-  Shield,
-  Heart
-} from "lucide-react"
+
+const features = [
+  {
+    name: "AI Development",
+    description: "Build and deploy custom AI solutions that scale with your business needs.",
+    icon: Brain,
+    gradient: "from-blue-500/20 via-blue-500/10 to-transparent"
+  },
+  {
+    name: "Research & Innovation",
+    description: "Stay ahead with cutting-edge AI research and innovative solutions.",
+    icon: Code,
+    gradient: "from-violet-500/20 via-violet-500/10 to-transparent"
+  },
+  {
+    name: "Security & Compliance",
+    description: "Enterprise-grade security with industry compliance standards.",
+    icon: Shield,
+    gradient: "from-emerald-500/20 via-emerald-500/10 to-transparent"
+  },
+  {
+    name: "Performance Optimization",
+    description: "Optimize your AI systems for maximum efficiency and speed.",
+    icon: Zap,
+    gradient: "from-amber-500/20 via-amber-500/10 to-transparent"
+  }
+]
 
 export function FeaturesSectionWithHoverEffects() {
-  const features = [
-    {
-      title: "Built for developers",
-      description:
-        "Built for engineers, developers, dreamers, thinkers and doers.",
-      icon: <Terminal />,
-    },
-    {
-      title: "Ease of use",
-      description:
-        "It's as easy as using an Apple, and as expensive as buying one.",
-      icon: <MousePointerClick />,
-    },
-    {
-      title: "Pricing like no other",
-      description:
-        "Our prices are best in the market. No cap, no lock, no credit card required.",
-      icon: <DollarSign />,
-    },
-    {
-      title: "100% Uptime guarantee",
-      description: "We just cannot be taken down by anyone.",
-      icon: <Cloud />,
-    },
-    {
-      title: "Multi-tenant Architecture",
-      description: "You can simply share passwords instead of buying new seats",
-      icon: <Network />,
-    },
-    {
-      title: "24/7 Customer Support",
-      description:
-        "We are available a 100% of the time. Atleast our AI Agents are.",
-      icon: <HeadphonesIcon />,
-    },
-    {
-      title: "Money back guarantee",
-      description:
-        "If you donot like EveryAI, we will convince you to like us.",
-      icon: <Shield />,
-    },
-    {
-      title: "And everything else",
-      description: "I just ran out of copy ideas. Accept my sincere apologies",
-      icon: <Heart />,
-    },
-  ]
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 relative z-10 py-10 max-w-7xl mx-auto">
-      {features.map((feature, index) => (
-        <Feature key={feature.title} {...feature} index={index} />
-      ))}
-    </div>
-  )
-}
+    <div className="container px-4 md:px-6">
+      <div className="grid gap-12">
+        <div className="text-center space-y-4">
+          <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
+            Advanced AI Features
+          </h2>
+          <p className="max-w-[900px] text-muted-foreground mx-auto">
+            Discover our comprehensive suite of AI features designed to transform your business operations
+            and drive innovation.
+          </p>
+        </div>
 
-const Feature = ({
-  title,
-  description,
-  icon,
-  index,
-}: {
-  title: string
-  description: string
-  icon: React.ReactNode
-  index: number
-}) => {
-  return (
-    <div
-      className={cn(
-        "flex flex-col lg:border-r py-10 relative group/feature dark:border-neutral-800",
-        (index === 0 || index === 4) && "lg:border-l dark:border-neutral-800",
-        index < 4 && "lg:border-b dark:border-neutral-800"
-      )}
-    >
-      {index < 4 && (
-        <div className="opacity-0 group-hover/feature:opacity-100 transition duration-200 absolute inset-0 h-full w-full bg-gradient-to-t from-neutral-100 dark:from-neutral-800 to-transparent pointer-events-none" />
-      )}
-      {index >= 4 && (
-        <div className="opacity-0 group-hover/feature:opacity-100 transition duration-200 absolute inset-0 h-full w-full bg-gradient-to-b from-neutral-100 dark:from-neutral-800 to-transparent pointer-events-none" />
-      )}
-      <div className="mb-4 relative z-10 px-10 text-neutral-600 dark:text-neutral-400">
-        {icon}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {features.map((feature) => {
+            const Icon = feature.icon
+            return (
+              <motion.div
+                key={feature.name}
+                whileHover={{ scale: 1.02 }}
+                className={cn(
+                  "group relative overflow-hidden rounded-3xl p-8",
+                  "bg-gradient-to-b from-background/80 to-background border",
+                  "transition-all hover:border-primary/50",
+                  "backdrop-blur-sm"
+                )}
+              >
+                <div className="relative z-10 space-y-4">
+                  <div className={cn(
+                    "inline-flex h-12 w-12 items-center justify-center rounded-lg",
+                    "bg-gradient-to-br",
+                    feature.gradient
+                  )}>
+                    <Icon className="h-6 w-6 text-foreground/80" />
+                  </div>
+                  <h3 className="text-xl font-semibold">{feature.name}</h3>
+                  <p className="text-muted-foreground">{feature.description}</p>
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-b from-background/5 via-background/5 to-background/60" />
+              </motion.div>
+            )
+          })}
+        </div>
       </div>
-      <div className="text-lg font-bold mb-2 relative z-10 px-10">
-        <div className="absolute left-0 inset-y-0 h-6 group-hover/feature:h-8 w-1 rounded-tr-full rounded-br-full bg-neutral-300 dark:bg-neutral-700 group-hover/feature:bg-blue-500 transition-all duration-200 origin-center" />
-        <span className="group-hover/feature:translate-x-2 transition duration-200 inline-block text-neutral-800 dark:text-neutral-100">
-          {title}
-        </span>
-      </div>
-      <p className="text-sm text-neutral-600 dark:text-neutral-300 max-w-xs relative z-10 px-10">
-        {description}
-      </p>
     </div>
   )
 } 
