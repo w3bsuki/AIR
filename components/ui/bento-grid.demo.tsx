@@ -2,19 +2,19 @@
 
 import Image from "next/image"
 import {
-  Bell,
-  Calendar,
-  FileText,
+  Brain,
+  Shield,
   Globe,
-  Keyboard
+  Zap,
+  Bot
 } from "lucide-react"
 import { BentoCard, BentoGrid } from "@/components/ui/bento-grid"
 
 const features = [
   {
-    Icon: FileText,
-    name: "Advanced AI Models",
-    description: "Access state-of-the-art AI models trained on diverse datasets.",
+    Icon: Brain,
+    name: "Advanced AI Research",
+    description: "Pushing the boundaries of artificial intelligence with cutting-edge research and development.",
     href: "/",
     cta: "Learn more",
     background: (
@@ -23,15 +23,15 @@ const features = [
         width={256}
         height={256}
         className="absolute -right-20 -top-20 opacity-60 object-cover"
-        alt="AI visualization"
+        alt="AI Research"
       />
     ),
     className: "lg:row-start-1 lg:row-end-4 lg:col-start-2 lg:col-end-3",
   },
   {
-    Icon: Keyboard,
-    name: "Research Platform",
-    description: "Collaborate with researchers worldwide on cutting-edge AI projects.",
+    Icon: Shield,
+    name: "AI Safety",
+    description: "Ensuring responsible AI development with robust safety measures and ethical guidelines.",
     href: "/",
     cta: "Learn more",
     background: (
@@ -40,15 +40,15 @@ const features = [
         width={256}
         height={256}
         className="absolute -right-20 -top-20 opacity-60 object-cover"
-        alt="Research collaboration"
+        alt="AI Safety"
       />
     ),
     className: "lg:col-start-1 lg:col-end-2 lg:row-start-1 lg:row-end-3",
   },
   {
     Icon: Globe,
-    name: "Global Network",
-    description: "Connect with AI experts and developers across the globe.",
+    name: "Global Impact",
+    description: "Making AI accessible and beneficial for organizations worldwide.",
     href: "/",
     cta: "Learn more",
     background: (
@@ -57,15 +57,15 @@ const features = [
         width={256}
         height={256}
         className="absolute -right-20 -top-20 opacity-60 object-cover"
-        alt="Global network"
+        alt="Global Impact"
       />
     ),
     className: "lg:col-start-1 lg:col-end-2 lg:row-start-3 lg:row-end-4",
   },
   {
-    Icon: Calendar,
-    name: "Real-time Updates",
-    description: "Stay updated with the latest developments in AI research.",
+    Icon: Zap,
+    name: "Innovation",
+    description: "Continuously evolving and improving our AI technologies.",
     href: "/",
     cta: "Learn more",
     background: (
@@ -74,15 +74,15 @@ const features = [
         width={256}
         height={256}
         className="absolute -right-20 -top-20 opacity-60 object-cover"
-        alt="Real-time updates"
+        alt="Innovation"
       />
     ),
     className: "lg:col-start-3 lg:col-end-3 lg:row-start-1 lg:row-end-2",
   },
   {
-    Icon: Bell,
-    name: "Smart Notifications",
-    description: "Get intelligent alerts about research opportunities and collaborations.",
+    Icon: Bot,
+    name: "AI Agents",
+    description: "Building intelligent agents that solve real-world problems.",
     href: "/",
     cta: "Learn more",
     background: (
@@ -91,7 +91,7 @@ const features = [
         width={256}
         height={256}
         className="absolute -right-20 -top-20 opacity-60 object-cover"
-        alt="Smart notifications"
+        alt="AI Agents"
       />
     ),
     className: "lg:col-start-3 lg:col-end-3 lg:row-start-2 lg:row-end-4",
