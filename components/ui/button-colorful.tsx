@@ -7,10 +7,17 @@ import { cn } from '@/lib/utils'
 interface ButtonColorfulProps {
   children: ReactNode
   href: string
+  size?: 'default' | 'sm' | 'lg'
   className?: string
 }
 
-export function ButtonColorful({ children, href, className }: ButtonColorfulProps) {
+export function ButtonColorful({ children, href, size = 'default', className }: ButtonColorfulProps) {
+  const sizeClasses = {
+    default: 'px-5 py-2.5 text-sm',
+    sm: 'px-4 py-2 text-xs',
+    lg: 'px-6 py-3 text-base'
+  }
+
   return (
     <Link
       href={href}
@@ -19,7 +26,10 @@ export function ButtonColorful({ children, href, className }: ButtonColorfulProp
         className
       )}
     >
-      <span className="relative rounded-md bg-background px-5 py-2.5 transition-all duration-75 ease-in group-hover:bg-opacity-0 dark:bg-black">
+      <span className={cn(
+        "relative rounded-md bg-background transition-all duration-75 ease-in group-hover:bg-opacity-0 dark:bg-black",
+        sizeClasses[size]
+      )}>
         {children}
       </span>
     </Link>
