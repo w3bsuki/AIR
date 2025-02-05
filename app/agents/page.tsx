@@ -7,46 +7,40 @@ export const dynamic = 'force-dynamic'
 
 const agents = [
   {
-    id: 1,
     name: "NeuroSales Agent v2.1",
     description: "Advanced AI sales agent powered by state-of-the-art LLMs, capable of understanding complex customer needs and negotiating deals with human-like precision.",
-    category: "Sales",
-    image: "/agents/data-analyst.png",
+    image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=400&h=400&fit=crop&crop=faces&q=80",
+    id: "neurosales"
   },
   {
-    id: 2,
     name: "DataMiner Pro",
     description: "Enterprise-grade data analysis agent that processes and extracts actionable insights from complex datasets using advanced machine learning algorithms.",
-    category: "Data Analysis",
-    image: "/agents/data-analyst.png",
+    image: "https://images.unsplash.com/photo-1664575602276-acd073f104c1?w=400&h=400&fit=crop&crop=faces&q=80",
+    id: "dataminer"
   },
   {
-    id: 3,
     name: "AIssistant",
     description: "24/7 customer support agent with multilingual capabilities, emotional intelligence, and deep learning-based context understanding for superior service.",
-    category: "Customer Service",
-    image: "/agents/customer-service.png",
+    image: "https://images.unsplash.com/photo-1675475422160-4ca6552b2b39?w=400&h=400&fit=crop&crop=faces&q=80",
+    id: "aissistant"
   },
   {
-    id: 4,
     name: "CodeGenius",
     description: "AI-powered development assistant that generates production-ready code, performs code reviews, and suggests optimizations using latest coding standards.",
-    category: "Development",
-    image: "/agents/data-analyst.png",
+    image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=400&h=400&fit=crop&crop=faces&q=80",
+    id: "codegenius"
   },
   {
-    id: 5,
     name: "MarketingGuru",
     description: "Intelligent marketing agent that creates data-driven campaigns, analyzes market trends, and optimizes content for maximum engagement across channels.",
-    category: "Marketing",
-    image: "/agents/content-writer.png",
+    image: "https://images.unsplash.com/photo-1664575602276-acd073f104c1?w=400&h=400&fit=crop&crop=faces&q=80",
+    id: "marketingguru"
   },
   {
-    id: 6,
     name: "FinanceWizard",
     description: "Advanced financial analysis agent providing real-time market insights, risk assessment, and predictive modeling for informed decision-making.",
-    category: "Finance",
-    image: "/agents/data-analyst.png",
+    image: "https://images.unsplash.com/photo-1675475422160-4ca6552b2b39?w=400&h=400&fit=crop&crop=faces&q=80",
+    id: "financewizard"
   }
 ]
 
