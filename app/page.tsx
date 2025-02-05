@@ -160,7 +160,7 @@ export default function Home() {
 
       {/* Featured Services Section */}
       <div className="relative py-24">
-        <FeaturedServices />
+        <FeaturedServices services={featuredServices} />
       </div>
 
       {/* Agents Grid Section */}
