@@ -16,6 +16,20 @@ const inter = Inter({
   display: 'swap',
 })
 
+// Add spotlight effect handler
+const spotlightScript = `
+  document.addEventListener('mousemove', (e) => {
+    const spotlightElements = document.querySelectorAll('.spotlight-hero, .spotlight-section, .spotlight-card, .spotlight-text');
+    spotlightElements.forEach(element => {
+      const rect = element.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      element.style.setProperty('--mouse-x', \`\${x}px\`);
+      element.style.setProperty('--mouse-y', \`\${y}px\`);
+    });
+  });
+`
+
 export const metadata: Metadata = {
   title: {
     default: siteConfig.name,
@@ -78,7 +92,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head />
-      <body className={`${inter.variable} font-sans antialiased min-h-screen bg-background dark:bg-[#0F172A]`}>
+      <body className={`${inter.variable} font-sans antialiased min-h-screen bg-background dark:bg-[#030303]`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
@@ -97,6 +111,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <TailwindIndicator />
           <Analytics />
         </ThemeProvider>
+        <script dangerouslySetInnerHTML={{ __html: spotlightScript }} />
       </body>
     </html>
   )

@@ -140,16 +140,20 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <Hero />
+      <div className="spotlight-hero">
+        <Hero />
+      </div>
 
       {/* Logo Carousel */}
       <LogoCarousel />
 
       {/* Featured Services Section */}
-      <FeaturedServices services={featuredServices} />
+      <div className="spotlight-section">
+        <FeaturedServices services={featuredServices} />
+      </div>
 
       {/* Agents Grid Section */}
-      <section className="container mx-auto px-4 py-24 md:py-32">
+      <section className="container mx-auto px-4 py-24 md:py-32 spotlight-section">
         <div className="max-w-2xl mx-auto text-center mb-16">
           <SectionHeader
             title="Featured Agents"
@@ -170,25 +174,31 @@ export default function Home() {
       </section>
 
       {/* Features Section */}
-      <FeatureSectionWrapper>
-        <FeaturesSectionWithHoverEffects />
-      </FeatureSectionWrapper>
+      <div className="spotlight-section">
+        <FeatureSectionWrapper>
+          <FeaturesSectionWithHoverEffects />
+        </FeatureSectionWrapper>
+      </div>
 
       {/* Research Section */}
-      <ResearchSection />
+      <div className="spotlight-section">
+        <ResearchSection />
+      </div>
 
       {/* Testimonials Section */}
-      <TestimonialsSection
-        title="Trusted by innovative teams worldwide"
-        description="Join thousands of developers and enterprises who are already building the future with our AI platform"
-        testimonials={testimonials}
-      />
+      <div className="spotlight-section">
+        <TestimonialsSection
+          title="Trusted by innovative teams worldwide"
+          description="Join thousands of developers and enterprises who are already building the future with our AI platform"
+          testimonials={testimonials}
+        />
+      </div>
 
       {/* CTA Section */}
-      <section className="container mx-auto px-4 py-20">
-        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-b from-primary/10 via-primary/5 to-background px-6 py-20 sm:px-12 sm:py-32">
+      <section className="container mx-auto px-4 py-20 spotlight-section">
+        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-b from-primary/10 via-primary/5 to-background/5 dark:from-primary/20 dark:via-primary/10 dark:to-background/5 px-6 py-20 sm:px-12 sm:py-32 dark-gradient-border">
           <div className="relative mx-auto max-w-2xl text-center">
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl spotlight-text">
               Ready to transform your business with AI?
             </h2>
             <p className="mt-6 text-lg leading-8 text-muted-foreground">

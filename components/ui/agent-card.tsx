@@ -49,7 +49,7 @@ export function AgentCard({ agent }: AgentCardProps) {
       transition={{ duration: 0.3, ease: "easeOut" }}
       className={cn(
         "group relative overflow-hidden rounded-3xl bg-gradient-to-b from-background/80 to-background border transition-all hover:border-primary/50",
-        "backdrop-blur-sm"
+        "backdrop-blur-sm spotlight-card dark-gradient-border",
       )}
     >
       <div className="h-full p-8">
@@ -67,7 +67,7 @@ export function AgentCard({ agent }: AgentCardProps) {
             <div className="text-sm font-medium text-primary/80">
               {agent.category}
             </div>
-            <h3 className="text-xl font-semibold leading-7 tracking-tight">
+            <h3 className="text-xl font-semibold leading-7 tracking-tight spotlight-text">
               {agent.name}
             </h3>
           </div>

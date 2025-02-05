@@ -37,38 +37,33 @@
   }
  
   .dark {
-    /* Dark mode - using #0F172A as background and #3B82F6 for CTAs */
-    --background: 222 47% 11%;
+    /* Darker theme colors */
+    --background: 222 47% 2%;
     --foreground: 210 40% 98%;
  
-    --card: 222 47% 11%;
+    --card: 222 47% 4%;
     --card-foreground: 210 40% 98%;
  
-    --popover: 222 47% 11%;
+    --popover: 222 47% 4%;
     --popover-foreground: 210 40% 98%;
  
-    /* #3B82F6 converted to HSL */
     --primary: 217 91% 60%;
     --primary-foreground: 210 40% 98%;
  
-    /* Darker shade for secondary elements */
-    --secondary: 222 47% 15%;
+    --secondary: 222 47% 8%;
     --secondary-foreground: 210 40% 98%;
  
-    /* Muted variant of the background */
-    --muted: 222 47% 8%;
+    --muted: 222 47% 6%;
     --muted-foreground: 210 40% 80%;
  
-    /* Subtle accent color */
     --accent: 217 91% 60% / 0.1;
     --accent-foreground: 210 40% 98%;
  
     --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
 
-    /* Border and input colors matching the dark theme */
-    --border: 222 47% 15%;
-    --input: 222 47% 15%;
+    --border: 222 47% 8%;
+    --input: 222 47% 8%;
     --ring: 217 91% 60%;
   }
 }
@@ -345,5 +340,75 @@
 
   .dark-shadow {
     @apply shadow-lg dark:shadow-[#000]/10;
+  }
+
+  /* Spotlight effects */
+  .spotlight-hero {
+    @apply relative;
+    &::before {
+      content: '';
+      @apply absolute inset-0 bg-gradient-radial from-primary/20 via-transparent to-transparent opacity-50 blur-3xl -z-10;
+      width: 150%;
+      height: 150%;
+      top: -25%;
+      left: -25%;
+      transform: translate(var(--mouse-x, 0), var(--mouse-y, 0));
+      transition: transform 0.2s cubic-bezier(0, 0.55, 0.45, 1);
+    }
+  }
+
+  .spotlight-section {
+    @apply relative overflow-hidden;
+    &::before {
+      content: '';
+      @apply absolute inset-0 bg-gradient-radial from-primary/10 via-transparent to-transparent opacity-30 blur-2xl -z-10;
+      transform: translate(var(--mouse-x, 0), var(--mouse-y, 0));
+      transition: transform 0.2s cubic-bezier(0, 0.55, 0.45, 1);
+    }
+  }
+
+  .spotlight-card {
+    @apply relative overflow-hidden;
+    &::before {
+      content: '';
+      @apply absolute inset-0 bg-gradient-radial from-primary/5 via-transparent to-transparent opacity-0 blur-xl -z-10;
+      transform: translate(var(--mouse-x, 0), var(--mouse-y, 0));
+      transition: all 0.2s cubic-bezier(0, 0.55, 0.45, 1);
+    }
+    &:hover::before {
+      @apply opacity-100;
+    }
+  }
+
+  .spotlight-text {
+    @apply relative;
+    &::before {
+      content: '';
+      @apply absolute inset-0 bg-gradient-radial from-primary/30 via-transparent to-transparent opacity-0 blur-lg -z-10;
+      transform: translate(var(--mouse-x, 0), var(--mouse-y, 0));
+      transition: opacity 0.2s cubic-bezier(0, 0.55, 0.45, 1);
+    }
+    &:hover::before {
+      @apply opacity-100;
+    }
+  }
+
+  /* Dark mode specific gradients */
+  .dark-gradient-subtle {
+    @apply bg-gradient-to-b from-background via-background/95 to-background/90;
+  }
+
+  .dark-gradient-strong {
+    @apply bg-gradient-to-b from-background via-background/80 to-background/60;
+  }
+
+  .dark-gradient-border {
+    @apply relative;
+    &::after {
+      content: '';
+      @apply absolute inset-0 rounded-lg p-[1px] bg-gradient-to-r from-primary/20 to-primary/10 -z-10;
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask-composite: exclude;
+    }
   }
 }
