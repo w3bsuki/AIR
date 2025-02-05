@@ -11,19 +11,14 @@ import { Avatar } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
 
-interface Agent {
-  id: number
+interface AgentCardProps {
   name: string
   description: string
-  category: string
   image: string
+  id?: string
 }
 
-interface AgentCardProps {
-  agent: Agent
-}
-
-export function AgentCard({ agent }: AgentCardProps) {
+export function AgentCard({ name, description, image, id }: AgentCardProps) {
   const getMetrics = () => [
     {
       label: "Processing Power",
@@ -53,13 +48,13 @@ export function AgentCard({ agent }: AgentCardProps) {
     )}>
       <div className="p-6">
         <div className="flex items-center gap-4">
-          <Avatar className="h-12 w-12 border-2 border-border/10" src={agent.image} alt={agent.name} />
+          <Avatar className="h-12 w-12 border-2 border-border/10" src={image} alt={name} />
           <div>
-            <h3 className="font-semibold tracking-tight">{agent.name}</h3>
-            <p className="text-sm text-muted-foreground">{agent.description}</p>
+            <h3 className="font-semibold tracking-tight">{name}</h3>
+            <p className="text-sm text-muted-foreground">{description}</p>
           </div>
         </div>
-        {agent.id && (
+        {id && (
           <div className="mt-4">
             <Button
               variant="ghost"
@@ -67,7 +62,7 @@ export function AgentCard({ agent }: AgentCardProps) {
               asChild
             >
               <Link
-                href={`${routes.agents}/${agent.id}`}
+                href={`${routes.agents}/${id}`}
                 className="group/link inline-flex items-center gap-2 text-sm font-medium text-foreground/90"
               >
                 <span>Learn more</span>
