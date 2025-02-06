@@ -64,11 +64,11 @@ export function FeaturesGrid() {
       {features.map((feature) => (
         <motion.div
           key={feature.title}
-          initial={shouldAnimate ? { opacity: 0, y: 20 } : false}
-          whileInView={shouldAnimate ? { opacity: 1, y: 0 } : false}
+          initial={shouldAnimate && { opacity: 0, y: 20 }}
+          whileInView={shouldAnimate && { opacity: 1, y: 0 }}
           transition={shouldAnimate ? {
             duration: 0.3,
-            delay: feature.delay * 0.5, // Reduced delay on mobile
+            delay: feature.delay * 0.5,
             ease: [0.21, 0.47, 0.32, 0.98],
           } : undefined}
           viewport={{ once: true, margin: "-50px" }}
