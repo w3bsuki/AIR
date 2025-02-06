@@ -167,7 +167,7 @@ module.exports = {
         },
         marquee: {
           '0%': { transform: 'translateX(0)' },
-          '100%': { transform: 'translateX(-50%)' }
+          '100%': { transform: 'translateX(-100%)' }
         },
         fadeIn: {
           '0%': { opacity: 0 },
@@ -186,7 +186,7 @@ module.exports = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         shimmer: "shimmer 2s infinite",
-        marquee: "marquee 25s linear infinite",
+        marquee: "marquee 30s linear infinite",
         fadeIn: "fadeIn 0.5s ease-out forwards",
         fadeInUp: "fadeInUp 0.5s ease-out forwards",
         scaleIn: "scaleIn 0.5s ease-out forwards"
