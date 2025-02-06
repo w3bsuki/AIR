@@ -50,19 +50,6 @@ const features = [
   },
 ] as const
 
-const featureVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: (delay: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.3,
-      delay: delay * 0.5,
-      ease: [0.21, 0.47, 0.32, 0.98],
-    }
-  })
-}
-
 function FeaturesGridComponent() {
   // Check if user prefers reduced motion
   const prefersReducedMotion = useReducedMotion()
@@ -78,10 +65,13 @@ function FeaturesGridComponent() {
       {features.map((feature) => (
         <motion.div
           key={feature.title}
-          variants={featureVariants}
-          initial={shouldAnimate ? "hidden" : false}
-          whileInView={shouldAnimate ? "visible" : false}
-          custom={feature.delay}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{
+            duration: 0.3,
+            delay: shouldAnimate ? feature.delay * 0.5 : 0,
+            ease: [0.21, 0.47, 0.32, 0.98],
+          }}
           viewport={{ once: true, margin: "-50px" }}
           className="group relative overflow-hidden rounded-2xl border bg-background/50 p-4 sm:p-6 backdrop-blur-xl will-change-transform"
         >
