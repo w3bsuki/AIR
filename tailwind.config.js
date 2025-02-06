@@ -22,6 +22,15 @@ module.exports = {
       fontFamily: {
         sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
       },
+      height: {
+        'logo-section-height': '200px',
+        'stats-section-height': '400px',
+        'features-grid-height': '600px',
+        'agents-grid-height': '600px',
+      },
+      spacing: {
+        'section-padding': 'clamp(4rem, 10vw, 8rem)',
+      },
       fontSize: {
         // Scale.com font sizes
         '2xs': ['0.625rem', { lineHeight: '0.75rem' }],       
@@ -152,89 +161,35 @@ module.exports = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: 0 },
         },
-        "fade-in": {
-          "0%": { opacity: 0 },
-          "100%": { opacity: 1 },
-        },
-        "fade-in-up": {
-          "0%": {
-            opacity: 0,
-            transform: "translateY(10px)",
-          },
-          "100%": {
-            opacity: 1,
-            transform: "translateY(0)",
-          },
-        },
-        "fade-in-down": {
-          "0%": {
-            opacity: 0,
-            transform: "translateY(-10px)",
-          },
-          "100%": {
-            opacity: 1,
-            transform: "translateY(0)",
-          },
-        },
-        "slide-in-right": {
-          "0%": {
-            transform: "translateX(100%)",
-            opacity: 0,
-          },
-          "100%": {
-            transform: "translateX(0)",
-            opacity: 1,
-          },
-        },
-        "slide-in-left": {
-          "0%": {
-            transform: "translateX(-100%)",
-            opacity: 0,
-          },
-          "100%": {
-            transform: "translateX(0)",
-            opacity: 1,
-          },
-        },
-        "scale-in": {
-          "0%": {
-            transform: "scale(0.95)",
-            opacity: 0,
-          },
-          "100%": {
-            transform: "scale(1)",
-            opacity: 1,
-          },
-        },
         shimmer: {
-          "0%": {
-            backgroundPosition: "-1000px 0",
-          },
-          "100%": {
-            backgroundPosition: "1000px 0",
-          },
-        },
-        carousel: {
-          "0%": { transform: "translateX(0)" },
-          "100%": { transform: "translateX(calc(-50%))" },
+          '0%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(100%)' }
         },
         marquee: {
           '0%': { transform: 'translateX(0)' },
           '100%': { transform: 'translateX(-50%)' }
+        },
+        fadeIn: {
+          '0%': { opacity: 0 },
+          '100%': { opacity: 1 }
+        },
+        fadeInUp: {
+          '0%': { opacity: 0, transform: 'translateY(10px)' },
+          '100%': { opacity: 1, transform: 'translateY(0)' }
+        },
+        scaleIn: {
+          '0%': { opacity: 0, transform: 'scale(0.9)' },
+          '100%': { opacity: 1, transform: 'scale(1)' }
         }
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "fade-in": "fade-in 0.5s ease-out",
-        "fade-in-up": "fade-in-up 0.5s ease-out",
-        "fade-in-down": "fade-in-down 0.5s ease-out",
-        "slide-in-right": "slide-in-right 0.5s ease-out",
-        "slide-in-left": "slide-in-left 0.5s ease-out",
-        "scale-in": "scale-in 0.5s ease-out",
-        carousel: "carousel 40s linear infinite",
-        shimmer: "shimmer 2s infinite linear",
-        marquee: "marquee 30s linear infinite"
+        shimmer: "shimmer 2s infinite",
+        marquee: "marquee 25s linear infinite",
+        fadeIn: "fadeIn 0.5s ease-out forwards",
+        fadeInUp: "fadeInUp 0.5s ease-out forwards",
+        scaleIn: "scaleIn 0.5s ease-out forwards"
       },
       transitionTimingFunction: {
         "out-flex": "cubic-bezier(0.05, 0.6, 0.4, 0.9)",

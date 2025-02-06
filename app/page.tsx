@@ -1,177 +1,151 @@
 'use client'
 
-import dynamic from 'next/dynamic'
+import { lazy, Suspense } from 'react'
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
-import { motion } from "framer-motion"
-import { Suspense } from 'react'
+import { motion, LazyMotion, domAnimation } from "framer-motion"
 
-// Dynamic imports for better code splitting
-const LogoCarousel = dynamic(() => import('@/components/logo-carousel').then(mod => mod.LogoCarousel), {
-  ssr: false,
-  loading: () => <div className="w-full py-12 md:py-16 animate-pulse bg-muted/5" />
-})
+// Lightweight components loaded immediately
+import { Hero } from '@/components/sections/hero'
+import { LoadingFallback } from '@/components/ui/loading-fallback'
 
-const FeaturesGrid = dynamic(() => import('@/components/features-grid').then(mod => mod.FeaturesGrid), {
-  loading: () => <div className="grid gap-4 sm:gap-6 md:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 animate-pulse" />
-})
+// Heavy components loaded lazily
+const LogoCarousel = lazy(() => import('@/components/sections/logo-carousel'))
+const FeaturesGrid = lazy(() => import('@/components/sections/features-grid'))
+const StatsSection = lazy(() => import('@/components/sections/stats'))
+const FeaturedAgents = lazy(() => import('@/components/sections/featured-agents'))
+const HoverCard3D = lazy(() => import('@/components/ui/hover-card-3d'))
 
-const StatsSection = dynamic(() => import('@/components/stats-section').then(mod => mod.StatsSection), {
-  loading: () => <div className="relative overflow-hidden py-24 animate-pulse bg-muted/5" />
-})
-
-const FeaturedAgents = dynamic(() => import('@/components/featured-agents').then(mod => mod.FeaturedAgents), {
-  loading: () => <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 animate-pulse" />
-})
-
-// Navigation components
-const FloatingNav = dynamic(() => import('@/components/floating-nav').then(mod => mod.FloatingNav))
-const ScrollProgress = dynamic(() => import('@/components/scroll-progress').then(mod => mod.ScrollProgress))
-const BackToTop = dynamic(() => import('@/components/back-to-top').then(mod => mod.BackToTop))
-const ThemeSwitcher = dynamic(() => import('@/components/theme-switcher').then(mod => mod.ThemeSwitcher))
-const SearchOverlay = dynamic(() => import('@/components/search-overlay').then(mod => mod.SearchOverlay))
-const CookieConsent = dynamic(() => import('@/components/cookie-consent').then(mod => mod.CookieConsent))
-const HoverCard3D = dynamic(() => import('@/components/ui/hover-card-3d').then(mod => mod.HoverCard3D))
+// Navigation components loaded after main content
+const FloatingNav = lazy(() => import('@/components/navigation/floating-nav'))
+const ScrollProgress = lazy(() => import('@/components/navigation/scroll-progress'))
+const BackToTop = lazy(() => import('@/components/navigation/back-to-top'))
+const ThemeSwitcher = lazy(() => import('@/components/navigation/theme-switcher'))
+const SearchOverlay = lazy(() => import('@/components/navigation/search-overlay'))
+const CookieConsent = lazy(() => import('@/components/navigation/cookie-consent'))
 
 export default function Home() {
   return (
-    <div className="relative">
-      <Suspense fallback={null}>
-        <ScrollProgress />
-        <FloatingNav />
-        <BackToTop />
-        <ThemeSwitcher />
-        <SearchOverlay />
-        <CookieConsent />
-      </Suspense>
-
-      {/* Hero Section */}
-      <section className="relative min-h-[100vh] flex items-center justify-center">
-        <div className="container relative z-10 py-20">
-          <div className="mx-auto max-w-3xl text-center">
-            <motion.h1 
-              className="text-gradient mb-6 text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              The Platform for AI Development
-            </motion.h1>
-            <motion.p 
-              className="mb-8 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-            >
-              Build, train, and deploy AI models with unprecedented speed and accuracy.
-              Our end-to-end platform provides everything you need to turn your AI vision into reality.
-            </motion.p>
-            <motion.div 
-              className="flex flex-col sm:flex-row items-center justify-center gap-4"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            >
-              <Button size="lg" className="bg-gradient hover:opacity-90 w-full sm:w-auto">
-                Get started
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-              <Button size="lg" variant="outline" className="w-full sm:w-auto">
-                Schedule a demo
-              </Button>
-            </motion.div>
+    <LazyMotion features={domAnimation}>
+      <div className="relative">
+        {/* Navigation - Loaded after main content */}
+        <Suspense fallback={null}>
+          <div className="fixed-elements">
+            <ScrollProgress />
+            <FloatingNav />
+            <BackToTop />
+            <ThemeSwitcher />
+            <SearchOverlay />
+            <CookieConsent />
           </div>
-        </div>
+        </Suspense>
 
-        {/* Background gradient */}
-        <div className="absolute inset-0 -z-10 overflow-hidden">
-          <div className="absolute -top-1/4 right-0 h-[1000px] w-[1000px] rounded-full bg-blue-500/20 blur-[120px]" />
-          <div className="absolute -top-1/4 left-0 h-[1000px] w-[1000px] rounded-full bg-cyan-500/20 blur-[120px]" />
-        </div>
-      </section>
+        {/* Hero Section - Immediately visible content */}
+        <Hero />
 
-      {/* Sections with Suspense boundaries */}
-      <Suspense fallback={<div className="w-full py-12 md:py-16 animate-pulse bg-muted/5" />}>
-        <LogoCarousel />
-      </Suspense>
-
-      <Suspense fallback={<div className="relative overflow-hidden py-24 animate-pulse bg-muted/5" />}>
-        <StatsSection />
-      </Suspense>
-
-      {/* Features Section */}
-      <section id="features" className="relative py-16 md:py-24 scroll-mt-16">
-        <div className="container px-4 md:px-6">
-          <div className="mx-auto max-w-3xl text-center mb-12 md:mb-16">
-            <h2 className="text-gradient mb-6 text-3xl md:text-4xl font-bold">
-              Everything you need to build AI
-            </h2>
-            <p className="text-base md:text-lg text-muted-foreground">
-              Our comprehensive platform provides all the tools and features you need to develop,
-              train, and deploy AI models at scale.
-            </p>
-          </div>
-          <Suspense fallback={<div className="grid gap-4 sm:gap-6 md:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 animate-pulse" />}>
-            <HoverCard3D className="perspective-1000">
-              <FeaturesGrid />
-            </HoverCard3D>
+        {/* Main content - Lazy loaded with proper loading states */}
+        <main className="content-sections">
+          <Suspense fallback={<LoadingFallback className="logo-section-height" />}>
+            <LogoCarousel />
           </Suspense>
-        </div>
-      </section>
 
-      {/* Featured Agents Section */}
-      <section id="agents" className="relative py-16 md:py-24 scroll-mt-16">
-        <div className="container px-4 md:px-6">
-          <div className="mx-auto max-w-3xl text-center mb-12 md:mb-16">
-            <h2 className="text-gradient mb-6 text-3xl md:text-4xl font-bold">
-              Featured AI Agents
-            </h2>
-            <p className="text-base md:text-lg text-muted-foreground">
-              Explore our collection of powerful AI agents designed to help you solve complex problems
-              and accelerate your development workflow.
-            </p>
-          </div>
-          <Suspense fallback={<div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 animate-pulse" />}>
-            <FeaturedAgents />
+          <Suspense fallback={<LoadingFallback className="stats-section-height" />}>
+            <StatsSection />
           </Suspense>
-        </div>
-        
-        {/* Background gradient */}
-        <div className="absolute inset-0 -z-10">
-          <div className="absolute inset-y-0 right-0 w-[800px] opacity-20">
-            <div className="absolute inset-0 bg-gradient-conic from-purple-500 via-cyan-500 to-blue-500 blur-[96px]" />
-          </div>
-        </div>
-      </section>
 
-      {/* CTA Section */}
-      <section id="pricing" className="relative py-16 md:py-24 overflow-hidden scroll-mt-16">
-        <div className="container relative z-10 px-4 md:px-6">
-          <div className="mx-auto max-w-3xl text-center">
-            <h2 className="text-gradient text-3xl md:text-4xl font-bold tracking-tight mb-6">
-              Ready to Get Started?
-            </h2>
-            <p className="mt-4 text-base md:text-lg text-muted-foreground">
-              Join thousands of developers who are already building the future with our platform.
-            </p>
-            <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button size="lg" className="bg-gradient hover:opacity-90 w-full sm:w-auto">
-                Sign Up Now
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-              <Button size="lg" variant="outline" className="w-full sm:w-auto">
-                Contact Sales
-              </Button>
+          <section id="features" className="section-padding">
+            <div className="container px-4 md:px-6">
+              <div className="mx-auto max-w-3xl text-center mb-12 md:mb-16">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <h2 className="text-gradient mb-6 text-3xl md:text-4xl font-bold">
+                    Everything you need to build AI
+                  </h2>
+                  <p className="text-base md:text-lg text-muted-foreground">
+                    Our comprehensive platform provides all the tools and features you need to develop,
+                    train, and deploy AI models at scale.
+                  </p>
+                </motion.div>
+              </div>
+
+              <Suspense fallback={<LoadingFallback className="features-grid-height" />}>
+                <HoverCard3D className="perspective-1000">
+                  <FeaturesGrid />
+                </HoverCard3D>
+              </Suspense>
             </div>
-          </div>
-        </div>
-        
-        {/* Background gradient */}
-        <div className="absolute inset-0 -z-10 overflow-hidden">
-          <div className="absolute -top-1/4 right-0 h-[1000px] w-[1000px] rounded-full bg-blue-500/20 blur-[120px] opacity-50" />
-          <div className="absolute -top-1/4 left-0 h-[1000px] w-[1000px] rounded-full bg-cyan-500/20 blur-[120px] opacity-50" />
-        </div>
-      </section>
-    </div>
+          </section>
+
+          <section id="agents" className="section-padding">
+            <div className="container px-4 md:px-6">
+              <div className="mx-auto max-w-3xl text-center mb-12 md:mb-16">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <h2 className="text-gradient mb-6 text-3xl md:text-4xl font-bold">
+                    Featured AI Agents
+                  </h2>
+                  <p className="text-base md:text-lg text-muted-foreground">
+                    Explore our collection of powerful AI agents designed to help you solve complex problems
+                    and accelerate your development workflow.
+                  </p>
+                </motion.div>
+              </div>
+
+              <Suspense fallback={<LoadingFallback className="agents-grid-height" />}>
+                <FeaturedAgents />
+              </Suspense>
+            </div>
+
+            <div className="absolute inset-0 -z-10">
+              <div className="absolute inset-y-0 right-0 w-[800px] opacity-20">
+                <div className="absolute inset-0 bg-gradient-conic from-purple-500 via-cyan-500 to-blue-500 blur-[96px]" />
+              </div>
+            </div>
+          </section>
+
+          <section id="cta" className="section-padding">
+            <div className="container relative z-10 px-4 md:px-6">
+              <div className="mx-auto max-w-3xl text-center">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <h2 className="text-gradient text-3xl md:text-4xl font-bold tracking-tight mb-6">
+                    Ready to Get Started?
+                  </h2>
+                  <p className="mt-4 text-base md:text-lg text-muted-foreground">
+                    Join thousands of developers who are already building the future with our platform.
+                  </p>
+                  <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <Button size="lg" className="bg-gradient hover:opacity-90 w-full sm:w-auto">
+                      Sign Up Now
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
+                    <Button size="lg" variant="outline" className="w-full sm:w-auto">
+                      Contact Sales
+                    </Button>
+                  </div>
+                </motion.div>
+              </div>
+            </div>
+
+            <div className="absolute inset-0 -z-10 overflow-hidden">
+              <div className="absolute -top-1/4 right-0 h-[1000px] w-[1000px] rounded-full bg-blue-500/20 blur-[120px] opacity-50" />
+              <div className="absolute -top-1/4 left-0 h-[1000px] w-[1000px] rounded-full bg-cyan-500/20 blur-[120px] opacity-50" />
+            </div>
+          </section>
+        </main>
+      </div>
+    </LazyMotion>
   )
 }
