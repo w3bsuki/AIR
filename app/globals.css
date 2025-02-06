@@ -125,7 +125,7 @@
 
   section::before {
     content: '';
-    @apply absolute inset-0 -z-10 bg-gradient-to-b from-transparent via-muted/5 to-transparent opacity-50;
+    @apply absolute inset-0 -z-10 bg-gradient-to-b from-transparent via-muted/5 to-transparent opacity-30;
   }
 
   section:nth-child(odd)::before {
@@ -191,7 +191,7 @@
   /* Body text */
   p {
     @apply text-base sm:text-lg leading-relaxed;
-    @apply text-foreground/90 dark:text-foreground/80;
+    @apply text-foreground/80 dark:text-foreground/80;
   }
 
   /* Large body text */
@@ -203,7 +203,7 @@
   /* Small text */
   small, .text-small {
     @apply text-sm leading-normal;
-    @apply text-foreground/75 dark:text-foreground/60;
+    @apply text-foreground/60 dark:text-foreground/60;
   }
 }
 

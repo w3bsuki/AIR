@@ -17,8 +17,6 @@ const FeaturedAgents = lazy(() => import('@/components/sections/featured-agents'
 const HoverCard3D = lazy(() => import('@/components/ui/hover-card-3d'))
 
 // Navigation components loaded after main content
-const FloatingNav = lazy(() => import('@/components/navigation/floating-nav'))
-const ScrollProgress = lazy(() => import('@/components/navigation/scroll-progress'))
 const BackToTop = lazy(() => import('@/components/navigation/back-to-top'))
 const ThemeSwitcher = lazy(() => import('@/components/navigation/theme-switcher'))
 const SearchOverlay = lazy(() => import('@/components/navigation/search-overlay'))
@@ -31,8 +29,6 @@ export default function Home() {
         {/* Navigation - Loaded after main content */}
         <Suspense fallback={null}>
           <div className="fixed-elements">
-            <ScrollProgress />
-            <FloatingNav />
             <BackToTop />
             <ThemeSwitcher />
             <SearchOverlay />
