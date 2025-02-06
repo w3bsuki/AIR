@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, useReducedMotion } from "framer-motion"
+import { motion, useReducedMotion, Variants } from "framer-motion"
 import { Brain, Code, Zap, Shield, BarChart, Cloud } from "lucide-react"
 import { useMediaQuery } from "@/hooks/use-media-query"
 
@@ -49,6 +49,11 @@ const features = [
   },
 ]
 
+const featureVariants: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 }
+}
+
 export function FeaturesGrid() {
   // Check if user prefers reduced motion
   const prefersReducedMotion = useReducedMotion()
@@ -64,8 +69,9 @@ export function FeaturesGrid() {
       {features.map((feature) => (
         <motion.div
           key={feature.title}
-          initial={shouldAnimate && { opacity: 0, y: 20 }}
-          whileInView={shouldAnimate && { opacity: 1, y: 0 }}
+          initial={shouldAnimate ? "hidden" : false}
+          whileInView={shouldAnimate ? "visible" : false}
+          variants={featureVariants}
           transition={shouldAnimate ? {
             duration: 0.3,
             delay: feature.delay * 0.5,
