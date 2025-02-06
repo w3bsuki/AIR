@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import { useMediaQuery } from "@/hooks/use-media-query"
-import { useEffect, useState } from "react"
+import { useEffect, useState, memo } from "react"
 
 const LOGOS = [
   {
@@ -41,18 +41,25 @@ const LOGOS = [
     width: 120,
     height: 60,
   }
-]
+] as const
 
-export function LogoCarousel() {
+function LogoCarouselComponent() {
   const isMobile = useMediaQuery("(max-width: 768px)")
   const [mounted, setMounted] = useState(false)
 
-  // Only show component after mount to avoid hydration mismatch
   useEffect(() => {
     setMounted(true)
   }, [])
 
-  if (!mounted) return null
+  if (!mounted) {
+    return (
+      <div className="w-full py-12 md:py-16">
+        <div className="container">
+          <div className="h-[60px] animate-pulse bg-muted/5 rounded-lg" />
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="w-full py-12 md:py-16">
@@ -71,16 +78,18 @@ export function LogoCarousel() {
               {LOGOS.map((logo, idx) => (
                 <div
                   key={idx}
-                  className="flex items-center justify-center grayscale opacity-60 hover:opacity-100 hover:grayscale-0 transition-all duration-300"
+                  className="flex items-center justify-center grayscale opacity-60 hover:opacity-100 hover:grayscale-0 transition-colors"
                 >
-                  <Image
-                    src={logo.src}
-                    alt={logo.alt}
-                    width={logo.width}
-                    height={logo.height}
-                    className="object-contain w-auto h-12"
-                    loading="lazy"
-                  />
+                  <div className="relative w-[120px] h-[60px]">
+                    <Image
+                      src={logo.src}
+                      alt={logo.alt}
+                      fill
+                      sizes="120px"
+                      className="object-contain"
+                      priority={idx < 4}
+                    />
+                  </div>
                 </div>
               ))}
             </div>
@@ -96,16 +105,18 @@ export function LogoCarousel() {
                 {[...LOGOS, ...LOGOS].map((logo, idx) => (
                   <div
                     key={idx}
-                    className="mx-8 md:mx-12 w-[120px] h-[60px] shrink-0 flex items-center justify-center grayscale opacity-60 hover:opacity-100 hover:grayscale-0 transition-all duration-300"
+                    className="mx-8 md:mx-12 w-[120px] h-[60px] shrink-0 flex items-center justify-center grayscale opacity-60 hover:opacity-100 hover:grayscale-0 transition-colors"
                   >
-                    <Image
-                      src={logo.src}
-                      alt={logo.alt}
-                      width={logo.width}
-                      height={logo.height}
-                      className="object-contain"
-                      loading="lazy"
-                    />
+                    <div className="relative w-full h-full">
+                      <Image
+                        src={logo.src}
+                        alt={logo.alt}
+                        fill
+                        sizes="120px"
+                        className="object-contain"
+                        priority={idx < 4}
+                      />
+                    </div>
                   </div>
                 ))}
               </div>
@@ -115,4 +126,6 @@ export function LogoCarousel() {
       </div>
     </div>
   )
-} 
+}
+
+export const LogoCarousel = memo(LogoCarouselComponent) 

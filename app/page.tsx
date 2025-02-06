@@ -1,30 +1,49 @@
 'use client'
 
+import dynamic from 'next/dynamic'
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
 import { motion } from "framer-motion"
-import Link from "next/link"
-import { LogoCarousel } from "@/components/logo-carousel"
-import { FeaturesGrid } from "@/components/features-grid"
-import { StatsSection } from "@/components/stats-section"
-import { FeaturedAgents } from "@/components/featured-agents"
-import { FloatingNav } from "@/components/floating-nav"
-import { ScrollProgress } from "@/components/scroll-progress"
-import { BackToTop } from "@/components/back-to-top"
-import { CookieConsent } from "@/components/cookie-consent"
-import { ThemeSwitcher } from "@/components/theme-switcher"
-import { SearchOverlay } from "@/components/search-overlay"
-import { HoverCard3D } from "@/components/ui/hover-card-3d"
+import { Suspense } from 'react'
+
+// Dynamic imports for better code splitting
+const LogoCarousel = dynamic(() => import('@/components/logo-carousel').then(mod => mod.LogoCarousel), {
+  ssr: false,
+  loading: () => <div className="w-full py-12 md:py-16 animate-pulse bg-muted/5" />
+})
+
+const FeaturesGrid = dynamic(() => import('@/components/features-grid').then(mod => mod.FeaturesGrid), {
+  loading: () => <div className="grid gap-4 sm:gap-6 md:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 animate-pulse" />
+})
+
+const StatsSection = dynamic(() => import('@/components/stats-section').then(mod => mod.StatsSection), {
+  loading: () => <div className="relative overflow-hidden py-24 animate-pulse bg-muted/5" />
+})
+
+const FeaturedAgents = dynamic(() => import('@/components/featured-agents').then(mod => mod.FeaturedAgents), {
+  loading: () => <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 animate-pulse" />
+})
+
+// Navigation components
+const FloatingNav = dynamic(() => import('@/components/floating-nav').then(mod => mod.FloatingNav))
+const ScrollProgress = dynamic(() => import('@/components/scroll-progress').then(mod => mod.ScrollProgress))
+const BackToTop = dynamic(() => import('@/components/back-to-top').then(mod => mod.BackToTop))
+const ThemeSwitcher = dynamic(() => import('@/components/theme-switcher').then(mod => mod.ThemeSwitcher))
+const SearchOverlay = dynamic(() => import('@/components/search-overlay').then(mod => mod.SearchOverlay))
+const CookieConsent = dynamic(() => import('@/components/cookie-consent').then(mod => mod.CookieConsent))
+const HoverCard3D = dynamic(() => import('@/components/ui/hover-card-3d').then(mod => mod.HoverCard3D))
 
 export default function Home() {
   return (
     <div className="relative">
-      <ScrollProgress />
-      <FloatingNav />
-      <BackToTop />
-      <ThemeSwitcher />
-      <SearchOverlay />
-      <CookieConsent />
+      <Suspense fallback={null}>
+        <ScrollProgress />
+        <FloatingNav />
+        <BackToTop />
+        <ThemeSwitcher />
+        <SearchOverlay />
+        <CookieConsent />
+      </Suspense>
 
       {/* Hero Section */}
       <section className="relative min-h-[100vh] flex items-center justify-center">
@@ -71,11 +90,14 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Logo Carousel */}
-      <LogoCarousel />
+      {/* Sections with Suspense boundaries */}
+      <Suspense fallback={<div className="w-full py-12 md:py-16 animate-pulse bg-muted/5" />}>
+        <LogoCarousel />
+      </Suspense>
 
-      {/* Stats Section */}
-      <StatsSection />
+      <Suspense fallback={<div className="relative overflow-hidden py-24 animate-pulse bg-muted/5" />}>
+        <StatsSection />
+      </Suspense>
 
       {/* Features Section */}
       <section id="features" className="relative py-16 md:py-24 scroll-mt-16">
@@ -89,9 +111,11 @@ export default function Home() {
               train, and deploy AI models at scale.
             </p>
           </div>
-          <HoverCard3D className="perspective-1000">
-            <FeaturesGrid />
-          </HoverCard3D>
+          <Suspense fallback={<div className="grid gap-4 sm:gap-6 md:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 animate-pulse" />}>
+            <HoverCard3D className="perspective-1000">
+              <FeaturesGrid />
+            </HoverCard3D>
+          </Suspense>
         </div>
       </section>
 
@@ -107,7 +131,9 @@ export default function Home() {
               and accelerate your development workflow.
             </p>
           </div>
-          <FeaturedAgents />
+          <Suspense fallback={<div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 animate-pulse" />}>
+            <FeaturedAgents />
+          </Suspense>
         </div>
         
         {/* Background gradient */}
