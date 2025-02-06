@@ -69,8 +69,8 @@ export function FeaturesGrid() {
       {features.map((feature) => (
         <motion.div
           key={feature.title}
-          initial={shouldAnimate ? "hidden" : false}
-          whileInView={shouldAnimate ? "visible" : false}
+          initial={shouldAnimate ? "hidden" : undefined}
+          whileInView={shouldAnimate ? "visible" : undefined}
           variants={featureVariants}
           transition={shouldAnimate ? {
             duration: 0.3,
