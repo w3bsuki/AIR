@@ -8,7 +8,7 @@ interface HoverCard3DProps {
   className?: string
 }
 
-export function HoverCard3D({ children, className = "" }: HoverCard3DProps) {
+function HoverCard3DComponent({ children, className = "" }: HoverCard3DProps) {
   const x = useMotionValue(0)
   const y = useMotionValue(0)
 
@@ -63,4 +63,6 @@ export function HoverCard3D({ children, className = "" }: HoverCard3DProps) {
       </div>
     </motion.div>
   )
-} 
+}
+
+export default HoverCard3DComponent 

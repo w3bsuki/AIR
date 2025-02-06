@@ -10,10 +10,10 @@ import { Hero } from '@/components/sections/hero'
 import { LoadingFallback } from '@/components/ui/loading-fallback'
 
 // Heavy components loaded lazily
-const LogoCarousel = lazy(() => import('@/components/sections/logo-carousel'))
-const FeaturesGrid = lazy(() => import('@/components/sections/features-grid'))
-const StatsSection = lazy(() => import('@/components/sections/stats'))
-const FeaturedAgents = lazy(() => import('@/components/sections/featured-agents'))
+const LogoCarousel = lazy(() => import('@/components/sections/logo-carousel').then(mod => ({ default: mod.default })))
+const FeaturesGrid = lazy(() => import('@/components/sections/features-grid').then(mod => ({ default: mod.default })))
+const StatsSection = lazy(() => import('@/components/sections/stats').then(mod => ({ default: mod.default })))
+const FeaturedAgents = lazy(() => import('@/components/sections/featured-agents').then(mod => ({ default: mod.default })))
 const HoverCard3D = lazy(() => import('@/components/ui/hover-card-3d'))
 
 // Navigation components loaded after main content
