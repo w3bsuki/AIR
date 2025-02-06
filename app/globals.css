@@ -6,6 +6,7 @@
 @media (min-width: 768px) {
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 80px; /* Height of the navbar */
   }
 }
 
@@ -13,6 +14,7 @@
 @media (max-width: 767px) {
   html {
     scroll-behavior: auto;
+    scroll-padding-top: 80px; /* Height of the navbar */
   }
 }
 
@@ -32,34 +34,34 @@
 
 @layer base {
   :root {
-    /* Scale.com color scheme */
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Dark theme by default */
+    --background: 0 0% 0%;
+    --foreground: 0 0% 98%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 0 0% 3%;
+    --card-foreground: 0 0% 98%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 3%;
+    --popover-foreground: 0 0% 98%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 3%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 0 0% 8%;
+    --secondary-foreground: 0 0% 98%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 0 0% 8%;
+    --muted-foreground: 0 0% 63%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 0 0% 8%;
+    --accent-foreground: 0 0% 98%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 0 0% 10%;
+    --input: 0 0% 10%;
+    --ring: 0 0% 63%;
 
     --radius: 0.5rem;
 
@@ -107,29 +109,101 @@
   * {
     @apply border-border;
   }
-  body {
-    @apply bg-background text-foreground antialiased;
-    font-feature-settings: "ss01", "ss02", "cv01", "cv02", "cv03", "cv04";
-  }
   
-  /* Scale.com typography */
+  body {
+    @apply bg-black text-foreground antialiased;
+    font-feature-settings: "ss01", "ss02", "cv01", "cv02", "cv03", "cv04";
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Section styles */
+  section {
+    @apply relative py-16 md:py-24;
+    position: relative;
+    z-index: 1;
+  }
+
+  section::before {
+    content: '';
+    @apply absolute inset-0 -z-10 bg-gradient-to-b from-transparent via-muted/5 to-transparent opacity-50;
+  }
+
+  section:nth-child(odd)::before {
+    @apply from-blue-500/5 via-transparent to-blue-500/5;
+  }
+
+  section:nth-child(even)::before {
+    @apply from-cyan-500/5 via-transparent to-cyan-500/5;
+  }
+
+  /* Container styles */
+  .container {
+    @apply px-4 md:px-6 mx-auto max-w-7xl;
+  }
+
+  /* Typography */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-sans font-semibold tracking-tight text-foreground;
+    text-wrap: balance;
+  }
+
+  /* Hero headings */
   h1 {
-    @apply text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl;
-    letter-spacing: -0.02em;
+    @apply text-4xl font-extrabold sm:text-5xl lg:text-6xl;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
   }
 
+  /* Section headings */
   h2 {
-    @apply text-3xl font-semibold tracking-tight sm:text-4xl;
+    @apply text-3xl font-bold sm:text-4xl lg:text-5xl;
+    line-height: 1.2;
     letter-spacing: -0.02em;
   }
 
+  /* Subsection headings */
   h3 {
-    @apply text-2xl font-semibold tracking-tight sm:text-3xl;
+    @apply text-2xl font-bold sm:text-3xl lg:text-4xl;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+  }
+
+  /* Component headings */
+  h4 {
+    @apply text-xl font-semibold sm:text-2xl lg:text-3xl;
+    line-height: 1.4;
     letter-spacing: -0.01em;
   }
 
+  /* Small headings */
+  h5 {
+    @apply text-lg font-semibold sm:text-xl;
+    line-height: 1.5;
+    letter-spacing: -0.01em;
+  }
+
+  /* Smallest headings */
+  h6 {
+    @apply text-base font-semibold sm:text-lg;
+    line-height: 1.5;
+  }
+
+  /* Body text */
   p {
-    @apply text-base leading-7 text-muted-foreground;
+    @apply text-base sm:text-lg leading-relaxed;
+    @apply text-foreground/90 dark:text-foreground/80;
+  }
+
+  /* Large body text */
+  .text-lead {
+    @apply text-lg sm:text-xl leading-relaxed;
+    @apply text-foreground/90 dark:text-foreground/80;
+  }
+
+  /* Small text */
+  small, .text-small {
+    @apply text-sm leading-normal;
+    @apply text-foreground/75 dark:text-foreground/60;
   }
 }
 
@@ -180,22 +254,62 @@
   background-size: 50px 50px;
 }
 
+/* Modern utilities */
 @layer utilities {
-  /* Scale.com utility classes */
+  .text-balance {
+    text-wrap: balance;
+  }
+
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-cyan-600;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-cyan-500;
   }
 
   .bg-gradient {
-    @apply bg-gradient-to-r from-blue-600 to-cyan-600;
+    @apply bg-gradient-to-r from-blue-500 to-cyan-500;
   }
 
   .hover-lift {
-    @apply transition-transform duration-300 hover:-translate-y-1;
+    @apply transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-lg;
   }
 
   .glass-effect {
-    @apply bg-white/80 backdrop-blur-md border border-white/20;
+    @apply bg-background/80 backdrop-blur-md border border-border/50;
+  }
+
+  .gradient-border {
+    @apply relative;
+    &::after {
+      content: '';
+      @apply absolute inset-0 rounded-lg p-[1px] bg-gradient-to-r from-blue-500/50 to-cyan-500/50 -z-10;
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask-composite: exclude;
+    }
+  }
+
+  /* Section spacing */
+  .section-spacing {
+    @apply py-16 md:py-24 lg:py-32;
+  }
+
+  .section-spacing-sm {
+    @apply py-12 md:py-16 lg:py-20;
+  }
+
+  /* Container max widths */
+  .container-sm {
+    @apply max-w-4xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .container-md {
+    @apply max-w-5xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .container-lg {
+    @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .container-xl {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
 }
 
