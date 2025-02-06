@@ -27,11 +27,11 @@ export default function Home() {
       <CookieConsent />
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden pt-24 md:pt-32 pb-16">
-        <div className="container relative z-10">
-          <div className="mx-auto max-w-3xl text-center px-4 md:px-0">
+      <section className="relative min-h-[100vh] flex items-center justify-center">
+        <div className="container relative z-10 py-20">
+          <div className="mx-auto max-w-3xl text-center">
             <motion.h1 
-              className="text-gradient mb-6 text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight"
+              className="text-gradient mb-6 text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
@@ -39,7 +39,7 @@ export default function Home() {
               The Platform for AI Development
             </motion.h1>
             <motion.p 
-              className="mb-8 text-base md:text-lg text-muted-foreground max-w-2xl mx-auto"
+              className="mb-8 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}

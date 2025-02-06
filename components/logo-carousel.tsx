@@ -2,6 +2,7 @@
 
 import Image from "next/image"
 import { useMediaQuery } from "@/hooks/use-media-query"
+import { useEffect, useState } from "react"
 
 const LOGOS = [
   {
@@ -44,6 +45,14 @@ const LOGOS = [
 
 export function LogoCarousel() {
   const isMobile = useMediaQuery("(max-width: 768px)")
+  const [mounted, setMounted] = useState(false)
+
+  // Only show component after mount to avoid hydration mismatch
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!mounted) return null
 
   return (
     <div className="w-full py-12 md:py-16">
@@ -56,21 +65,39 @@ export function LogoCarousel() {
           <div className="pointer-events-none absolute left-0 top-0 w-20 h-full bg-gradient-to-r from-background to-transparent z-10" />
           <div className="pointer-events-none absolute right-0 top-0 w-20 h-full bg-gradient-to-l from-background to-transparent z-10" />
           
-          {/* Logo marquee - Reduced number of duplicates for better performance */}
-          <div className="flex overflow-hidden select-none">
-            <div 
-              className="flex animate-marquee"
-              style={{ 
-                willChange: 'transform',
-                animationPlayState: isMobile ? 'paused' : 'running'
-              }}
-            >
-              {[...LOGOS].map((logo, idx) => (
+          {/* Logo grid for mobile */}
+          {isMobile ? (
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-8 px-4">
+              {LOGOS.map((logo, idx) => (
                 <div
                   key={idx}
-                  className="mx-8 md:mx-12 w-[120px] h-[60px] shrink-0 flex items-center justify-center grayscale opacity-60 hover:opacity-100 hover:grayscale-0 transition-all duration-300"
+                  className="flex items-center justify-center grayscale opacity-60 hover:opacity-100 hover:grayscale-0 transition-all duration-300"
                 >
-                  <div className="relative w-full h-full">
+                  <Image
+                    src={logo.src}
+                    alt={logo.alt}
+                    width={logo.width}
+                    height={logo.height}
+                    className="object-contain w-auto h-12"
+                    loading="lazy"
+                  />
+                </div>
+              ))}
+            </div>
+          ) : (
+            // Marquee for desktop
+            <div className="flex overflow-hidden select-none">
+              <div 
+                className="flex animate-marquee"
+                style={{ 
+                  willChange: 'transform',
+                }}
+              >
+                {[...LOGOS, ...LOGOS].map((logo, idx) => (
+                  <div
+                    key={idx}
+                    className="mx-8 md:mx-12 w-[120px] h-[60px] shrink-0 flex items-center justify-center grayscale opacity-60 hover:opacity-100 hover:grayscale-0 transition-all duration-300"
+                  >
                     <Image
                       src={logo.src}
                       alt={logo.alt}
@@ -78,40 +105,12 @@ export function LogoCarousel() {
                       height={logo.height}
                       className="object-contain"
                       loading="lazy"
-                      unoptimized
                     />
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-            <div 
-              className="flex animate-marquee"
-              style={{ 
-                willChange: 'transform',
-                animationPlayState: isMobile ? 'paused' : 'running'
-              }}
-              aria-hidden="true"
-            >
-              {[...LOGOS].map((logo, idx) => (
-                <div
-                  key={idx + "clone"}
-                  className="mx-8 md:mx-12 w-[120px] h-[60px] shrink-0 flex items-center justify-center grayscale opacity-60 hover:opacity-100 hover:grayscale-0 transition-all duration-300"
-                >
-                  <div className="relative w-full h-full">
-                    <Image
-                      src={logo.src}
-                      alt={logo.alt}
-                      width={logo.width}
-                      height={logo.height}
-                      className="object-contain"
-                      loading="lazy"
-                      unoptimized
-                    />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+          )}
         </div>
       </div>
     </div>
