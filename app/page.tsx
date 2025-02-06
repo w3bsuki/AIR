@@ -27,11 +27,11 @@ export default function Home() {
       <CookieConsent />
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden pt-32 pb-16">
+      <section className="relative overflow-hidden pt-24 md:pt-32 pb-16">
         <div className="container relative z-10">
-          <div className="mx-auto max-w-3xl text-center">
+          <div className="mx-auto max-w-3xl text-center px-4 md:px-0">
             <motion.h1 
-              className="text-gradient mb-6"
+              className="text-gradient mb-6 text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
@@ -39,7 +39,7 @@ export default function Home() {
               The Platform for AI Development
             </motion.h1>
             <motion.p 
-              className="mb-8 text-lg text-muted-foreground"
+              className="mb-8 text-base md:text-lg text-muted-foreground max-w-2xl mx-auto"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
@@ -48,16 +48,16 @@ export default function Home() {
               Our end-to-end platform provides everything you need to turn your AI vision into reality.
             </motion.p>
             <motion.div 
-              className="flex items-center justify-center gap-4"
+              className="flex flex-col sm:flex-row items-center justify-center gap-4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              <Button size="lg" className="bg-gradient hover:opacity-90">
+              <Button size="lg" className="bg-gradient hover:opacity-90 w-full sm:w-auto">
                 Get started
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
-              <Button size="lg" variant="outline">
+              <Button size="lg" variant="outline" className="w-full sm:w-auto">
                 Schedule a demo
               </Button>
             </motion.div>
@@ -78,13 +78,13 @@ export default function Home() {
       <StatsSection />
 
       {/* Features Section */}
-      <section id="features" className="relative py-24 scroll-mt-16">
-        <div className="container">
-          <div className="mx-auto max-w-3xl text-center mb-16">
-            <h2 className="text-gradient mb-6">
+      <section id="features" className="relative py-16 md:py-24 scroll-mt-16">
+        <div className="container px-4 md:px-6">
+          <div className="mx-auto max-w-3xl text-center mb-12 md:mb-16">
+            <h2 className="text-gradient mb-6 text-3xl md:text-4xl font-bold">
               Everything you need to build AI
             </h2>
-            <p className="text-lg text-muted-foreground">
+            <p className="text-base md:text-lg text-muted-foreground">
               Our comprehensive platform provides all the tools and features you need to develop,
               train, and deploy AI models at scale.
             </p>
@@ -96,13 +96,13 @@ export default function Home() {
       </section>
 
       {/* Featured Agents Section */}
-      <section id="agents" className="relative py-24 scroll-mt-16">
-        <div className="container">
-          <div className="mx-auto max-w-3xl text-center mb-16">
-            <h2 className="text-gradient mb-6">
+      <section id="agents" className="relative py-16 md:py-24 scroll-mt-16">
+        <div className="container px-4 md:px-6">
+          <div className="mx-auto max-w-3xl text-center mb-12 md:mb-16">
+            <h2 className="text-gradient mb-6 text-3xl md:text-4xl font-bold">
               Featured AI Agents
             </h2>
-            <p className="text-lg text-muted-foreground">
+            <p className="text-base md:text-lg text-muted-foreground">
               Explore our collection of powerful AI agents designed to help you solve complex problems
               and accelerate your development workflow.
             </p>
@@ -119,21 +119,21 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section id="pricing" className="relative py-24 overflow-hidden scroll-mt-16">
-        <div className="container relative z-10">
+      <section id="pricing" className="relative py-16 md:py-24 overflow-hidden scroll-mt-16">
+        <div className="container relative z-10 px-4 md:px-6">
           <div className="mx-auto max-w-3xl text-center">
-            <h2 className="text-gradient text-3xl font-bold tracking-tight sm:text-4xl">
+            <h2 className="text-gradient text-3xl md:text-4xl font-bold tracking-tight mb-6">
               Ready to Get Started?
             </h2>
-            <p className="mt-4 text-lg text-muted-foreground">
+            <p className="mt-4 text-base md:text-lg text-muted-foreground">
               Join thousands of developers who are already building the future with our platform.
             </p>
-            <div className="mt-10 flex items-center justify-center gap-4">
-              <Button size="lg" className="bg-gradient hover:opacity-90">
+            <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Button size="lg" className="bg-gradient hover:opacity-90 w-full sm:w-auto">
                 Sign Up Now
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
-              <Button size="lg" variant="outline">
+              <Button size="lg" variant="outline" className="w-full sm:w-auto">
                 Contact Sales
               </Button>
             </div>

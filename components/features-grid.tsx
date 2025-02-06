@@ -50,7 +50,7 @@ const features = [
 
 export function FeaturesGrid() {
   return (
-    <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+    <div className="grid gap-4 sm:gap-6 md:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
       {features.map((feature) => (
         <motion.div
           key={feature.title}
@@ -62,14 +62,14 @@ export function FeaturesGrid() {
             ease: [0.21, 0.47, 0.32, 0.98],
           }}
           viewport={{ once: true }}
-          className="group relative overflow-hidden rounded-2xl border bg-background/50 p-6 backdrop-blur-xl"
+          className="group relative overflow-hidden rounded-2xl border bg-background/50 p-4 sm:p-6 backdrop-blur-xl"
         >
           <div className="relative z-10">
-            <div className={`inline-flex rounded-xl bg-gradient-to-br ${feature.gradient} p-3`}>
-              <feature.icon className="h-6 w-6" />
+            <div className={`inline-flex rounded-xl bg-gradient-to-br ${feature.gradient} p-2.5 sm:p-3`}>
+              <feature.icon className="h-5 w-5 sm:h-6 sm:w-6" />
             </div>
-            <h3 className="mt-4 text-xl font-semibold">{feature.title}</h3>
-            <p className="mt-2 text-muted-foreground">{feature.description}</p>
+            <h3 className="mt-4 text-lg sm:text-xl font-semibold">{feature.title}</h3>
+            <p className="mt-2 text-sm sm:text-base text-muted-foreground">{feature.description}</p>
           </div>
           <div className="absolute inset-0 z-0 bg-gradient-to-br from-blue-500/0 via-blue-500/0 to-blue-500/5 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
         </motion.div>
