@@ -1,7 +1,8 @@
 'use client'
 
-import { motion } from "framer-motion"
+import { motion, useReducedMotion } from "framer-motion"
 import { Brain, Code, Zap, Shield, BarChart, Cloud } from "lucide-react"
+import { useMediaQuery } from "@/hooks/use-media-query"
 
 const features = [
   {
@@ -49,20 +50,29 @@ const features = [
 ]
 
 export function FeaturesGrid() {
+  // Check if user prefers reduced motion
+  const prefersReducedMotion = useReducedMotion()
+  
+  // Check if device is mobile
+  const isMobile = useMediaQuery("(max-width: 768px)")
+
+  // Disable animations on mobile or if user prefers reduced motion
+  const shouldAnimate = !prefersReducedMotion && !isMobile
+
   return (
     <div className="grid gap-4 sm:gap-6 md:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
       {features.map((feature) => (
         <motion.div
           key={feature.title}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{
-            duration: 0.5,
-            delay: feature.delay,
+          initial={shouldAnimate ? { opacity: 0, y: 20 } : false}
+          whileInView={shouldAnimate ? { opacity: 1, y: 0 } : false}
+          transition={shouldAnimate ? {
+            duration: 0.3,
+            delay: feature.delay * 0.5, // Reduced delay on mobile
             ease: [0.21, 0.47, 0.32, 0.98],
-          }}
-          viewport={{ once: true }}
-          className="group relative overflow-hidden rounded-2xl border bg-background/50 p-4 sm:p-6 backdrop-blur-xl"
+          } : undefined}
+          viewport={{ once: true, margin: "-50px" }}
+          className="group relative overflow-hidden rounded-2xl border bg-background/50 p-4 sm:p-6 backdrop-blur-xl will-change-transform"
         >
           <div className="relative z-10">
             <div className={`inline-flex rounded-xl bg-gradient-to-br ${feature.gradient} p-2.5 sm:p-3`}>
@@ -71,7 +81,10 @@ export function FeaturesGrid() {
             <h3 className="mt-4 text-lg sm:text-xl font-semibold">{feature.title}</h3>
             <p className="mt-2 text-sm sm:text-base text-muted-foreground">{feature.description}</p>
           </div>
-          <div className="absolute inset-0 z-0 bg-gradient-to-br from-blue-500/0 via-blue-500/0 to-blue-500/5 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+          <div 
+            className="absolute inset-0 z-0 bg-gradient-to-br from-blue-500/0 via-blue-500/0 to-blue-500/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+            style={{ willChange: 'opacity' }}
+          />
         </motion.div>
       ))}
     </div>
